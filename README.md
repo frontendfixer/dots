@@ -16,16 +16,16 @@ Fetch tool    | neofetch
 Editor        | NeoVim
 File Explorer | Thunar
 
-  ![Screenshot of Kitty with fetch](https://imgur.com/D7c1Pwm) 
+  ![Screenshot of Kitty with fetch](https://imgur.com/D7c1Pwm.png) 
   
-  ![Screenshot of Neovim](https://imgur.com/bjH3Zrh) 
+  ![Screenshot of Neovim](https://imgur.com/bjH3Zrh.png) 
   ### My neo vim config are taken and tweak from _Neovim from scratch_ 
     
    `I use Dracula Colorscheme`
   
       https://github.com/LunarVim/Neovim-from-scratch.git
   
-  ![Screenshot of Thunar](https://imgur.com/tDPwMhQ) 
+  ![Screenshot of Thunar](https://imgur.com/tDPwMhQ.png) 
   ## my color scheme
   
   ![colorscheme](https://i.imgur.com/GDnSX6H.png)
@@ -65,4 +65,4 @@ File Explorer | Thunar
 
 ```
   
-  ![Screenshot of terminal](https://imgur.com/wqH9K3h) 
+  ![Screenshot of terminal](https://imgur.com/wqH9K3h.png) 
