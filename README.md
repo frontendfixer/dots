@@ -4,7 +4,7 @@
 
 `Software I use`  
 
-Distribution  | Fdora 37 (i3-spin)
+Distribution  | Fedora 37 (i3-spin)
 ------------- | -------------
 WM            | qtile
 Terminal      | kitty
