@@ -1,0 +1,591 @@
+#
+#     ██╗      █████╗ ██╗  ██╗███████╗██╗  ██╗███╗   ███╗██╗██╗  ██╗ █████╗ ███╗   ██╗████████╗ █████╗
+#     ██║     ██╔══██╗██║ ██╔╝██╔════╝██║  ██║████╗ ████║██║██║ ██╔╝██╔══██╗████╗  ██║╚══██╔══╝██╔══██╗
+#     ██║     ███████║█████╔╝ ███████╗███████║██╔████╔██║██║█████╔╝ ███████║██╔██╗ ██║   ██║   ███████║
+#     ██║     ██╔══██║██╔═██╗ ╚════██║██╔══██║██║╚██╔╝██║██║██╔═██╗ ██╔══██║██║╚██╗██║   ██║   ██╔══██║
+#     ███████╗██║  ██║██║  ██╗███████║██║  ██║██║ ╚═╝ ██║██║██║  ██╗██║  ██║██║ ╚████║   ██║   ██║  ██║
+#     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
+#
+
+################# Start of all the settings
+
+# KEY DEFINITIONS TO REMEMBER
+# $mod = Set below
+# Mod4 = Super key
+# Mod1 = ALT key
+# Control = CTRL key
+# Shift = SHIFT key
+# Escape = ESCAPE key
+# Return = ENTER or RETURN key
+# KP_Enter = Keypad Enter
+# Pause = PAUSE key
+# Print = PRINT key
+# Tab = TAB key
+
+################################################################################
+############                 config starts here:                    ############
+################################################################################
+
+# Font for window titles.
+font pango: FiraCode Nerd Font 11
+
+# set the mod key to the winkey:
+set $mod Mod4
+
+#set default applications
+set $terminal kitty
+set $browser firefox
+set $file thunar
+set $editor code
+set $note Xed 
+set $photoViewer Eog
+set $vm Virt-manager
+
+################# Define the movements keys - variables
+set $up Up
+set $down Down
+set $left Left
+set $right Right 
+
+#####################
+# workspace layout: #
+#####################
+
+# default i3 tiling mode:
+workspace_layout default
+
+# i3 stacking layout:
+# Each window will be fullscreen and tabbed top to bottom.
+#workspace_layout stacking
+
+# i3 tabbed layout:
+# Each new window will open fullscreen as a tab (left to right)
+#workspace_layout tabbed
+
+##############################
+# extra options for windows: #
+##############################
+
+#border indicator on windows:
+new_window pixel 3
+
+# thin borders
+# hide_edge_borders both
+
+################# i3 gaps next                     
+# Settings for I3 next gap git
+# https://github.com/Airblader/i3/tree/gaps-next
+# delete or uncomment the following lines if you do not have it or do not
+# want it
+
+for_window [class="^.*"] border pixel 3
+gaps inner 2
+gaps outer 2
+#smart_gaps on
+smart_borders on
+
+################## i3 gaps change                   
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+################# Popups  control                  
+# Popups during fullscreen mode
+popup_during_fullscreen smart
+
+# show window title bars (not officially supported with i3gaps)
+#default_border normal
+
+# window title alignment
+title_align center
+
+################# Single and Dual screen
+
+# current displays
+#exec --no-startup-id xrandr --output DP0 --right-of HDMI-0 --auto
+
+# setting variables for later use
+# use xrandr and/or arandr to know the names of your monitors
+# use this line to tell which monitor is on the right
+# xrandr --output DVI-I-2 --right-of DVI-I-1 --auto
+# exec --no-startup-id xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
+# exec --no-startup-id xrandr --output DVI-I-0 --right-of HDMI-0 --auto
+# exec --no-startup-id xrandr --output DVI-1 --right-of DVI-0 --auto
+# exec --no-startup-id xrandr --output DVI-D-1 --right-of DVI-I-1 --auto
+# exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
+
+# current setup
+
+#set $firstMonitor HDMI-0
+#set $secondMonitor DP0
+
+# Other Examples
+
+#set $firstMonitor DP3
+#set $secondMonitor LVDS1
+
+#set $firstMonitor DVI-I-0
+#set $secondMonitor HDMI-0
+
+#set $firstMonitor DVI-0
+#set $secondMonitor DVI-1
+
+#set $firstMonitor DVI-I-1
+#set $secondMonitor DVI-D-1
+
+#set $firstMonitor HDMI-1
+#set $secondMonitor HDMI-2
+
+# workspace 1 output $firstMonitor
+# workspace 2 output $firstMonitor
+# workspace 3 output $firstMonitor
+# workspace 4 output $firstMonitor
+# workspace 5 output $firstMonitor
+# workspace 6 output $secondMonitor
+# workspace 7 output $secondMonitor
+# workspace 8 output $secondMonitor
+# workspace 9 output $secondMonitor
+# workspace 10 output $secondMonitor
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace  $ws10
+
+############# switch Workspace  ###############
+bindsym $mod+Tab workspace back_and_forth
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+
+################## compositor 
+# picom: https://wiki.archlinux.org/title/Picom
+# manpage: https://man.archlinux.org/man/picom.1.en
+exec_always picom -b --config ~/.config/picom/picom.conf
+
+
+################## autostart applications/services on login
+
+exec --no-startup-id dex --autostart --environment i3 &
+exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id numlockx on &
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+
+#wallpaper Applicaton
+#exec --no-startup-id sleep 2 && nitrogen --set-zoom-fill --random .background/ --save
+exec --no-startup-id feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
+#exec --no-startup-id betterlockscreen -w dim 
+
+### Desktop notifications
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id clipit
+
+exec_always --no-startup-id autotiling
+exec_always --no-startup-id xfce4-power-manager
+############ Autostart apps 
+exec --no-startup-id sleep 1 && $terminal
+#exec --no-startup-id sleep 2 && $browser
+#exec --no-startup-id sleep 1 && $file
+#exec --no-startup-id sleep 1 && $editor
+
+####################   resize    #########################
+
+# resize window (you can also use the mouse for that):
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+#        bindsym j resize shrink width 10 px or 10 ppt
+#        bindsym k resize grow height 10 px or 10 ppt
+#        bindsym l resize shrink height 10 px or 10 ppt
+#        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        #Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height  5 px or 5 ppt
+        bindsym Up resize shrink height  5 px or 5 ppt
+        bindsym Right resize grow width  5 px or 5 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+######################################
+# keybindings for different actions: #
+######################################
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+bindsym $mod+c exec $editor
+
+# kill focused window
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+
+# reload & restart the configuration file
+#bindsym $mod+Shift+c reload
+bindsym $mod+control+r restart
+
+################# menu's in archlinux
+### start dmenu
+bindsym $mod+d exec dmenu_run -nb '#1a1e1e' -sf '#212128' -sb '#f24054' -nf '#00e5ff' -fn "Fira Code 10"
+### rofi bindings   
+bindsym $mod+p exec rofi -modi drun -show drun -config ~/.config/rofi/col_singlerow.rasi
+bindsym $mod+t exec rofi -modi window -show window -config ~/.config/rofi/rofidmenu.rasi
+
+bindsym control+Shift+space exec rofimoji --selector-args="-theme ~/.config/rofi/grid.rasi" --hidden-descriptions
+
+
+############### i3 scripts 
+
+### exit menu 
+bindsym $mod+Shift+e exec ~/.config/polybar/scripts/powermenu
+
+### Lock the system
+# lock with a picture:
+#bindsym $mod+l exec ~/.config/i3/scripts/fun-lock
+# lock by blurring the screen:
+#bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+#with betterlockscreen
+bindsym $mod+Shift+l exec  
+#### use command "betterlockscreen -u ~/.background"
+
+### open new empty workspace
+bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+
+
+############# User Applications ############
+
+bindsym Mod1+Shift+C exec gcolor2
+
+################# Moving around in i3  
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+################# Tiling parameters
+
+# split in horizontal orientation
+bindsym $mod+h split h
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+x layout toggle split
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+Shift+a focus parent
+# focus the child container
+bindsym $mod+Shift+c focus child
+
+######################## Multimedia Keys
+
+# volume
+#bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ 
+#bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- 
+#bindsym XF86AudioMute exec amixer sset Master toggle 
+
+### Pulse Audio controls
+#bindsym XF86AudioRaiseVolume exec pamixer -i 5 
+#bindsym XF86AudioLowerVolume exec pamixer -d 5 
+#bindsym XF86AudioMute exec pamixer -t && dunstify -h string:x-dunst-stack-tag:mute mute: $(pamixer --get-mute)!
+bindsym XF86AudioMute         exec --no-startup-id pamixer -t     && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume  exec --no-startup-id pamixer -d 5   && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pamixer -i 5   && pkill -RTMIN+1 i3blocks
+
+
+### play/pause keys
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+### xbacklight                       
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+
+######################## App shortcuts
+bindsym $mod+b exec $browser;focus
+bindsym $mod+Shift+W exec chromium-browser;focus
+bindsym $mod+e exec $file;focus
+bindsym $mod+n exec $note
+bindsym Insert exec "scrot ~/Pictures/%Y-%m-%d-%T-scr.png"
+
+##########################################
+# configuration for workspace behaviour: #
+##########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws0 "10"
+
+# use workspaces on different displays:
+# where you have to replace VGA-0/HDMI-0 with the names for your displays
+# you can get from xrandr command
+#workspace $ws1 output VGA-0
+#workspace $ws2 output VGA-0
+#workspace $ws3 output HDMI-0
+#workspace $ws4 output HDMI-0
+#workspace $ws5 output HDMI-0
+
+### assign applications to workspaces
+assign [class="Alacritty|kitty"] $ws1
+assign [class="firefox"] $ws3
+assign [class="Thunar|Pcmanfm"] $ws2
+assign [class="code-oss|Code|Subl|VSCodium|Geany|Atom"] $ws4
+assign [class="Gimp|kdenlive|figma-linux|Inkscape"] $ws8
+assign [class="vlc|libreoffice"] $ws6
+assign [class="$vm"] $ws5 
+assign [class="Chromium-browser"] $ws5
+
+# automatic set focus new window if it opens on another workspace then the current:
+for_window [class=Alacritty] focus
+for_window [class=firefox] focus
+for_window [class=Chromium-browser] focus
+for_window [class=Thunar] focus
+for_window [class=Pcmanfm] focus
+for_window [class=Geany] focus
+for_window [class=Code] focus
+for_window [class=Subl] focus
+for_window [class=VSCodium] focus
+for_window [class=Atom] focus
+for_window [class=Gimp] focus
+for_window [class=kdenlive] focus
+for_window [class=$vm] focus
+
+###################### system tray 
+
+# start blueberry app for managing bluetooth devices from tray:
+#exec --no-startup-id blueberry-tray
+exec --no-startup-id blueman-applet
+# networkmanager-applet
+exec-always --no-startup-id nm-applet
+# dropbox
+#exec --no-startup-id dropbox start
+
+####################################
+########   floating rules    #######
+####################################
+#floating_minimum_size <width> x <height>
+#floating_minimum_size 800 x 540
+#floating_maximum_size -1 x -1
+#default_floating_border normal|none|pixel
+default_floating_border pixel 3
+
+for_window [floating_from="user"] border pixel 2 
+
+for_window [class="Ristretto"] floating enable resize set 1024 640 
+for_window [class="__main__.py"] floating enable resize set 800 640 border normal
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Xarchiver"] floating enable
+for_window [class="octopi"] floating enable
+for_window [class="Synaptic"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Rhythmbox"] floating enable
+for_window [class="Lollypop"] floating enable  
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+for_window [class="TelegramDesktop"] floating enable
+for_window [class="Eog"] floating enable
+for_window [class="Xviewer"] floating enable
+for_window [class="Xfce4-taskmanager"] floating enable
+for_window [class="Xreader"] floating enable resize set 1024 720
+for_window [class="Engrampa"] floating enable
+for_window [class="File-roller"] floating enable
+for_window [class="Grub Customizer"] floating enable
+for_window [class="Mousepad"] floating enable
+for_window [class="Gedit"] floating enable
+for_window [class="Xed"] floating enable
+for_window [class="gcolor2"] floating enable
+for_window [class="Tk"] floating enable resize set 960 760
+
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable border pixel 1
+for_window [title="Copying"] floating enable
+for_window [title="Deleting"] floating enable
+for_window [title="Moving"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+for_window [window_role="setup"] floating enable
+for_window [window_role="GtkFileChooserDialog"] floating enable resize set 640 600
+
+
+
+######################################
+# color settings for bar and windows #
+######################################
+
+# //// Dracula Color ////
+set $bgcolor    #282a36
+set $ibgcolor   #44475a
+set $textcolor  #f8f8f2
+set $itextcolor #6272a4
+set $red        #ff5555
+set $yellow     #f1fa8c
+set $green      #50fa7b
+set $cyan       #8be9fd
+set $orange     #ffb86c
+set $pink       #ff79c6
+set $purple     #de93f9
+#define colors for windows:
+#                          border          background      text            indicator
+client.focused             $red         $bgcolor        $textcolor      $bgcolor
+client.unfocused           $red         $ibgcolor       $textcolor      $ibgcolor
+client.focused_inactive    $red         $ibgcolor       $itextcolor     $ibgcolor
+client.urgent              $red            $red            $textcolor      $red
+
+# //// Royal Dark ////
+#set $bgdark     #1a1a1e
+#set $bgcolor    #212128
+#set $ibgcolor   #56566c
+#set $textcolor  #eeeef4
+#set $itextcolor #d0d0d0
+#set $red        #f24054
+#set $yellow     #f2f230
+#set $green      #40f260
+#set $cyan       #00e5ff
+#set $tela       #30f0b2
+#set $blue       #7755f2
+#set $magenta    #f240f2
+
+# define colors for windows:
+#                          border          background      text            indicator
+#client.focused             $bgdark         $tela          $textcolor      $bgcolor
+#client.unfocused           $bgdark         $ibgcolor      $textcolor      $ibgcolor
+#client.focused_inactive    $bgdark         $ibgcolor      $itextcolor     $ibgcolor
+#client.urgent              $ibgcolor       $red           $textcolor      $red
+
+############################################
+# bar settings (input comes from i3blocks) #
+############################################
+
+#bar {
+#    font pango: CaskaydiaCove Nerd Font 11
+#    output primary
+#    position top
+#    status_command  i3blocks #i3blocks -c ~/.config/i3/i3blocks.conf
+#    workspace_buttons yes
+#    strip_workspace_numbers yes
+#    workspace_min_width 30
+#    tray_output primary
+#    binding_mode_indicator yes
+#    separator_symbol "|"
+#
+#    colors {
+#        background $bgcolor
+#        statusline $textcolor
+#        separator  $cyan
+#                           #boreder #backgroung #text
+#        focused_workspace  $cyan  $cyan       $bgcolor
+#        active_workspace   $cyan  $cyan       $bgcolor
+#        inactive_workspace $cyan  $ibgcolor   $textcolor
+#        urgent_workspace   $cyan  $red        $bgcolor
+#        binding_mode       $cyan  $green      $bgcolor        
+#    }
+#}
+#

@@ -1,0 +1,24 @@
+<ui>
+
+	<toolbar name='GeanyToolbar'>
+		<toolitem action='Save' />
+		<toolitem action='Copy' />
+		<toolitem action='Cut' />
+		<toolitem action='Paste' />
+		<separator/>
+		<toolitem action='Undo' />
+		<toolitem action='SearchEntry' />
+		<toolitem action='Replace' />
+		<separator/>
+		<toolitem action='Compile' />
+		<toolitem action='Build' />
+		<toolitem action='Run' />
+		<separator/>
+		<toolitem action='Color' />
+		<separator/>
+		<separator/>
+		<toolitem action='Close' />
+		<toolitem action='Quit' />
+
+	</toolbar>
+</ui>

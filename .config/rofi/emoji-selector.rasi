@@ -1,0 +1,135 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+
+configuration {
+	font:							"Fira Code 16";
+    show-icons:                     false;
+	icon-theme: 					"Papirus";
+    display-emoji: 					"Emoji";
+    emoji-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+// Royal Drark Colorscheme 
+* {
+  al:  #00000000;
+  bg:  #1a1a1eff;
+  se:  #212128ff;
+  fg:  #eeeef4ff;
+  ac:  #f24054ff;
+}
+
+//Main Customization
+
+window {
+    transparency:                   "real";
+    background-color:               @bg;
+    text-color:                     @fg;
+	border:							1px 5px;
+	border-color:					@ac;
+    border-radius:                  10px;
+	width:							30%;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       -5%;
+}
+
+scrollbar{
+    enabled:                        false;
+    background-color:               @bg;
+    handle-width:                   0px;
+    handle-color:                   @al;
+    border-color:                   @al;
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						1.25% 0.75% 1% 0.75%;
+	background-color: 				@ac;
+	text-color: 					@fg;
+    border-radius:                  6px;
+	font:							"Fira Code 10";
+}
+
+textbox-prompt-colon {
+	padding: 						1.5% 0 1% 1%;
+	background-color: 				@se;
+	text-color: 					#5aff00ff;
+	expand: false;
+	str:                            "➡️";
+    font:							"Fira Code 12";
+}
+
+entry {
+    background-color:               @al;
+    text-color:                     @fg;
+    placeholder-color:              #666;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search...";
+	padding: 						1.5% 0.75% 1% 0;
+    blink:                          true;
+    font:							"Fira Code 10";
+}
+
+inputbar {
+	children: 						[ prompt, textbox-prompt-colon, entry ];
+    background-color:               @se;
+    text-color:                     @fg;
+    expand:                         false;
+	border:							0;
+    border-radius:                  0px;
+	border-color:					@ac;
+}
+
+listview {
+    background-color:               @al;
+    padding:                        0;
+    columns:                        5;
+    lines:                          7;
+    spacing:                       	0.5%;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @al;
+	border:							0;
+    border-radius:                  0;
+	border-color:					@ac;
+    children:                       [ inputbar, listview ];
+    spacing:                       	1%;
+    padding:                        1%;
+}
+
+element {
+    background-color:               @ac;
+    text-color:                     @fg;
+    orientation:                    horizontal;
+    border-radius:                  6px;
+    padding:                        1% 0.5% 1% 1%;
+}
+
+element-text {
+    expand:                         false;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+}
+
+element selected {
+    background-color:               @se;
+    text-color:                     @ac;
+	border:							0;
+    border-color:                  	@ac;
+}

@@ -1,0 +1,162 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+
+configuration {
+	font:							"Iosevka Nerd Font 10";
+    show-icons:                     true;
+	  icon-theme: 					"Papirus";
+    display-drun: 					"Applications";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+//Color
+
+/*
+//GruvBox Color dark
+* {
+  al:  #00000000;
+  bg:  #282828f0;
+  se:  #3c3836ff;
+  fg:  #fbf1c7ff;
+  ac:  #FB4934ff;
+}
+*/
+
+/*
+//Dracula Color dark
+* {
+  al:  #00000000;
+  bg:  #44475aff;
+  se:  #282a36ff;
+  fg:  #f8f8f2ff;
+  ac:  #ff5555ff;
+}
+*/
+// Royal Drark Colorscheme 
+* {
+  al:  #00000000;
+  bg:  #1a1a1eff;
+  se:  #212128ff;
+  fg:  #eeeef4ff;
+  ac:  #f24054ff;
+}
+
+//Main Customization
+
+window {
+    transparency:                   "real";
+    background-color:               @bg;
+    text-color:                     @fg;
+	  border:	            						0 2px 2px 0;
+  	border-color:			  		        @ac;
+    border-radius:                  0 0 15px 0 ;
+  	width:              						30%;
+    location:                       Northwest;
+    x-offset:                       0;
+    y-offset:                       26px;
+}
+
+scrollbar{
+    enabled:                        false;
+    background-color:               @bg;
+    handle-width:                   0px;
+    handle-color:                   @al;
+    border-color:                   @al;
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						1% 0.75% 1% 0.75%;
+	background-color: 				@ac;
+	text-color: 					@fg;
+    border-radius:                  6px;
+	font:							"Iosevka Nerd Font 12";
+}
+
+textbox-prompt-colon {
+	padding: 						1% 0% 1% 0%;
+	background-color: 				@se;
+	text-color: 					@fg;
+	expand: false;
+	str: " :: ";
+}
+
+entry {
+    background-color:               @al;
+    text-color:                     @fg;
+    placeholder-color:              #666;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search...";
+	padding: 						1.15% 0.5% 1% 0.5%;
+    blink:                          true;
+}
+
+inputbar {
+	children: 						[ prompt, textbox-prompt-colon, entry ];
+    background-color:               @se;
+    text-color:                     @fg;
+    expand:                         false;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0px;
+	border-color:					@ac;
+}
+
+listview {
+    background-color:               @al;
+    padding:                        0px;
+    columns:                        2;
+    lines:                          7;
+    spacing:                       	0.5%;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @al;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@ac;
+    children:                       [ inputbar, listview ];
+    spacing:                       	1%;
+    padding:                        1%;
+}
+
+element {
+    background-color:               @se;
+    text-color:                     @fg;
+    orientation:                    horizontal;
+    border-radius:                  6px;
+    padding:                        1% 0.5% 1% 0.75%;
+}
+
+element-icon {
+    size:                           28px;
+    border:                         0px;
+}
+
+element-text {
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+}
+
+element selected {
+    background-color:               @se;
+    text-color:                     @ac;
+	border:							0% 0.25% 0% 0.25%;
+    border-radius:                  8px;
+    border-color:                  	@ac;
+}

@@ -1,0 +1,190 @@
+
+########################################################################
+###############               ALIASES                 ##################
+########################################################################
+
+#### systemctl
+alias sctl='sudo systemctl'
+
+##### Rabger
+alias r='ranger'
+alias rq='ranger ~/.config/qtile/'
+
+#### XAMPP 
+alias xampp='sudo /opt/lampp/lampp'
+
+#Node.Js
+alias snpm="sudo npm"
+alias pn='pnpm'
+alias spn='sudo pnpm'
+
+#vim
+alias vim="$EDITOR"
+alias svim="sudo $EDITOR"
+
+#Make a directory with parent-child
+alias mkdir="mkdir -p"
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+alias rmf='rm -rf'
+
+#Custom Clear command
+alias clr='clear;colorscript random'
+
+#java runtime
+alias jar='java -jar'
+
+# fastboot sudo permition
+alias fastboot='sudo fastboot'
+
+#dd command
+alias dd='sudo dd bs=4M status=progress'
+
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# Changing "ls" to "exa"
+alias ls='exa -alh --color=always --group-directories-first' # listing
+alias la='exa -ah --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -lh --color=always --group-directories-first'  # long format
+alias lt='exa -aTh --color=always --group-directories-first' # tree listing
+alias l.='exa -ah | egrep "^\."'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+######pacman command
+#alias pacins='sudo pacman -S'
+#alias pacrmv='sudo pacman -R'
+#alias pacrmv-d='sudo pacman -Rns'
+#alias cleanup='sudo pacman -Rns (pacman -Qtdq)'             # remove orphaned packages
+#alias parurmv='paru -Rns'
+#alias pacup='sudo pacman -Syu'
+#alias yup='yay -Syu'
+#alias pup='paru -Syu'
+#alias yin='yay -S'
+#alias pin='paru -S'
+#alias search="paru"
+
+#dnf command
+alias pacins='sudo dnf install'
+alias pacrmv='sudo dnf remove --noautoremove'
+alias pacrmvwd='sudo dnf remove'
+alias pacup='sudo dnf update systemd'
+alias search='dnf search'
+alias cleanup='sudo dnf autoremove'
+alias dnflist='dnf grouplist'
+alias groupins='sudo dnf groupinstall'
+alias grouprmv='sudo dnf groupremove'
+
+###### apt command
+#alias pacins='sudo nala install'
+#alias pacrmv='sudo nala remove'
+#alias pacup='sudo nala update && sudo nala upgrade'
+#alias paclist='nala list --installed'
+#alias pacshow='nala show'
+#alias nalahis='nala history'
+
+#Source config
+alias fsource='source ~/.config/fish/config.fish'
+alias bsource='source ~/.bashrc'
+alias zsource='source ~/.zshrc'
+
+#wifi & bluetooth
+alias wifi="nmtui"
+alias blue="blueberry"
+
+#font listing
+alias flist='fc-list | grep'
+
+#chmod
+alias mod="sudo chmod +x"
+
+#change ownership
+alias ownfi='sudo chown $USER'
+alias ownfo='sudo chown -R $USER'
+
+# git
+alias gst='git status'
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias tag='git tag'
+alias newtag='git tag -a'
+alias gemail='git config --global user.email'
+alias gname='git config --global user.name'
+
+#list all drive with UUID
+alias list_drive='lsblk -f'
+
+#continue download
+alias wget="wget -c"
+
+#userlist
+alias userlist="cut -d: -f1 /etc/passwd"
+
+#grub update
+alias grub-update="sudo grub2-mkconfig -o /boot/grub2/grub.cfg"
+#alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+#Edit with your EDITOR for important configuration files
+alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
+alias ngrub="sudo $EDITOR /etc/default/grub"
+alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
+alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
+alias nsddm="sudo $EDITOR /usr/lib/sddm/sddm.conf.d/default.conf"
+alias nfstab="sudo $EDITOR /etc/fstab"
+alias nbash="$VISUAL ~/.bashrc"
+alias nzsh="$VISUAL ~/.zshrc"
+alias nfish="$VISUAL ~/.config/fish/config.fish"
+alias nbspwm="$VISUAL ~/.config/bspwm/bspwmrc"
+alias nsxhkd="$VISUAL ~/.config/sxhkd/sxhkdrc"
+alias nsourcelist="sudo $EDITOR /etc/apt/sources.list"
+
+#Edit config file for ricing
+alias nalias="$VISUAL ~/.aliases"
+alias ni3="$VISUAL ~/.config/i3/config"
+alias ni3blocks="$VISUAL ~/.config/i3/i3blocks.conf"
+alias nqtile="$VISUAL ~/.config/qtile/config.py"
+alias npolybar="$VISUAL ~/.config/polybar/config"
+alias nkitty="$VISUAL ~/.config/kitty/kitty.conf"
+alias nalacritty="$VISUAL ~/.config/alacritty/alacritty.yml"
+alias npicom="$VISUAL ~/.config/picom/picom.conf"
+alias nxresources="$VISUAL ~/.Xresources"
+alias nstarship="$VISUAL ~/.config/starship.toml"
+alias nhtop="$VISUAL ~/.config/htop/htoprc"
+alias nneofetch="$VISUAL ~/.config/neofetch/config.conf"
+alias nnvim='$VISUAL ~/.config/nvim/init.lua'
+#systeminfo
+alias probe="sudo -E hw-probe -all -upload"
+alias sysfailed="systemctl list-units --failed"
+
+#shutdown or reboot
+alias shutdown="shutdown now"
+
+#give the list of all installed desktops - xsessions desktops
+alias xd="ls /usr/share/xsessions"
+
+# switch between shells
+# I do not recommend switching default SHELL from bash.
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"

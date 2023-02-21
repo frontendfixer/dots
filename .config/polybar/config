@@ -1,0 +1,678 @@
+;==========================================================
+;
+;     ██╗      █████╗ ██╗  ██╗███████╗██╗  ██╗███╗   ███╗██╗██╗  ██╗ █████╗ ███╗   ██╗████████╗ █████╗
+;     ██║     ██╔══██╗██║ ██╔╝██╔════╝██║  ██║████╗ ████║██║██║ ██╔╝██╔══██╗████╗  ██║╚══██╔══╝██╔══██╗
+;     ██║     ███████║█████╔╝ ███████╗███████║██╔████╔██║██║█████╔╝ ███████║██╔██╗ ██║   ██║   ███████║
+;     ██║     ██╔══██║██╔═██╗ ╚════██║██╔══██║██║╚██╔╝██║██║██╔═██╗ ██╔══██║██║╚██╗██║   ██║   ██╔══██║
+;     ███████╗██║  ██║██║  ██╗███████║██║  ██║██║ ╚═╝ ██║██║██║  ██╗██║  ██║██║ ╚████║   ██║   ██║  ██║
+;     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
+
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[global/wm]
+;https://github.com/polybar/polybar/wiki/Configuration#global-wm-settings
+margin-bottom = 0
+margin-top = 0
+
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+;throttle-output = 5
+;throttle-output-for = 10
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground =
+format-background =
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+; Enables pseudo-transparency for the bar
+; If set to true the bar can be transparent without a compositor.
+pseudo-transparency = false
+
+; vim:ft=dosini
+;==========================================================
+
+
+################################
+########    Colors    ##########
+################################
+
+[colors]
+;;Dracula Color scheme
+;background = #282a36
+;background-trans = #33f8f8f2
+;background-alt = #44475a
+;foreground = #f8f8f2
+;foreground-alt = #ffffff
+;primary = #ffb52a
+;secondary = #ff5555
+;alert = #ff5555
+;red = #ff5555
+;green= #50fa7b
+;yellow = #f1fa8c
+;comment = #6272a4
+;cyan = #8be9fd
+;orange = #ffb86c
+;pink = #ff79c6
+;purple = #de93f9
+
+;;Royal Dark  Color Scheme
+background = #212128
+background-trans = #cc1a1a1e
+background-alt = #404040
+foreground = #eeeef4
+foreground-alt = #d0d0d0
+primary = #ffb52a
+secondary = #f24054
+alert = #f24054
+red = #f24054
+green= #40f260
+yellow = #f2f260
+blue = #a480f2
+cyan = #00bcd4
+tela = #30f0b2
+orange = #f28080
+pink = #f240f2
+purple = #8060f2
+
+################################################################################
+################################################################################
+############                         MAINBAR                        ############
+################################################################################
+################################################################################
+
+[bar/mainbar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 24
+;offset-x = 1%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+
+background = ${colors.background-trans}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = ${colors.red}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;################ Fonts ########################
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = FiraCode Nerd Font:style=Regular:pixelsize=11;1
+font-1 = FiraCode Nerd Font:style=Bold:pixelsize=14;2
+
+;===============================================================================
+; modules: [ arch-aur-updates, battery , bluetooth, brightnessctl* ,bullet, cpu,  date ,i3, kdeconnect, keyboard
+;            memory, network, powermenu , pulseaudio , space ,xwindow ,  wifi ]
+
+modules-left = bullet i3 xwindow
+modules-center =
+modules-right = network wifi bluetooth pulseaudio battery brightnessctl cpu date powermenu
+;===============================================================================
+separator =
+
+;########## tray ######################
+
+tray-position = none 
+tray-padding = 2
+tray-background = ${colors.background-trans}
+tray-foreground = ${colors.foreground}
+
+;i3: Make the bar appear below windows
+;wm-restack = i3
+;override-redirect = true
+
+; Fallback click handlers that will be called if
+; there's no matching module handler found.
+click-left =
+click-middle =
+click-right =
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+double-click-left =
+double-click-middle =
+double-click-right =
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+################################################################################
+################################################################################
+############                       MODULE LEFT                      ############
+################################################################################
+################################################################################
+
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+show-urgent = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = true
+reverse-scroll = true
+fuzzy-match = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;嗢
+ws-icon-6 = 7;鸞
+ws-icon-7 = 8;祐
+ws-icon-default = 勞
+
+format = <label-state> <label-mode>
+
+label-mode = %{T2}%mode% 
+label-mode-padding-left = 1
+label-mode-padding-right = 1
+label-mode-background = ${colors.background-trans}
+
+label-focused =%{T2}%icon%  
+label-focused-foreground = ${colors.background-trans}
+label-focused-background = ${colors.cyan}
+label-focused-padding-left = 1
+label-focused-padding-right = 1
+
+label-unfocused = %{T2}%icon%  
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background-trans}
+label-unfocused-padding-left = 1
+label-unfocused-padding-right = 1
+
+label-visible = %{T2}%icon% 
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background-trans}
+label-visible-padding-left = 1
+label-visible-padding-right = 1
+
+label-urgent = %{T2}%icon% 
+label-urgent-foreground = ${colors.background-trans}
+label-urgent-background = ${colors.red}
+label-urgent-padding-left = 1
+label-urgent-padding-right = 1
+
+; Separator in between workspaces
+;label-separator = |
+;label-separator-foreground = ${colors.cyan}
+;label-seperator-padding-left = 1
+;label-seperator-padding-right = 1
+;===================================================================================
+
+
+[module/workspace]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;廊
+icon-5 = 6;嗢
+icon-6 = 7;
+icon-7 = 8;
+icon-8 = 9;
+icon-default = 
+
+format = <label-state>
+label-monitor = %name%
+
+label-active = %icon%
+label-active-foreground = ${colors.background}
+label-active-background = ${colors.cyan}
+label-active-padding = 1
+
+label-occupied = %icon%
+label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.red}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding = 1
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+; Separator in between workspaces
+label-separator = |
+
+################################################################################
+
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 45
+
+format-prefix = " %{T1}%{T-}"
+;format-prefix-underline = ${colors.red}
+format-foreground = ${colors.cyan}
+;format-background = ${colors.background-trans}
+
+################################################################################
+################################################################################
+############                 MODULES FREE SPACE                     ############
+################################################################################
+################################################################################
+[module/space]
+type = custom/text
+content = " | "
+content-foreground = ${colors.red}
+content-background = ${colors.background-trans}
+
+[module/bullet]
+type= custom/text
+content= ""
+content-font = 2
+click-left= exec rofi -modi drun -show drun -config ~/.config/rofi/panel.rasi
+content-background= ${colors.red}
+content-foreground = ${colors.background}
+content-padding = 1
+
+################################################################################
+################################################################################
+############                 MODULES RIGHT                          ############
+################################################################################
+################################################################################
+
+[module/arch-aur-updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/check-all-updates.sh
+interval = 600
+label =: %output%
+label-padding-right = 1
+format-foreground = ${colors.background}
+format-background = ${colors.red}
+format-prefix = ""
+format-prefix-padding = 1
+;===============================================================================
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 1
+
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+format-charging-background = ${colors.cyan}
+format-charging-foreground = ${colors.background}
+format-charging-padding = 1
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${colors.red}
+format-discharging-foreground = ${colors.background}
+format-discharging-padding = 1
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <ramp-capacity> <label-full>
+format-full-background = ${colors.cyan}
+format-full-foreground = ${colors.background}
+format-full-padding = 1
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+label-full =  100%
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+;=================================================================================
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/bluetooth.sh
+interval = 2
+click-right = exec blueman-manager
+click-left = exec ~/.config/polybar/scripts/toggle_bluetooth.sh
+format-padding = 1
+format-background = ${colors.blue}
+format-foreground = ${colors.background}
+;================================================================================
+
+[module/brightnessctl]
+;Dependencies "brightnessctl"
+; sudo pacman -S brightnessctl
+
+type = custom/script
+exec = ~/.config/polybar/scripts/brightnessctl.sh
+
+scroll-up = exec brightnessctl set +5%
+scroll-down = exec brightnessctl set 5%-
+interval = 0.5
+
+label = %output%
+label-background = ${colors.green}
+label-foreground = ${colors.background}
+label-padding = 1
+;===============================================================================
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %d %a %b
+date-alt = " %Y-%m-%d"
+
+time = %l:%M %p
+time-alt = %A %d %b %Y
+
+format-prefix = ""
+format-prefix-background = ${colors.pink}
+format-prefix-foreground = ${colors.background}
+format-prefix-padding = 1
+
+label = %time%
+label-background = ${colors.background-alt}
+label-foreground = ${colors.foreground}
+label-padding = 1
+label-underline = ${colors.pink}
+;===============================================================================
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format-prefix = ""
+format-prefix-background = ${colors.cyan}
+format-prefix-foreground = ${colors.background-alt}
+format-prefix-padding = 1
+
+label = %{T1}%percentage:2%%%{T-}
+label-background = ${colors.background-alt}
+label-foreground = ${colors.foreground}
+label-padding = 1
+label-underline = ${colors.cyan}
+;===============================================================================
+
+[module/kdeconnect]
+;Dependencies
+;sudo pacman -S rofi kdeconnect qt5-tools
+type = custom/script
+exec = "~/.config/polybar/scripts/polybar-kdeconnect.sh -d"
+tail = true
+;format-background = ${colors.red}
+;format-foreground = ${colors.background}
+;format-padding = 1
+;===============================================================================
+
+[module/keyboard]
+;https://github.com/jaagr/polybar/wiki/Module:-xkeyboard
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = ""
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.cyan}
+format-prefix-padding = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+label-layout = %layout%
+label-layout-padding = 1
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.foreground}
+;###############################################################################
+
+[module/memory]
+type = internal/memory
+interval = 1
+
+format-prefix = ""
+format-prefix-background = ${colors.purple}
+format-prefix-foreground = ${colors.background}
+format-prefix-padding = 1
+
+label = %{T1}%gb_free%%{T-}
+label-background = ${colors.background-alt}
+label-foreground = ${colors.foreground}
+label-padding = 1
+label-underline = ${colors.purple}
+;===============================================================================
+
+[module/network]
+type = internal/network
+interface = wlan0
+interval = 1.0
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected =<label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+label-connected = " %downspeed%"
+label-connected-background = ${colors.pink}
+label-connected-foreground = ${colors.background}
+label-connected-padding = 1
+
+label-disconnected = ""
+label-disconnected-background = ${colors.pink}
+label-disconnected-foreground = #666
+label-disconnected-padding = 1
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+;===============================================================================
+
+[module/powermenu]
+type = custom/script
+tail = true
+exec = echo " ⏻ "
+label-background = ${colors.red}
+label-foreground = ${colors.background}
+label-padding = 1
+click-left = exec ~/.config/polybar/scripts/powermenu
+;===============================================================================
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage%%
+label-volume-background = ${colors.yellow}
+label-volume-foreground = ${colors.background}
+label-volume-padding-right = 1
+use-ui-max = false
+
+label-muted = 婢 muted
+label-muted-background = ${colors.yellow}
+label-muted-foreground = #666
+label-muted-padding = 1
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 奄
+ramp-volume-1 = 
+ramp-volume-2 = 奔
+ramp-volume-3 = 墳
+ramp-volume-4 = 
+ramp-volume-background = ${colors.yellow}
+ramp-volume-foreground = ${colors.background}
+ramp-volume-padding = 1
+
+;Right and Middle click
+click-right = pavucontrol
+; click-middle =
+;===============================================================================
+
+[module/uptime]
+type = custom/script
+exec = uptime --pretty | sed 's/up //' | sed 's/\ years\?,/y/' | sed 's/\ weeks\?,/w/' | sed 's/\ days\?,/d/' | sed 's/\ hours\?,\?/h/' | sed 's/\ minutes\?/m/'
+interval = 1
+
+;HOW TO SET IT MINIMAL 10 CHARACTERS - HIDDEN BEHIND SYSTEM ICONS
+;label = %output%
+label = %output%
+label-padding = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background-alt}
+
+format-prefix = ""
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.red}
+format-prefix-padding = 1
+;=================================================================================
+
+[module/wifi]
+type = internal/network
+interface = wlan0
+interval = 1.0
+
+;##### run in terminal "nmtui" to get connected
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+label-connected = "  %essid%%{A}"
+label-connected-background = ${colors.orange}
+label-connected-foreground = ${colors.background}
+label-connected-padding = 1
+
+label-disconnected = "睊%{A}"
+label-disconnected-background = ${colors.pink}
+label-disconnected-foreground = ${colors.background}
+label-disconnected-padding = 1
+
+;===============================================================================
