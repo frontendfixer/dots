@@ -6,9 +6,9 @@ def assign_app_group(client):
      #########################################################
      ################ assign apps to groups ##################
      #########################################################
-     d["1"] = ['kitty', 'alacritty']
+     d["1"] = ['kitty', 'Alacritty']
      d["2"] = [ "thunar","pcmanfm"  ] #File Manager
-     d["3"] = [ 'Navigator', 'firefox','chromium-browser',  "brave-browser", "qutebrowser", ] #Web Browsers
+     d["3"] = [ 'Navigator','chromium',  "brave-browser", "qutebrowser", ] #Web Browsers
      d["4"] = [ "code", "Subl" ] #Code Editor
      d["5"] = [ "figma-linux", "gimp-2.10", "Inkscape" ]
      d["6"] = [ "vlc", "libreoffice"] #media

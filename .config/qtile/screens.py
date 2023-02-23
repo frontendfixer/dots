@@ -143,7 +143,7 @@ top_bar = [
         width = 16,
         foreground = foregroundColor,
         background = colors[8],
-        fontsize = 20
+        fontsize = 16
         ),
        widget.Net(
            background = colors[8],
@@ -159,12 +159,12 @@ top_bar = [
               foreground = foregroundColor,
        ),
        widget.TextBox(
-              text = "",
+              text = "󱓞",
               width=22,
               background = colors[5],
               foreground = foregroundColor,
               padding = 0,
-              fontsize = 16
+              fontsize = 24
               ),
        widget.Battery(
            background = colors[5],

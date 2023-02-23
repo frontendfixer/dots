@@ -63,28 +63,28 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 ######pacman command
-#alias pacins='sudo pacman -S'
-#alias pacrmv='sudo pacman -R'
-#alias pacrmv-d='sudo pacman -Rns'
-#alias cleanup='sudo pacman -Rns (pacman -Qtdq)'             # remove orphaned packages
-#alias parurmv='paru -Rns'
-#alias pacup='sudo pacman -Syu'
-#alias yup='yay -Syu'
-#alias pup='paru -Syu'
-#alias yin='yay -S'
-#alias pin='paru -S'
-#alias search="paru"
+alias pacins='sudo pacman -S'
+alias pacrmv='sudo pacman -R'
+alias pacrmv-d='sudo pacman -Rns'
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)'             # remove orphaned packages
+alias parurmv='paru -Rns'
+alias pacup='sudo pacman -Syu'
+alias yup='yay -Syu'
+alias pup='paru -Syu'
+alias yin='yay -S'
+alias pin='paru -S'
+alias search="paru"
 
 #dnf command
-alias pacins='sudo dnf install'
-alias pacrmv='sudo dnf remove --noautoremove'
-alias pacrmvwd='sudo dnf remove'
-alias pacup='sudo dnf update systemd'
-alias search='dnf search'
-alias cleanup='sudo dnf autoremove'
-alias dnflist='dnf grouplist'
-alias groupins='sudo dnf groupinstall'
-alias grouprmv='sudo dnf groupremove'
+#alias pacins='sudo dnf install'
+#alias pacrmv='sudo dnf remove --noautoremove'
+#alias pacrmvwd='sudo dnf remove'
+#alias pacup='sudo dnf update systemd'
+#alias search='dnf search'
+#alias cleanup='sudo dnf autoremove'
+#alias dnflist='dnf grouplist'
+#alias groupins='sudo dnf groupinstall'
+#alias grouprmv='sudo dnf groupremove'
 
 ###### apt command
 #alias pacins='sudo nala install'

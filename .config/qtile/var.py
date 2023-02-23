@@ -1,7 +1,7 @@
 #########set default
 mod = "mod4"
-terminal = "kitty"
-myBrowser = "firefox"
-broswer_alt = 'chromium'
+terminal = "alacritty"
+myBrowser = "chromium"
+broswer_alt = 'librewolf'
 codeEditor = "code"
 file = "thunar"
