@@ -14,8 +14,8 @@ export LC_CTYPE="en_IN.UTF-8"
 
 ###EXPORT
 export TERM="xterm-256color"
-export EDITOR="nvim" 
-export VISUAL="nvim"
+export EDITOR="vim" 
+export VISUAL="vim"
 
 export SUDO_EDITOR="nvim"
 alias "sudoedit"='function _sudoedit(){sudo -e "$1";};_sudoedit'

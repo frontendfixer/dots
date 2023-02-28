@@ -63,17 +63,17 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 ######pacman command
-alias pacins='sudo pacman -S'
-alias pacrmv='sudo pacman -R'
-alias pacrmv-d='sudo pacman -Rns'
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'             # remove orphaned packages
-alias parurmv='paru -Rns'
-alias pacup='sudo pacman -Syu'
-alias yup='yay -Syu'
-alias pup='paru -Syu'
-alias yin='yay -S'
-alias pin='paru -S'
-alias search="paru"
+#alias pacins='sudo pacman -S'
+#alias pacrmv='sudo pacman -R'
+#alias pacrmv-d='sudo pacman -Rns'
+#alias cleanup='sudo pacman -Rns (pacman -Qtdq)'             # remove orphaned packages
+#alias parurmv='paru -Rns'
+#alias pacup='sudo pacman -Syu'
+#alias yup='yay -Syu'
+#alias pup='paru -Syu'
+#alias yin='yay -S'
+#alias pin='paru -S'
+#alias search="paru"
 
 #dnf command
 #alias pacins='sudo dnf install'
@@ -87,17 +87,19 @@ alias search="paru"
 #alias grouprmv='sudo dnf groupremove'
 
 ###### apt command
-#alias pacins='sudo nala install'
-#alias pacrmv='sudo nala remove'
-#alias pacup='sudo nala update && sudo nala upgrade'
-#alias paclist='nala list --installed'
-#alias pacshow='nala show'
-#alias nalahis='nala history'
+alias pacins='sudo nala install'
+alias pacrmv='sudo nala remove'
+alias pacup='sudo nala update && sudo nala upgrade'
+alias paclist='nala list --installed'
+alias pacshow='nala show'
+alias nalahis='nala history'
+alias search='nala search'
 
 #Source config
 alias fsource='source ~/.config/fish/config.fish'
 alias bsource='source ~/.bashrc'
 alias zsource='source ~/.zshrc'
+alias asource='source ~/.aliases'
 
 #wifi & bluetooth
 alias wifi="nmtui"
