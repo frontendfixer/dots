@@ -119,8 +119,8 @@ export PATH="$PATH:$HOME/.local/bin/"
 #eval "$(starship init bash)"
 
 #Customized start programe
-neofetch
-#neofetch --ascii ~/.config/neofetch/images/arch.txt
+#neofetch
+neofetch --ascii ~/.config/neofetch/images/redhat.txt
 
 # Set a default prompt
 exec zsh
