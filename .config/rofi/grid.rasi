@@ -6,7 +6,7 @@ textbox {
 }
 
 listview {
-  columns:       5;
+  columns:       9;
   lines:         7;
   cycle:         true;
   dynamic:       true;
@@ -24,6 +24,5 @@ element {
 element-text {
   vertical-align:   0.5;
   horizontal-align: 0.5;
-  font:            "FiraCode Nerd Font 16";
+  font:            "FiraCode Nerd Font 24";
 }
-

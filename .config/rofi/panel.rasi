@@ -9,7 +9,7 @@
 
 
 configuration {
-	font:							"Iosevka Nerd Font 10";
+	font:							"Cascadia Code 10";
     show-icons:                     true;
 	  icon-theme: 					"Papirus";
     display-drun: 					"Applications";
@@ -58,10 +58,10 @@ window {
     transparency:                   "real";
     background-color:               @bg;
     text-color:                     @fg;
-	  border:	            						0 2px 2px 0;
-  	border-color:			  		        @ac;
+	  border:	            		0 2px 2px 0;
+  	border-color:			  		@ac;
     border-radius:                  0 0 15px 0 ;
-  	width:              						30%;
+  	width:              			280px;
     location:                       Northwest;
     x-offset:                       0;
     y-offset:                       26px;
@@ -81,7 +81,7 @@ prompt {
 	background-color: 				@ac;
 	text-color: 					@fg;
     border-radius:                  6px;
-	font:							"Iosevka Nerd Font 12";
+	font:							"Cascadia Code 10";
 }
 
 textbox-prompt-colon {
@@ -117,7 +117,7 @@ listview {
     background-color:               @al;
     padding:                        0px;
     columns:                        2;
-    lines:                          7;
+    lines:                          6;
     spacing:                       	0.5%;
     cycle:                          true;
     dynamic:                        true;
@@ -143,13 +143,13 @@ element {
 }
 
 element-icon {
-    size:                           28px;
+    size:                           18px;
     border:                         0px;
 }
 
 element-text {
     expand:                         true;
-    horizontal-align:               0.5;
+    horizontal-align:               0;
     vertical-align:                 0.5;
 }
 
