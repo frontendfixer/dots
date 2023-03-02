@@ -14,8 +14,11 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \t${G}░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░░▀░░▀░▀
 ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
 # updateing system...
-echo -e "${G}updateing system${N} ===============\n"
+echo -e "${G}installing RPM free and non-free${N} ===============\n"
+sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf update -y
+sudo dnf group update core
 sudo dnf group install -y "C Development Tools and Libraries"
 sudo dnf group install -y "Development Tools"
 sudo dnf group install -y "Fonts"
@@ -105,7 +108,7 @@ sudo dnf copr enable frostyx/qtile
 sudo dnf copr enable david35mm/pamixer
 
 echo -e "${R}installing require packages${N} ===========\n"
-sudo dnf install htop pcmanfm picom ranger rofi dmenu python3-pip mousepad xarchiver eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman
+sudo dnf install htop pcmanfm picom ranger rofi dmenu python3-pip mousepad xarchiver eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc
 
 sudo dnf copr remove frostyx/qtile
 sudo dnf copr remove david35mm/pamixer
