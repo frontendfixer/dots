@@ -15,6 +15,7 @@ from screens import screens
 
 from extras import *
 
+from graphical_notifications import Notifier
 ##################################
 ######## Autostart Apps ##########
 ##################################
