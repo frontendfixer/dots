@@ -13,6 +13,8 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \t${N}░█░░░█▀█░█▀▄░▀▀█░█▀█░█░█░░█░░█▀▄░█▀█░█░█░░█░░█▀█
 \t${G}░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░░▀░░▀░▀
 ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
+
+sudo hostnamectl set-hostname "fedora"
 # updateing system...
 echo -e "${G}installing RPM free and non-free${N} ===============\n"
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
@@ -22,6 +24,11 @@ sudo dnf group update core
 sudo dnf group install -y "C Development Tools and Libraries"
 sudo dnf group install -y "Development Tools"
 sudo dnf group install -y "Fonts"
+
+echo -e "${G}installing multimedia codac${N} ===============\n"
+sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf install lame\* --exclude=lame-devel
+sudo dnf group upgrade --with-optional Multimedia
 
 echo -e "
 ###############################################
