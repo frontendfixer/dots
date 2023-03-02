@@ -3,7 +3,6 @@ from libqtile.lazy import lazy
 from libqtile import qtile, bar, widget
 from var import terminal
 from qtile_extras import widget
-from qtile_extras.widget.decorations import RectDecoration
 
 from powermenu import show_power_menu
 
@@ -17,18 +16,11 @@ from colors import colors, backgroundColor, foregroundColor, workspaceColor
 ###################################
 widget_defaults = dict(
     font="FiraCode Nerd Font",
-    fontsize=12,
+    fontsize=16,
     padding=5,
     background = backgroundColor,
 )
 extension_defaults = widget_defaults.copy()
-
-decor = {
-    "decorations": [
-        RectDecoration(colour='#fff555', radius=0, filled=False, padding_y=0)
-    ],
-    "padding": 10,
-}
 
 fonts = {
     "font":"Cascadia Code",
@@ -37,20 +29,20 @@ fonts = {
 }
 
 fonts_large ={
-    "font": "Cascadia Code",
+    "font": "Cascadia Code SemiBold",
     "fontsize": 16,
     "padding": 8,
 }
 
 top_bar = [
        widget.TextBox(
-           text = "",
-           width=30,
+           text = "",
+           width=36,
            background = '#ff5555',
            foreground = backgroundColor,
            padding = 8,
-           margin = 5,
-           fontsize = 20,
+           #margin = 5,
+           fontsize = 33,
            mouse_callbacks={"Button1": lazy.spawn("rofi -modi drun -show drun -config ~/.config/rofi/panel.rasi")},
        ),
        #widget.CurrentLayoutIcon(
@@ -134,17 +126,17 @@ top_bar = [
        ),
        widget.Sep(
               linewidth = 0,
-              padding = 6,
-              foreground = foregroundColor,
+              padding = 8,
               background = colors[9]
        ),
        widget.TextBox(
         text = "",
-        width = 16,
+        width=18,
+        padding = 0,
+        fontsize = 30,
         foreground = foregroundColor,
         background = colors[8],
-        fontsize = 16
-        ),
+    ),
        widget.Net(
            background = colors[8],
            foreground = foregroundColor,
@@ -159,12 +151,10 @@ top_bar = [
               foreground = foregroundColor,
        ),
        widget.TextBox(
-              text = "󱓞",
-              width=22,
+              text = "",
               background = colors[5],
               foreground = foregroundColor,
-              padding = 0,
-              fontsize = 24
+              **fonts_large
               ),
        widget.Battery(
            background = colors[5],
@@ -247,9 +237,16 @@ top_bar = [
        ),
        widget.Sep(
               linewidth = 0,
-              padding = 6,
+              padding = 8,
               background = colors[7],
+       ),
+       widget.TextBox(
+              text = "",
+              width = 19,
               foreground = foregroundColor,
+              background = colors[7],
+              padding = 0,
+              fontsize = 30,
        ),
        widget.Clock(
            foreground = foregroundColor,
@@ -258,12 +255,12 @@ top_bar = [
         **fonts_large
        ),
        widget.TextBox(
-       	text = "⏻",
+         text = "",
          width = 30,
          foreground = foregroundColor,
          background = '#ff5555',
          padding = 10,
-         fontsize = 22,
+         fontsize = 32,
          mouse_callbacks={"Button1": lazy.function(show_power_menu)},    
        ),
        widget.Sep(

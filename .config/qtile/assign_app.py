@@ -8,8 +8,8 @@ def assign_app_group(client):
      #########################################################
      d["1"] = ['kitty', 'Alacritty']
      d["2"] = [ "thunar","pcmanfm"  ] #File Manager
-     d["3"] = [ 'Navigator','chromium',  "brave-browser", "qutebrowser", ] #Web Browsers
-     d["4"] = [ "code", "Subl" ] #Code Editor
+     d["3"] = [ 'Navigator','chromium', 'chromium-browser',  "brave-browser", "qutebrowser", ] #Web Browsers
+     d["4"] = [ "code", "vscodium","Subl" ] #Code Editor
      d["5"] = [ "figma-linux", "gimp-2.10", "Inkscape" ]
      d["6"] = [ "vlc", "libreoffice"] #media
      d["7"] = [ "", ] #

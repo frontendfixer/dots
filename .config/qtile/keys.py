@@ -20,7 +20,7 @@ def keybinding() :
         ########### Dmenu and Rofi
         Key([mod, "shift"], "Return", lazy.spawn("dmenu_run -nb '#1a1e1e' -sf '#212128' -sb '#f24054' -nf '#00e5ff' -p 'Run: '")),
         Key([mod], "p", lazy.spawn("rofi -modi drun -show drun -config ~/.config/rofi/col_singlerow.rasi")),
-        Key(['control', 'shift'], "space", lazy.spawn("rofimoji --selector-args='-theme /home/lakshmi/.config/rofi/grid.rasi' --hidden-descriptions")),
+        Key(['control', 'shift'], "space", lazy.spawn("rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions")),
         
         ########### Scripts
         Key([mod, "shift"], "l", lazy.spawn("betterlockscreen -l dimblur")),
