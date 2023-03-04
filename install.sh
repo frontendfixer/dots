@@ -44,7 +44,7 @@ echo $pw | sudo -S dnf -y group upgrade --with-optional Multimedia
 
 echo -e "
 ###############################################
-${P}Initialized therminal theming
+${P}Initialized therminal theming${N}
 ###############################################
 "
 # terminal settings
@@ -70,10 +70,10 @@ echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
 cp .fehbg $HOME
 
 echo -e "
-++++++++++++++++++
+${R}++++++++++++++++++
 Installing betterlockscreen.....
 installation script can be found here[https://github.com/betterlockscreen/betterlockscreen#installation]
-++++++++++++++++
+++++++++++++++++${N}
 "
 echo $pw | sudo -S dnf install -y ImageMagick xset xrdb xdpyinfo xrandr autoconf automake cairo-devel fontconfig gcc libev-devel libjpeg-turbo-devel libXinerama libxkbcommon-devel libxkbcommon-x11-devel libXrandr pam-devel pkgconf xcb-util-image-devel xcb-util-xrm-devel
 
@@ -100,7 +100,7 @@ betterlockscreen -u /usr/share/backgrounds/fantacy/wal28.jpg
 
 echo -e "
 \n###############################################
-${P}Updating theme icons fonts and wallpaper
+${P}Updating theme icons fonts and wallpaper ${N}
 ###############################################
 "
 echo -e "
@@ -120,7 +120,7 @@ fc-cache -v $HOME/.local/share/fonts
 
 echo -e "
 \n###############################################
-${P}Installing Window manager
+${P}Installing Window manager ${N}
 ###############################################
 "
 echo $pw | sudo -S dnf copr enable frostyx/qtile
@@ -163,12 +163,14 @@ echo -e "copying rofi....."
 yes|cp -r .config/rofi $HOME/.config
 echo -e "copying betterlockscreen....."
 yes|cp .config/.betterlockscreenrc $HOME/.config
+echo -e "copying vscodium...."
+yes|cp .config/VSCodium $HOME/.config/
 
 #######removimg catch directory
 rm-rf catch
 
 echo -e "
 \n###############################################
-${P}Installations compleate
+${P}Installations compleate${N}
 ###############################################
 "
