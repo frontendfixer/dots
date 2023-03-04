@@ -14,7 +14,7 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \t${G}░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░░▀░░▀░▀
 ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
 echo -e "${R}Enter your password here,
-it will be saved only for this operation 
+it will be saved only for this operation
 so that you don't need to type it manually every time${N}"
 IFS= read -r -s -p 'Password: ' pw
 
@@ -138,31 +138,31 @@ ${P}Copy final configaration
 ###############################################
 "
 echo -e "copying alacritty....."
-yes|cp -r .config/alacritty $HOME/.config 
+yes|cp -r .config/alacritty $HOME/.config
 echo -e "copying fish....."
-yes|cp -r .config/fish $HOME/.config 
+yes|cp -r .config/fish $HOME/.config
 echo -e "copying gtk....."
-yes|cp -r .config/gtk-3.0 $HOME/.config 
+yes|cp -r .config/gtk-3.0 $HOME/.config
 echo -e "copying htop....."
-yes|cp -r .config/htop $HOME/.config 
+yes|cp -r .config/htop $HOME/.config
 echo -e "copying kitty....."
-yes|cp -r .config/kitty $HOME/.config 
+yes|cp -r .config/kitty $HOME/.config
 echo -e "copying neofetch....."
-yes|cp -r .config/neofetch $HOME/.config 
+yes|cp -r .config/neofetch $HOME/.config
 echo -e "copying nvim....."
-yes|cp -r .config/nvim $HOME/.config 
+yes|cp -r .config/nvim $HOME/.config
 echo -e "copying pcmanfm....."
-yes|cp -r .config/pcmanfm $HOME/.config 
+yes|cp -r .config/pcmanfm $HOME/.config
 echo -e "copying picom....."
-yes|cp -r .config/picom $HOME/.config 
+yes|cp -r .config/picom $HOME/.config
 echo -e "copying qtile....."
-yes|cp -r .config/qtile $HOME/.config 
+yes|cp -r .config/qtile $HOME/.config
 echo -e "copying ranger....."
-yes|cp -r .config/ranger $HOME/.config 
+yes|cp -r .config/ranger $HOME/.config
 echo -e "copying rofi....."
-yes|cp -r .config/rofi $HOME/.config 
+yes|cp -r .config/rofi $HOME/.config
 echo -e "copying betterlockscreen....."
-yes|cp .config/.betterlockscreenrc $HOME/.config 
+yes|cp .config/.betterlockscreenrc $HOME/.config
 
 #######removimg catch directory
 rm-rf catch
