@@ -7,60 +7,48 @@
 
 ## to get all emoji install "noto-fonts-emoji" or "yay -S noto-fonts-emoji"
 
-# Don't print a new line at the start of the prompt
 add_newline = true
 
-# Make prompt a single line instead of two lines
 [line_break]
 disabled = false
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                         # The name of the module we are configuring is "character"
-success_symbol = "[  ➜](bold #30f0b2)"  # The "success_symbol" is set to "➜" with color "bold green"
-error_symbol = "[  ➜](bold #f24054)"      # used if previous command failed
+[character]
+success_symbol = "[  ➜](bold #30f0b2)" 
+error_symbol = "[  ➜](bold #f24054)"
 
-########### Dracula Color  ################
 [nodejs]
-symbol = ""
-style = "bg:#40f290 fg:#212128"
-format = '[ $symbol ($version) ]($style)'
+style = "#40f290"
+version_format = 'v${raw}' # raw, major, minor, patch
+format = ' [$symbol ($version)]($style) '
 
 [git_branch]
-format = " [$symbol $branch]($style) "
-symbol = "  "
-style = "bg:#f67e7d fg:#212128"
+format = '[$symbol ](bold #f284f2)[$branch](underline #f284f2) '
+symbol = ""
 
 [git_commit]
 commit_hash_length = 8
-style = "bold #F2F280"
-
+style = "bold #b9ff57"
+only_detached = true
+format = '[\($hash$tag_symbol\)]($style) '
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-style = "bold #f24054"
+style = "bold #f284f2"
 
 [git_status]
-conflicted = " ☠"
-ahead = "🏎️ 💨 ×${count}"
-behind = "🐢 ×${count}"
-diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
-untracked = "🛤️  ×${count}"
-stashed = "📦 "
-modified = "📝 ×${count}"
-staged = "🗃️  ×${count}"
-renamed = "📛 ×${count}"
-deleted = "🗑️  ×${count}"
-style = "bold #f24054"
-format = "$all_status$ahead_behind"
+conflicted = "☠️ ⚠️ "
+ahead = "✈️ ×${count} "
+behind = "🐢 ×${count} "
+diverged = "💔 ☄️ ×${ahead_count} 🐢 ×${behind_count} "
+untracked = "🏞️ ×${count}"
+stashed = "🎁"
+modified = "🩹 ×${count} "
+staged = "🗃️ [++${count}](green) "
+renamed = "📇 ×${count} "
+deleted = "📛  ×${count} "
+style = "#f2f280"
+format = '([$all_status$ahead_behind]($style) )'
 #===============================================================
-
-# Use custom format
-#format = """
-#[|](bold green)
-#[│](bold green)$directory$rust$package
-#[└─::](bold green) """
-
-
 
 # Indicates when in bash shell.
 [custom.bash]
@@ -69,13 +57,13 @@ when = '[ "$STARSHIP_SHELL" == "bash" ]'
 
 # Indicates when in fish shell.
 [custom.fish]
-command = "echo : 🅵🅸🆂🅷"
+command = "echo :🅵🅸🆂🅷"
 when = 'test "$STARSHIP_SHELL" = "fish"'
 style = "bold #40f260"
 
 # Indicates when in zsh shell.
 [custom.zsh]
-command = "echo : 🆉🆂🅷"
+command = "echo :🆉🆂🅷"
 when = 'test "$STARSHIP_SHELL" = "zsh"'
 style = "bold #f2f260"
 
@@ -86,47 +74,51 @@ command = "echo 🦀"
 shell = 'bash'
 when = '[ "$STARSHIP_SHELL" == "" ]' # not set in Nushell
 
-# Disable the package module, hiding it from the prompt completely
 [package]
-disabled = true
+disabled = false
+
+[localip]
+ssh_only = false
+format = '[\[$localipv4\]](bold #7755ff) [::](bold #b9ff57) '
+disabled = false
 
 [hostname]
 ssh_only = false
-format = "[ $hostname]($style)[](bg:#40f260 fg:#f24054)"
+ssh_symbol = '🌐 '
+format = '[$hostname]($style) [:: ](#b9ff57)'
 trim_at = "-"
-style = "bold bg:#f24054 fg:#212128"
+style = " bold #7755ff"
 disabled = true
 
 [memory_usage]
-format = "$symbol[${ram}( | ${swap})]($style) "
-threshold = 70
-style = "bold dimmed white"
-disabled = false
+disabled = true
 
 [time]
-time_format = "%l:%M%P"
-format = "$time($style)"
-use_12hr = true
-style = "bold bg:#f24054 fg:#666"
 disabled = true
 
 [cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took [$duration]($style)"
-style = "bold #f2f260"
+format = " took [$duration](bold #f284f2)"
 
 [directory]
 truncation_length = 3
 truncation_symbol = "…/"
-format = "[ $path]($style)[ $read_only]($read_only_style)[ ](#f2f280)"
-style = "bg:#f2f280 fg:#212128"
-read_only = "🔒"
-read_only_style = "bg:#f2f280 fg:#1a1a1e"
+repo_root_style = 'bold #f284f2'
+before_repo_root_style = 'bold #f284f2'
+format = "[$path]($style)[ $read_only]($read_only_style)"
+style = "#f2f280"
+read_only = "🔐"
+read_only_style = "#ff686b"
 
 [username]
-style_root = "bold bg:#f240f2 fg:212128"
-format = "[ $user]($style)[](bg:#f2f280 fg:#f24054)"
+style_root = "bold #f240f2"
+format = "[$user]($style)[@](bold underline #ff686b)"
 #format = "[$user]($style) on "
-style_user = "bold bg:#f24054 fg:#212128"
+style_user = " bold #30f0b2"
 disabled = false
-show_always = true
+show_always = false
+
+[sudo]
+format = '$symbol'
+style = 'bold green'
+symbol = '🔑'
+disabled = false
