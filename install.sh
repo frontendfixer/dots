@@ -13,22 +13,34 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \t${N}░█░░░█▀█░█▀▄░▀▀█░█▀█░█░█░░█░░█▀▄░█▀█░█░█░░█░░█▀█
 \t${G}░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░░▀░░▀░▀
 ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
+echo -e "${R}Enter your password here,
+it will be saved only for this operation 
+so that you don't need to type it manually every time${N}"
+IFS= read -r -s -p 'Password: ' pw
 
-sudo hostnamectl set-hostname "fedora"
+echo -e "${G}setting up the envirenment ${N} ===============\n"
+read -p "Enter your hostname: " host
+echo -e "Changed hostname to ${G}$host${N}"
+echo $pw | sudo -S hostnamectl set-hostname "$host"
+exit
+echo -e "\n editing ${G}dnf.conf${N} \n"
+echo $pw | sudo -S sh -c 'echo "fastestmirror=True" >>/etc/dnf/dnf.conf'
+echo $pw | sudo -S sh -c 'echo "max_parallel_downloads=5" >>/etc/dnf/dnf.conf'
+echo $pw | sudo -S sh -c 'echo "defaultyes=True" >>/etc/dnf/dnf.conf'
+echo $pw | sudo -S sh -c 'echo "deltarpm=True" >>/etc/dnf/dnf.conf'
 # updateing system...
-echo -e "${G}installing RPM free and non-free${N} ===============\n"
-sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf update -y
-sudo dnf group update core
-sudo dnf group install -y "C Development Tools and Libraries"
-sudo dnf group install -y "Development Tools"
-sudo dnf group install -y "Fonts"
+echo -e "\n${G}installing RPM free and non-free${N} ===============\n"
+echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+echo $pw | sudo -S dnf group update core
+echo $pw | sudo -S dnf group install -y "C Development Tools and Libraries"
+echo $pw | sudo -S dnf group install -y --with-optional "Fonts"
+echo $pw | sudo -S dnf update -y
 
 echo -e "${G}installing multimedia codac${N} ===============\n"
-sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-sudo dnf install lame\* --exclude=lame-devel
-sudo dnf group upgrade --with-optional Multimedia
+echo $pw | sudo -S dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+echo $pw | sudo -S dnf install -y lame\* --exclude=lame-devel
+echo $pw | sudo -S dnf -y group upgrade --with-optional Multimedia
 
 echo -e "
 ###############################################
@@ -37,7 +49,7 @@ ${P}Initialized therminal theming
 "
 # terminal settings
 echo -e "\n${G}installing packages${N} ===============\n"
-sudo dnf install -y exa zsh fish neofetch curl git wget neovim feh kitty
+echo $pw | sudo -S dnf install -y exa zsh fish neofetch curl git wget neovim feh kitty
 
 echo -e "\n${G}installing starship....${N} ===============\n"
 #curl -sS https://starship.rs/install.sh | sh
@@ -53,8 +65,8 @@ cp -r .config/fish $HOME/.config
 cp .config/starship.toml
 
 echo -e "\n${G}updating wallpaer${N} ===============\n"
-sudo mkdir -p /usr/share/backgrounds/fantacy
-sudo cp -r .background/* /usr/share/backgrounds/fantacy/
+echo $pw | sudo -S mkdir -p /usr/share/backgrounds/fantacy
+echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
 cp .fehbg $HOME
 
 echo -e "
@@ -63,7 +75,7 @@ Installing betterlockscreen.....
 installation script can be found here[https://github.com/betterlockscreen/betterlockscreen#installation]
 ++++++++++++++++
 "
-sudo dnf install -y ImageMagick xset xrdb xdpyinfo xrandr autoconf automake cairo-devel fontconfig gcc libev-devel libjpeg-turbo-devel libXinerama libxkbcommon-devel libxkbcommon-x11-devel libXrandr pam-devel pkgconf xcb-util-image-devel xcb-util-xrm-devel
+echo $pw | sudo -S dnf install -y ImageMagick xset xrdb xdpyinfo xrandr autoconf automake cairo-devel fontconfig gcc libev-devel libjpeg-turbo-devel libXinerama libxkbcommon-devel libxkbcommon-x11-devel libXrandr pam-devel pkgconf xcb-util-image-devel xcb-util-xrm-devel
 
 mkdir catch
 cd catch
@@ -79,10 +91,10 @@ unzip main.zip
 
 cd betterlockscreen-main/
 chmod u+x betterlockscreen
-sudo cp betterlockscreen /usr/local/bin/
+echo $pw | sudo -S cp betterlockscreen /usr/local/bin/
 
-sudo cp system/betterlockscreen@.service /usr/lib/systemd/system/
-sudo systemctl enable betterlockscreen@$USER
+echo $pw | sudo -S cp system/betterlockscreen@.service /usr/lib/systemd/system/
+echo $pw | sudo -S systemctl enable betterlockscreen@$USER
 cd ../..
 betterlockscreen -u /usr/share/backgrounds/fantacy/wal28.jpg
 
@@ -111,14 +123,14 @@ echo -e "
 ${P}Installing Window manager
 ###############################################
 "
-sudo dnf copr enable frostyx/qtile
-sudo dnf copr enable david35mm/pamixer
+echo $pw | sudo -S dnf copr enable frostyx/qtile
+echo $pw | sudo -S dnf copr enable david35mm/pamixer
 
 echo -e "${R}installing require packages${N} ===========\n"
-sudo dnf install htop pcmanfm picom ranger rofi dmenu python3-pip mousepad xarchiver eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc
+echo $pw | sudo -S dnf install htop pcmanfm picom ranger rofi dmenu python3-pip mousepad xarchiver eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc
 
-sudo dnf copr remove frostyx/qtile
-sudo dnf copr remove david35mm/pamixer
+echo $pw | sudo -S dnf copr remove frostyx/qtile
+echo $pw | sudo -S dnf copr remove david35mm/pamixer
 
 echo -e "
 \n###############################################
