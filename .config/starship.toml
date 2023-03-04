@@ -16,10 +16,13 @@ disabled = false
 success_symbol = "[  ➜](bold #30f0b2)" 
 error_symbol = "[  ➜](bold #f24054)"
 
+[package]
+disabled = true
+
 [nodejs]
-style = "#40f290"
-version_format = 'v${raw}' # raw, major, minor, patch
-format = ' [$symbol ($version)]($style) '
+style = "#10f2f0"
+version_format = 'v${major}' # raw, major, minor, patch
+format = '[ \[JS ($version)\]]($style)'
 
 [git_branch]
 format = '[$symbol ](bold #f284f2)[$branch](underline #f284f2) '
@@ -73,9 +76,6 @@ style = "bold #f2f260"
 command = "echo 🦀"
 shell = 'bash'
 when = '[ "$STARSHIP_SHELL" == "" ]' # not set in Nushell
-
-[package]
-disabled = false
 
 [localip]
 ssh_only = false
