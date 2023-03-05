@@ -155,6 +155,7 @@ alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
 alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
 alias nsddm="sudo $EDITOR /usr/lib/sddm/sddm.conf.d/default.conf"
 alias nfstab="sudo $EDITOR /etc/fstab"
+alias ndnf='sudo $EDITOR /etc/dnf/dnf.conf'
 alias nbash="$VISUAL ~/.bashrc"
 alias nzsh="$VISUAL ~/.zshrc"
 alias nfish="$VISUAL ~/.config/fish/config.fish"
