@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from cairocffi import ImageSurface
 
     from libqtile.core.manager import Qtile
+
     try:
         from libqtile.notify import Notification
     except ImportError:  # no dbus_next
@@ -71,56 +72,57 @@ class Notifier(configurable.Configurable):
         - hints: progress value e.g. int:value:42 with drawing
 
     """
+
     defaults = [
-        ('x', 32, 'x position on screen to start drawing notifications.'),
-        ('y', 64, 'y position on screen to start drawing notifications.'),
-        ('width', 192, 'Width of notifications.'),
-        ('height', 64, 'Height of notifications.'),
-        ('format', '{summary}\n{body}', 'Text format.'),
+        ("x", 32, "x position on screen to start drawing notifications."),
+        ("y", 64, "y position on screen to start drawing notifications."),
+        ("width", 192, "Width of notifications."),
+        ("height", 64, "Height of notifications."),
+        ("format", "{summary}\n{body}", "Text format."),
         (
-            'foreground',
-            ('#ffffff', '#ffffff', '#ffffff'),
-            'Foreground colour of notifications, in ascending order of urgency.',
+            "foreground",
+            ("#ffffff", "#ffffff", "#ffffff"),
+            "Foreground colour of notifications, in ascending order of urgency.",
         ),
         (
-            'background',
-            ('#111111', '#111111', '#111111'),
-            'Background colour of notifications, in ascending order of urgency.',
+            "background",
+            ("#111111", "#111111", "#111111"),
+            "Background colour of notifications, in ascending order of urgency.",
         ),
         (
-            'border',
-            ('#111111', '#111111', '#111111'),
-            'Border colours in ascending order of urgency. Or None for none.',
+            "border",
+            ("#111111", "#111111", "#111111"),
+            "Border colours in ascending order of urgency. Or None for none.",
         ),
         (
-            'timeout',
+            "timeout",
             (5000, 5000, 0),
-            'Millisecond timeout duration, in ascending order of urgency.',
+            "Millisecond timeout duration, in ascending order of urgency.",
         ),
-        ('opacity', 1.0, 'Opacity of notifications.'),
-        ('border_width', 4, 'Line width of drawn borders.'),
-        ('corner_radius', None, 'Corner radius for round corners, or None.'),
-        ('font', 'sans', 'Font used in notifications.'),
-        ('font_size', 14, 'Size of font.'),
-        ('fontshadow', None, 'Color for text shadows, or None for no shadows.'),
-        ('text_alignment', 'left', 'Text alignment: left, center or right.'),
-        ('horizontal_padding', None, 'Padding at sides of text.'),
-        ('vertical_padding', None, 'Padding at top and bottom of text.'),
-        ('line_spacing', 4, 'Space between lines.'),
+        ("opacity", 1.0, "Opacity of notifications."),
+        ("border_width", 4, "Line width of drawn borders."),
+        ("corner_radius", None, "Corner radius for round corners, or None."),
+        ("font", "sans", "Font used in notifications."),
+        ("font_size", 14, "Size of font."),
+        ("fontshadow", None, "Color for text shadows, or None for no shadows."),
+        ("text_alignment", "left", "Text alignment: left, center or right."),
+        ("horizontal_padding", None, "Padding at sides of text."),
+        ("vertical_padding", None, "Padding at top and bottom of text."),
+        ("line_spacing", 4, "Space between lines."),
         (
-            'overflow',
-            'truncate',
-            'How to deal with too much text: more_width, more_height, or truncate.',
+            "overflow",
+            "truncate",
+            "How to deal with too much text: more_width, more_height, or truncate.",
         ),
-        ('max_windows', 2, 'Maximum number of windows to show at once.'),
-        ('gap', 12, 'Vertical gap between popup windows.'),
-        ('sticky_history', True, 'Disable timeout when browsing history.'),
-        ('icon_size', 36, 'Pixel size of any icons.'),
-        ('fullscreen', 'show', 'What to do when in fullscreen: show, hide, or queue.'),
-        ('screen', 'focus', 'How to select a screen: focus, mouse, or an int.'),
-        ('actions', True, 'Whether to enable the actions capability.'),
+        ("max_windows", 2, "Maximum number of windows to show at once."),
+        ("gap", 12, "Vertical gap between popup windows."),
+        ("sticky_history", True, "Disable timeout when browsing history."),
+        ("icon_size", 36, "Pixel size of any icons."),
+        ("fullscreen", "show", "What to do when in fullscreen: show, hide, or queue."),
+        ("screen", "focus", "How to select a screen: focus, mouse, or an int."),
+        ("actions", True, "Whether to enable the actions capability."),
     ]
-    capabilities = {'body', 'body-markup', 'actions'}
+    capabilities = {"body", "body-markup", "actions"}
     # specification: https://developer.gnome.org/notification-spec/
 
     def __init__(self, **config) -> None:
@@ -136,10 +138,10 @@ class Notifier(configurable.Configurable):
         self._paused: bool = False
         self._icons: Dict[str, Tuple[ImageSurface, int]] = {}
 
-        self._make_attr_list('foreground')
-        self._make_attr_list('background')
-        self._make_attr_list('timeout')
-        self._make_attr_list('border')
+        self._make_attr_list("foreground")
+        self._make_attr_list("background")
+        self._make_attr_list("timeout")
+        self._make_attr_list("border")
 
         hook.subscribe.startup(lambda: asyncio.create_task(self._configure()))
 
@@ -188,7 +190,7 @@ class Notifier(configurable.Configurable):
             self._positions.append(
                 (
                     self.x,
-                    self.y + win * (self.height + 2 * self.border_width + self.gap)
+                    self.y + win * (self.height + 2 * self.border_width + self.gap),
                 )
             )
 
@@ -208,6 +210,7 @@ class Notifier(configurable.Configurable):
                 self._close(popup, reason=ClosedReason.dismissed)
             if button == 3:
                 self._close(popup, reason=ClosedReason.dismissed)
+
         return _
 
     def _notify(self, notif: Notification) -> None:
@@ -220,8 +223,8 @@ class Notifier(configurable.Configurable):
             return
 
         if qtile.current_window and qtile.current_window.fullscreen:
-            if self.fullscreen != 'show':
-                if self.fullscreen == 'queue':
+            if self.fullscreen != "show":
+                if self.fullscreen == "queue":
                     if self._unfullscreen not in hook.subscriptions:
                         hook.subscribe.float_change(self._unfullscreen)
                     self._queue.append(notif)
@@ -297,7 +300,7 @@ class Notifier(configurable.Configurable):
             )
             popup.horizontal_padding += self.icon_size + self.horizontal_padding / 2
 
-        for num, line in enumerate(text.split('\n')):
+        for num, line in enumerate(text.split("\n")):
             popup.text = line
             y = self.vertical_padding + num * (popup.layout.height + self.line_spacing)
             popup.draw_text(y=y)
@@ -318,9 +321,9 @@ class Notifier(configurable.Configurable):
             qtile.call_later(timeout / 1000, self._close, popup, self._current_id)
 
     def _get_text(self, notif: Notification) -> str:
-        summary = ''
-        body = ''
-        app_name = ''
+        summary = ""
+        body = ""
+        app_name = ""
         if notif.summary:
             summary = pangocffi.markup_escape_text(notif.summary)
         if notif.body:
@@ -333,9 +336,9 @@ class Notifier(configurable.Configurable):
         x, y = self._positions[len(self._shown) - 1]
         if isinstance(self.screen, int):
             screen = qtile.screens[self.screen]
-        elif self.screen == 'focus':
+        elif self.screen == "focus":
             screen = qtile.current_screen
-        elif self.screen == 'mouse':
+        elif self.screen == "mouse":
             screen = qtile.find_screen(*qtile.mouse_position)
         return x + screen.x, y + screen.y
 
@@ -363,7 +366,7 @@ class Notifier(configurable.Configurable):
         Execute the actions specified by the notification visible on a clicked popup.
         """
         # Currently this always invokes default action
-        #actions = {i: l for i, l in zip(notif.actions[:-1:2], notif.actions[1::2])}
+        # actions = {i: l for i, l in zip(notif.actions[:-1:2], notif.actions[1::2])}
         if popup.notif.actions:
             notifier._service.ActionInvoked(popup.notif.id, popup.notif.actions[0])
 

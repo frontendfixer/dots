@@ -1,12 +1,13 @@
-file:///home/lakshmi/Downloads
-file:///home/lakshmi/Documents
-file:///home/lakshmi/Pictures
-file:///home/lakshmi/Music
-file:///home/lakshmi/Videos
-file:///home/lakshmi/.config
-file:///home/lakshmi/git
-file:///mnt/Entertainment/Tutorial
-file:///mnt/Program/Projects
-file:///mnt/Program
-file:///mnt/Entertainment
+file:///home/lakshmi/Downloads Downloads
+file:///home/lakshmi/Documents Documents
+file:///home/lakshmi/Pictures Pictures
+file:///home/lakshmi/Music Music
+file:///home/lakshmi/Videos Videos
+file:///home/lakshmi/.config .config
+file:///home/lakshmi/git/dots dots
+file:///home/lakshmi/git git
+file:///mnt/Entertainment/Tutorial Tutorial
+file:///mnt/Program/Projects Projects
+file:///mnt/Program Program
+file:///mnt/Entertainment Entertainment
 sftp://dsbctech/home/bitnami/htdocs/finact Finact-SSH
