@@ -12,7 +12,7 @@ configuration {
 	font:							"Cascadia Code 10";
     show-icons:                     true;
 	  icon-theme: 					"Papirus";
-    display-drun: 					"Applications";
+    display-drun: 					"App";
     drun-display-format:            "{name}";
     disable-history:                false;
     fullscreen:                     false;
@@ -60,7 +60,7 @@ window {
     text-color:                     @fg;
 	  border:	            		0 2px 2px 0;
   	border-color:			  		@ac;
-    border-radius:                  0 0 15px 0 ;
+    border-radius:                  0 0 8px 0 ;
   	width:              			280px;
     location:                       Northwest;
     x-offset:                       0;
@@ -77,19 +77,20 @@ scrollbar{
 
 prompt {
     enabled: 						true;
-	padding: 						1% 0.75% 1% 0.75%;
+	padding: 						1.25% 0.75% 1% 0.75%;
 	background-color: 				@ac;
 	text-color: 					@fg;
-    border-radius:                  6px;
+    border-radius:                  8px 0 0 8px;
 	font:							"Cascadia Code 10";
 }
 
 textbox-prompt-colon {
-	padding: 						1% 0% 1% 0%;
+	padding: 						1% 0.5% 1% 0.5%;
 	background-color: 				@se;
-	text-color: 					@fg;
+	text-color: 					#5aff00ff;
 	expand: false;
-	str: " :: ";
+	str:                            "::";
+    font:							"Cascadia Code 10";
 }
 
 entry {
@@ -99,8 +100,9 @@ entry {
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search...";
-	padding: 						1.15% 0.5% 1% 0.5%;
+	padding: 						1% 0.75% 1% 0;
     blink:                          true;
+    font:							"Cascadia Code 10";
 }
 
 inputbar {
@@ -108,10 +110,11 @@ inputbar {
     background-color:               @se;
     text-color:                     @fg;
     expand:                         false;
-	border:							0% 0% 0% 0%;
-    border-radius:                  0px;
+	border:							1px;
+    border-radius:                  8px;
 	border-color:					@ac;
 }
+
 
 listview {
     background-color:               @al;
@@ -131,7 +134,7 @@ mainbox {
 	border-color:					@ac;
     children:                       [ inputbar, listview ];
     spacing:                       	1%;
-    padding:                        1%;
+    padding:                        0%;
 }
 
 element {
