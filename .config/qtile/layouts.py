@@ -13,7 +13,7 @@ from colors import colors, backgroundColor
 
 layout_theme = {
     "border_width": 1,
-    "margin": 2,
+    "margin": 4,
     "border_focus": colors[9],
     "border_normal": backgroundColor,
 }
@@ -62,11 +62,14 @@ floating_layout = layout.Floating(
         Match(wm_class="Mousepad"),
         Match(wm_class="Gedit"),
         Match(wm_class="gcolor2"),
+        Match(wm_class="gcolor3"),
         Match(wm_class="Grub Customize"),
         Match(wm_class="Xed"),
         Match(wm_class="Pavucontrol"),
         Match(wm_class="audacious"),
         Match(wm_class="Xfce4-power-manager-settings"),
+        Match(wm_class="xdg-desktop-portal-gtk"),
+        Match(wm_class="crx_hpfldicfbfomlpcikngkocigghgafkph"),
         Match(role="GtkFileChooserDialog"),
     ],
     border_width=2,
@@ -78,7 +81,12 @@ floating_layout = layout.Floating(
 @hook.subscribe.client_new
 def center_floating_win(window):
     role = window.cmd_inspect()["role"]
+    wm_class = window.cmd_inspect()["wm_class"]
     if role == "GtkFileChooserDialog":
+        window.toggle_floating()
+        window.cmd_set_size_floating(301, 227)
+        window.cmd_set_position_floating((1366 - 301) // 2, (768 - 227) // 2),
+    if wm_class == "Xdg-desktop-portal-gtk":
         window.toggle_floating()
         window.cmd_set_size_floating(301, 227)
         window.cmd_set_position_floating((1366 - 301) // 2, (768 - 227) // 2)

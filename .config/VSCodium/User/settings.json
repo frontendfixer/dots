@@ -24,6 +24,10 @@
   "remote.SSH.remotePlatform": {
     "dsbctech": "linux"
   },
+  "workbench.editorAssociations": {
+    // TODO: merge with other settings then remove this comment
+    "*.svg": "svgPreview.previewEditor"
+  },
   // =========== GIT related ==============
   "github.gitProtocol": "ssh",
   "git.confirmSync": false,

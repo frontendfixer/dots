@@ -117,6 +117,7 @@ alias ownfi='sudo chown $USER'
 alias ownfo='sudo chown -R $USER'
 
 # git
+alias g='cd /mnt/Program/git/'
 alias gst='git status'
 alias addup='git add -u'
 alias addall='git add .'

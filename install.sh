@@ -33,7 +33,7 @@ echo $pw | sudo -S sh -c 'echo "deltarpm=True" >>/etc/dnf/dnf.conf'
 echo -e "\n${G}installing RPM free and non-free${N} ===============\n"
 echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-echo $pw | sudo -S dnf group update core
+echo $pw | sudo -S dnf group update -y core
 echo $pw | sudo -S dnf update -y
 echo $pw | sudo -S dnf group install -y "C Development Tools and Libraries"
 echo $pw | sudo -S dnf group install -y "Fonts"
@@ -63,7 +63,7 @@ cp .aliases .bashrc .zshrc .Xresources .face $HOME
 yes | cp -r .zsh/ $HOME
 yes | cp -r .config/kitty $HOME/.config
 yes | cp -r .config/fish $HOME/.config
-cp .config/starship.toml
+cp .config/starship.toml $HOME/.config
 
 echo -e "\n${G}Installing shell-color-scripts${N} ===============\n"
 echo -e  "${C}You can download the source code from this repository or use a git clone:
@@ -71,7 +71,7 @@ git clone https://gitlab.com/dwt1/shell-color-scripts.git
 cd shell-color-scripts
 sudo make install
 ${N}"
-cd Theaming/shell-color-scripts
+cd Themeing/shell-color-scripts
 echo $pw | sudo -S make install
 
 echo -e "\n${G}clearing termiinal${N} ===============\n"
@@ -120,6 +120,8 @@ echo -e "${G}Updating theme and icons${N} ===============\n"
 echo -e "copying icons and themes"
 cp -r .icons/ $HOME
 cp -r .themes/ $HOME
+echo $pw | sudo mv $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
+echo $pw | sudo mv $HOME/.themes/Dracula /usr/share/themes
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
 cp .gtkrc-2.0 .gtkrc-2.0.mine .gtkrc-xfce $HOME
@@ -139,7 +141,7 @@ echo $pw | sudo -S dnf copr enable frostyx/qtile
 echo $pw | sudo -S dnf copr enable david35mm/pamixer
 
 echo -e "${R}installing require packages${N} ===========\n"
-echo $pw | sudo -S dnf install -y htop pcmanfm picom ranger mousepad rofi dmenu python3-pip mousepad file-roller eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc android-tools android-file-transfer polkit-gnome clipit numlockx xset chromium codium gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting
+echo $pw | sudo -S dnf install -y htop pcmanfm picom ranger mousepad rofi dmenu python3-pip mousepad file-roller eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc chromium codium android-tools android-file-transfer polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader rofimoji
 
 echo $pw | sudo -S dnf copr remove frostyx/qtile
 echo $pw | sudo -S dnf copr remove david35mm/pamixer
@@ -195,15 +197,31 @@ echo -e "${C}copying lightdm config file${N}"
 echo $pw | sudo -S cp Themeing/lightdm/dracula.png Themeing/lightdm/logo.png /usr/share/backgrounds/
 echo $pw | sudo -S cp Themeing/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
 
-echo -e "${C}copying grub config file${N}"
-mkdir -p Grub/Dracula
-tar -xf Grub/Dracula.tar -C Grub/Dracula
-echo $pw | sudo mv Grub/Dracula /boot/grub/themes/
-echo $pw | sudo -S sh -c 'echo "GRUB_THEME='/boot/grub/themes/Dracula/theme.txt'" >>/etc/default/grub'
-echo $pw | sudo -S grub2-mkconfig -o /boot/grub2/grub.cfg
+#echo -e "${C}copying grub config file${N}"
+#mkdir -p Grub/Dracula
+#tar -xf Grub/Dracula.tar -C Grub/Dracula
+#echo $pw | sudo mv Grub/Dracula /boot/grub/themes/
+#echo $pw | sudo -S sh -c 'echo "GRUB_THEME='/boot/grub/themes/Dracula/theme.txt'" >>/etc/default/grub'
+#echo $pw | sudo -S grub2-mkconfig -o /boot/grub2/grub.cfg
 
 echo -e "\n${G}clearing termiinal${N} ===============\n"
 clear;colorscript random
+
+echo -e "${G}############### Mounting drives ############"
+echo $pw | sudo -S sh -c 'echo "
+UUID=*********06FF3	/mnt/Entertainment	ntfs	defaults	0	0
+UUID=*********EDBCE	/mnt/Program		ntfs	defaults	0	0
+" >>/etc/fstab'
+
+echo -e "${G}############### Updating DNS ############"
+echo $pw | sudo -S sh -c 'echo "
+DNS=45.90.28.0#****d9.dns.nextdns.io
+DNS=2a07:a8c0::#****d9.dns.nextdns.io
+DNS=45.90.30.0#****d9.dns.nextdns.io
+DNS=2a07:a8c1::#****d9.dns.nextdns.io
+DNSOverTLS=yes
+" >>/etc/systemd/resolved.conf'
+echo $pw | sudo -S systemctl enable systemd-resolved.service
 
 echo -e "
 ${R}###############################################
