@@ -37,6 +37,11 @@ echo $pw | sudo -S dnf group update -y core
 echo $pw | sudo -S dnf update -y
 echo $pw | sudo -S dnf group install -y "C Development Tools and Libraries"
 echo $pw | sudo -S dnf group install -y "Fonts"
+echo $pw | sudo -S dnf group install -y "Standard"
+echo $pw | sudo -S dnf group install -y "Hardware Support"
+echo $pw | sudo -S dnf group install -y "Input Methods"
+echo $pw | sudo -S dnf group install -y "Multimedia"
+echo $pw | sudo -S dnf group install -y "base-x"
 
 echo -e "${G}installing multimedia codac${N} ===============\n"
 echo $pw | sudo -S dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
@@ -73,6 +78,7 @@ sudo make install
 ${N}"
 cd Themeing/shell-color-scripts
 echo $pw | sudo -S make install
+cd ../..
 
 echo -e "\n${G}clearing termiinal${N} ===============\n"
 clear;colorscript random
@@ -118,17 +124,17 @@ ${P}Updating theme icons fonts and wallpaper ${N}
 "
 echo -e "${G}Updating theme and icons${N} ===============\n"
 echo -e "copying icons and themes"
-cp -r .icons/ $HOME
-cp -r .themes/ $HOME
-echo $pw | sudo mv $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
-echo $pw | sudo mv $HOME/.themes/Dracula /usr/share/themes
+yes | cp -r .icons/ $HOME
+yes | cp -r .themes/ $HOME
+yes | echo $pw | sudo -S cp -r $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
+yes | echo $pw | sudo -S cp -r $HOME/.themes/Dracula /usr/share/themes
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
-cp .gtkrc-2.0 .gtkrc-2.0.mine .gtkrc-xfce $HOME
+yes | cp .gtkrc-2.0 .gtkrc-2.0.mine .gtkrc-xfce $HOME
 
 echo -e "\n${G}updateing fonts${N}"
 mkdir -p $HOME/.local/share/fonts
-cp -r .fonts/* $HOME/.local/share/fonts
+yes | cp -r .fonts/* $HOME/.local/share/fonts
 fc-cache -v $HOME/.local/share/fonts
 
 
@@ -139,10 +145,13 @@ ${P}Installing Window manager ${N}
 "
 echo $pw | sudo -S dnf copr enable frostyx/qtile
 echo $pw | sudo -S dnf copr enable david35mm/pamixer
+yes | echo $pw | sudo -S rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+echo $pw | printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo -S tee -a /etc/yum.repos.d/vscodium.repo
 
 echo -e "${R}installing require packages${N} ===========\n"
-echo $pw | sudo -S dnf install -y htop pcmanfm picom ranger mousepad rofi dmenu python3-pip mousepad file-roller eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc chromium codium android-tools android-file-transfer polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader rofimoji
+echo $pw | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu python3-pip mousepad file-roller eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc chromium codium android-tools android-file-transfer polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader rofimoji google-noto-emoji-color-fonts
 
+echo $pw | sudo -S systemctl enable lightdm
 echo $pw | sudo -S dnf copr remove frostyx/qtile
 echo $pw | sudo -S dnf copr remove david35mm/pamixer
 
@@ -194,31 +203,28 @@ ${P}Theaming lightdm and grub${N}
 ###############################################
 "
 echo -e "${C}copying lightdm config file${N}"
-echo $pw | sudo -S cp Themeing/lightdm/dracula.png Themeing/lightdm/logo.png /usr/share/backgrounds/
-echo $pw | sudo -S cp Themeing/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
+yes | echo $pw | sudo -S cp -r Themeing/lightdm/dracula.png Themeing/lightdm/logo.png /usr/share/backgrounds/
+yes | echo $pw | sudo -S cp -r Themeing/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
 
-#echo -e "${C}copying grub config file${N}"
-#mkdir -p Grub/Dracula
-#tar -xf Grub/Dracula.tar -C Grub/Dracula
-#echo $pw | sudo mv Grub/Dracula /boot/grub/themes/
-#echo $pw | sudo -S sh -c 'echo "GRUB_THEME='/boot/grub/themes/Dracula/theme.txt'" >>/etc/default/grub'
-#echo $pw | sudo -S grub2-mkconfig -o /boot/grub2/grub.cfg
-
-echo -e "\n${G}clearing termiinal${N} ===============\n"
-clear;colorscript random
+echo -e "${C}copying grub config file${N}"
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+echo $pw | sudo -S ./install.sh -t tela -s 1080p
+cd ..
+rm -rf grub2-themes
 
 echo -e "${G}############### Mounting drives ############"
 echo $pw | sudo -S sh -c 'echo "
-UUID=*********06FF3	/mnt/Entertainment	ntfs	defaults	0	0
-UUID=*********EDBCE	/mnt/Program		ntfs	defaults	0	0
+UUID=6E9781F365706FF3	/mnt/Entertainment	ntfs	defaults	0	0
+UUID=7796BF99038EDBCE	/mnt/Program		ntfs	defaults	0	0
 " >>/etc/fstab'
 
 echo -e "${G}############### Updating DNS ############"
 echo $pw | sudo -S sh -c 'echo "
-DNS=45.90.28.0#****d9.dns.nextdns.io
-DNS=2a07:a8c0::#****d9.dns.nextdns.io
-DNS=45.90.30.0#****d9.dns.nextdns.io
-DNS=2a07:a8c1::#****d9.dns.nextdns.io
+DNS=45.90.28.0#5bf7d9.dns.nextdns.io
+DNS=2a07:a8c0::#5bf7d9.dns.nextdns.io
+DNS=45.90.30.0#5bf7d9.dns.nextdns.io
+DNS=2a07:a8c1::#5bf7d9.dns.nextdns.io
 DNSOverTLS=yes
 " >>/etc/systemd/resolved.conf'
 echo $pw | sudo -S systemctl enable systemd-resolved.service
@@ -228,4 +234,4 @@ ${R}###############################################
 ${N}########### Installations complete ############
 ${G}###############################################
 "
-echo -e "${R}Please reboot the system"
+echo -e "${R}Please reboot the system${N}"
