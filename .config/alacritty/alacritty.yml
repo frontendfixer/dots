@@ -538,25 +538,25 @@ schemes:
 
     # Normal colors
     normal:
-      black: '#1a1a1e'
-      red: '#f24054'
-      green: '#40f260'
-      yellow: '#f2f260'
-      blue: '#8060f2'
-      magenta: '#f240f2'
-      cyan: '#00bcd4'
-      white: '#d0d0d0'
+      black: '#212128'
+      red: '#fd6e7f'
+      green: '#6dff88'
+      yellow: '#f7f781'
+      blue: '#af8aff'
+      magenta: '#ff77ff'
+      cyan: '#83ffff'
+      white: '#eeeef4'
 
     #  Bright colors
     bright:
-      black: '#56566c'
-      red: '#f28080'
-      green: '#80f280'
-      yellow: '#f2f280'
-      blue: '#a480f2'
-      magenta: '#f280c4'
-      cyan: '#00e5ff'
-      white: '#eeeef4'
+      black: '#1a1a1e'
+      red: '#ff243e'
+      green: '#2dfd53'
+      yellow: '#ffff38'
+      blue: '#6f2cff'
+      magenta: '#ff26ff'
+      cyan: '#1dfafa'
+      white: '#d0d0d0'
 
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##

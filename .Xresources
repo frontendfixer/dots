@@ -17,7 +17,7 @@ Xft.lcdfilter: lcddefault
 
 XTerm*background:        #1a1a1e
 XTerm*foreground:        #eeeef4
-XTerm*pointerColor:      #30f0b2
+XTerm*pointerColor:      #83ffff
 XTerm*faceName:          Fixed
 XTerm*faceSize:          11
 XTerm*reverseVideo:      on
@@ -27,41 +27,41 @@ XTerm*selectToClipboard: true
 *foreground:                      #eeeef4
 *fading:                          8
 *fadeColor:                       black
-*cursorColor:                     #30f0b2
+*cursorColor:                     #83ffff
 *pointerColorBackground:          #212128
-*pointerColorForeground:          #60f0b2
+*pointerColorForeground:          #83ffff
 
 !! black dark/light
 *color0:                          #212128
 *color8:                          #56566c
 
 !! red dark/light
-*color1:                          #f24054
-*color9:                          #f26c7b
+*color1:                          #fd6e7f
+*color9:                          #ff243e
 
 !! green dark/light
-*color2:                          #40f260
-*color10:                         #80f280
+*color2:                          #6dff88
+*color10:                         #2dfd53
 
 !! yellow dark/light
-*color3:                          #f2f230
-*color11:                         #f2f280
+*color3:                          #f7f781
+*color11:                         #ffff38
 
 !! blue dark/light
-*color4:                          #7755f2
-*color12:                         #9282f2
+*color4:                          #af8aff
+*color12:                         #6f2cff
 
 !! magenta dark/light
-*color5:                          #f242f2
-*color13:                         #f284f2
+*color5:                          #ff77ff
+*color13:                         #ff26ff
 
 !! cyan dark/light
-*color6:                          #00e5ff
-*color14:                         #80f2ff
+*color6:                          #83ffff
+*color14:                         #1dfafa
 
 !! white dark/light
-*color7:                          #d8d8d8
-*color15:                         #f8f8f8
+*color7:                          #eeeef4
+*color15:                         #d0d0d0
 
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:                     0
