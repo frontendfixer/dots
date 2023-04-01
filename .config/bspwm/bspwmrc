@@ -1,0 +1,88 @@
+#!/usr/bin/sh
+
+#######################################
+############### Autostart #############
+#######################################
+sxhkd -c $HOME/.config/bspwm/sxhkdrc &
+#betterlockscreen -w blur &
+# feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
+$HOME/.fehbg &
+picom &
+blueman-applet &
+nm-applet &
+/usr/libexec/polkit-gnome-authentication-agent-1 &
+numlockx on &
+# clipit &
+dunst &
+$HOME/.config/polybar/launch_bspwm.sh &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+
+bspc config border_width                  2
+bspc config window_gap                    4
+bspc config top_padding                   22
+bspc config bottom_padding                2
+bspc config left_padding                  2
+bspc config right_padding                 2
+bspc config single_monocle                false
+bspc config click_to_focus                true
+bspc config split_ratio                   0.45
+bspc config borderless_monocle            true
+bspc config gapless_monocle               true
+bspc config focus_by_distance             true
+bspc config focus_follows_pointer         true
+bspc config history_aware_focus           true
+bspc config remove_disabled_monitors      true
+bspc config merge_overlapping_monitors    true
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+#### BSPWM coloring ####
+bspc config normal_border_color		      "#404040"
+bspc config active_border_color	          "#1a1a1e"
+bspc config focused_border_color	      "#000"
+bspc config presel_feedback_color	      "#56566c"
+bspc config urgent_border_color 	      "#f24054"
+
+#####################################
+############ BSPWM rules ############
+#####################################
+#### follow on desktop
+bspc rule -a kitty desktop='^1' follow=on
+bspc rule -a Alacritty desktop='^1' follow=on
+bspc rule -a thunar desktop='^2' follow=on
+bspc rule -a Pcmanfm desktop='^2' follow=on
+bspc rule -a firefox desktop='^3' follow=on
+bspc rule -a Chromium-browser desktop='^3' follow=on
+bspc rule -a Brave-browser desktop='^3' follow=on
+bspc rule -a Brave-browser-nightly desktop='^3' follow=on
+bspc rule -a VSCodium desktop='^4' follow=on
+bspc rule -a Gimp-2.10 desktop='^5' follow=on
+bspc rule -a figma-linux desktop='^5' follow=on
+bspc rule -a Inkscape desktop='^5' follow=on
+bspc rule -a vlc desktop='^6' follow=on
+bspc rule -a libreoffice desktop='^6' follow=on
+bspc rule -a Meld desktop='^0' follow=on
+
+######### floating layout
+bspc rule -a File-roller state=floating
+bspc rule -a Blueman-manager state=floating
+bspc rule -a Galculator state=floating
+bspc rule -a GParted state=floating
+bspc rule -a Lxappearance state=floating
+bspc rule -a Nitrogen state=floating
+bspc rule -a Xarchiver state=floating
+bspc rule -a TelegramDesktop state=floating
+bspc rule -a Eog state=floating
+bspc rule -a Xreader state=floating
+bspc rule -a Engrampa state=floating
+bspc rule -a Mousepad state=floating
+bspc rule -a Gedit state=floating
+bspc rule -a Gcolor3 state=floating
+bspc rule -a Grub Customize state=floating
+bspc rule -a Xed state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Xed state=floating
+bspc rule -a Yad state=floating

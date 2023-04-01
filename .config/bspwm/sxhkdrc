@@ -1,0 +1,100 @@
+#
+#     ██╗      █████╗ ██╗  ██╗███████╗██╗  ██╗███╗   ███╗██╗██╗  ██╗ █████╗ ███╗   ██╗████████╗ █████╗
+#     ██║     ██╔══██╗██║ ██╔╝██╔════╝██║  ██║████╗ ████║██║██║ ██╔╝██╔══██╗████╗  ██║╚══██╔══╝██╔══██╗
+#     ██║     ███████║█████╔╝ ███████╗███████║██╔████╔██║██║█████╔╝ ███████║██╔██╗ ██║   ██║   ███████║
+#     ██║     ██╔══██║██╔═██╗ ╚════██║██╔══██║██║╚██╔╝██║██║██╔═██╗ ██╔══██║██║╚██╗██║   ██║   ██╔══██║
+#     ███████╗██║  ██║██║  ██╗███████║██║  ██║██║ ╚═╝ ██║██║██║  ██╗██║  ██║██║ ╚████║   ██║   ██║  ██║
+#     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
+#
+
+########### The essentials applications
+super + Return
+	kitty
+super + {e,b,c}
+	{pcmanfm,brave-browser-nightly,codium}
+super + Shift + {c,g} 
+	{galculator, gcolor3}
+
+super + Insert
+	scrot /home/lakshmi/Pictures/%Y-%m-%d-%T-scr.png
+
+########### launcher programe
+super + p
+	rofi -modi drun -show drun -config ~/.config/rofi/col_singlerow.rasi
+
+super + BackSpace
+	dmenu_run -h 24 -nb '#1a1e1e' -sf '#212128' -sb '#f24054' -nf '#00e5ff' -fn 'Cascadia Code 9' -p 'Applications:'
+
+shift + ctrl + @space
+	rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions
+
+super + shift + l
+	betterlockscreen -l dimblur
+
+super + shift + e
+	sh $HOME/.scripts/rofi-powermenu.sh
+
+############### windows management
+super + Escape
+	pkill -USR1 -x sxhkd
+super + ctrl + {q,r}
+	bspc {quit,wm -r}
+super + {_,shift + }q
+	bspc node -{c,k}
+super + m
+ 	bspc desktop -l next
+
+##### state/flags
+super + {t,shift + t,shift + @space,f}
+ 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+##### set the node flags
+super + ctrl + {m,x,y,z}
+ 	bspc node -g {marked,locked,sticky,private}
+
+super + {_,shift + }{Left, Down, Up, Right}
+ 	bspc node -{f,s} {west,south,north,east}
+
+##### Resize window
+super + ctrl + {Left, Down, Up, Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+super + alt + shift + {Left, Down, Up, Right}
+ 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+##### move a floating window
+# super + {Left,Down,Up,Right}
+# 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+# # focus the next/previous node in the current desktop
+# super + {_,shift + }c
+# 	bspc node -f {next,prev}.local
+
+# # focus the next/previous desktop in the current monitor
+# super + bracket{left,right}
+# 	bspc desktop -f {prev,next}.local
+
+# # focus the older or newer node in the focus history
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
+
+############# workspace management
+super + {_,shift + }{1-9,0}
+ 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+########### Multimedia Keys
+{XF86AudioRaiseVolume, XF86AudioLowerVolume, XF86AudioMute}
+	{pamixer -i 5, pamixer -d 5, pamixer -t}
+
+{XF86AudioPlay, XF86AudioPause, XF86AudioNext, XF86AudioPrev}
+	{playerctl play, playerctl pause, playerctl next, playerctl previous}
+	
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+	{xbacklight -inc 20, xbacklight -dec 20}
