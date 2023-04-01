@@ -211,23 +211,16 @@ bindsym $mod+Tab workspace back_and_forth
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-
-################## compositor 
-# picom: https://wiki.archlinux.org/title/Picom
-# manpage: https://man.archlinux.org/man/picom.1.en
-exec_always picom -b --config ~/.config/picom/picom.conf
-
-
 ################## autostart applications/services on login
-
+exec_always picom &
 exec --no-startup-id dex --autostart --environment i3 &
 exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id numlockx on &
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+exec_always --no-startup-id $HOME/.config/polybar/launch_i3.sh &
 
 #wallpaper Applicaton
 #exec --no-startup-id sleep 2 && nitrogen --set-zoom-fill --random .background/ --save
-exec --no-startup-id feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
+exec --no-startup-id $HOME/.fehbg
 #exec --no-startup-id betterlockscreen -w dim 
 
 ### Desktop notifications
@@ -300,24 +293,23 @@ bindsym control+Shift+space exec rofimoji --selector-args="-theme ~/.config/rofi
 ############### i3 scripts 
 
 ### exit menu 
-bindsym $mod+Shift+e exec ~/.config/polybar/scripts/powermenu
+bindsym $mod+Shift+e exec ~/.scripts/rofi-powermenu.sh
 
 ### Lock the system
 # lock with a picture:
-#bindsym $mod+l exec ~/.config/i3/scripts/fun-lock
+bindsym $mod+Shift+l exec ~/.scripts/fun-lock.sh
 # lock by blurring the screen:
-#bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+#bindsym $mod+Shift+l exec ~/.scripts/blur-lock.sh
 #with betterlockscreen
-bindsym $mod+Shift+l exec  
-#### use command "betterlockscreen -u ~/.background"
+#bindsym $mod+Shift+l exec betterlockscreen -l dimblur
 
 ### open new empty workspace
-bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+bindsym $mod+Shift+n exec ~/.scripts/empty_workspace.sh
 
 
 ############# User Applications ############
 
-bindsym Mod1+Shift+C exec gcolor2
+bindsym Mod1+Shift+C exec gcolor3
 
 ################# Moving around in i3  
 # change focus
@@ -568,7 +560,7 @@ client.urgent              $red            $red            $textcolor      $red
 #    font pango: CaskaydiaCove Nerd Font 11
 #    output primary
 #    position top
-#    status_command  i3blocks #i3blocks -c ~/.config/i3/i3blocks.conf
+#    status_command  i3blocks #i3blocks -c ~/.config/i3blocks/i3blocks.conf
 #    workspace_buttons yes
 #    strip_workspace_numbers yes
 #    workspace_min_width 30
