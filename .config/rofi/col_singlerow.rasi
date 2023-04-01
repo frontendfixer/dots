@@ -9,9 +9,9 @@
 
 
 configuration {
-	font:							"Fira Code 10";
+	font:							"Cascadia Code 10";
     show-icons:                     true;
-	  icon-theme: 					"Papirus";
+	  icon-theme: 					"Papirus-Dark";
     display-drun: 					"Applications";
     drun-display-format:            "{name}";
     disable-history:                false;
@@ -49,7 +49,7 @@ configuration {
   bg:  #1a1a1eff;
   se:  #212128ff;
   fg:  #eeeef4ff;
-  ac:  #f24054ff;
+  ac:  #fd6e7fff;
 }
 
 //Main Customization
@@ -58,7 +58,7 @@ window {
     transparency:                   "real";
     background-color:               @bg;
     text-color:                     @fg;
-	border:							2px 5px;
+	border:							2px 15px;
 	border-color:					@ac;
     border-radius:                  10px;
 	width:							50%;
@@ -79,9 +79,9 @@ prompt {
     enabled: 						true;
 	padding: 						1% 0.75% 1% 0.75%;
 	background-color: 				@ac;
-	text-color: 					@fg;
-    border-radius:                  6px;
-	font:							"Fira Code 10";
+	text-color: 					@bg;
+    border-radius:                  6px 0 0 6px;
+	font:							"Cascadia Code 10";
 }
 
 textbox-prompt-colon {
