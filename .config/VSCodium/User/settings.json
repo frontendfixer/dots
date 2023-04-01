@@ -7,20 +7,21 @@
   "css.hover.documentation": false,
 
   "explorer.confirmDelete": true,
-  "workbench.colorTheme": "Dracula Dark+",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.productIconTheme": "fluent-icons",
   "editor.wordWrap": "on",
   "editor.fontFamily": "'Cascadia Code','FiraCode Nerd Font', monospace",
-  "editor.fontSize": 16,
   "editor.fontWeight": "300",
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
+  "editor.lineHeight": 24,
   "editor.tabCompletion": "on",
   "window.menuBarVisibility": "toggle",
   "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
   "editor.mouseWheelZoom": true,
   "editor.renderLineHighlight": "all",
   "editor.renderLineHighlightOnlyWhenFocus": true,
+  "explorer.decorations.badges": false,
   "remote.SSH.remotePlatform": {
     "dsbctech": "linux"
   },
@@ -91,5 +92,6 @@
   "terminal.integrated.fontSize": 12,
   "editor.linkedEditing": true,
   "git.openRepositoryInParentFolders": "always",
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.fontSize": 16
 }

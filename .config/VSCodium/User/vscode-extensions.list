@@ -4,6 +4,9 @@ christian-kohler.path-intellisense
 codezombiech.gitignore
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
+Equinusocio.vsc-community-material-theme
+Equinusocio.vsc-material-theme
+equinusocio.vsc-material-theme-icons
 esbenp.prettier-vscode
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
@@ -12,6 +15,12 @@ jeanp413.open-remote-ssh
 mads-hartmann.bash-ide-vscode
 MateuszDrewniak.theme-dracula-dark-plus
 miguelsolorio.fluent-icons
+ms-python.python
+ms-toolsai.jupyter
+ms-toolsai.jupyter-keymap
+ms-toolsai.jupyter-renderers
+ms-toolsai.vscode-jupyter-cell-tags
+ms-toolsai.vscode-jupyter-slideshow
 naumovs.color-highlight
 PascalReitermann93.vscode-yaml-sort
 PKief.material-icon-theme
