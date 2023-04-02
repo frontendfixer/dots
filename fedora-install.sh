@@ -35,13 +35,9 @@ echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/free/fedora/rp
 echo $pw | sudo -S dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 echo $pw | sudo -S dnf group update -y core
 echo $pw | sudo -S dnf update -y
-echo $pw | sudo -S dnf group install -y "C Development Tools and Libraries"
-echo $pw | sudo -S dnf group install -y "Fonts"
-echo $pw | sudo -S dnf group install -y "Standard"
-echo $pw | sudo -S dnf group install -y "Hardware Support"
-echo $pw | sudo -S dnf group install -y "Input Methods"
-echo $pw | sudo -S dnf group install -y "Multimedia"
-echo $pw | sudo -S dnf group install -y "base-x"
+
+echo -e "\n${G}installing reqired groups${N} ===============\n"
+echo $pw | sudo -S dnf group install -y "Administration Tools" "C Development Tools and Libraries" "Fonts" "Standard" "Hardware Support" "Input Methods" "base-x"
 
 echo -e "${G}installing multimedia codac${N} ===============\n"
 echo $pw | sudo -S dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
@@ -102,9 +98,9 @@ echo -e "${C}#### installing i3lock-color${N}"
 git clone https://github.com/Raymo111/i3lock-color.git
 cd i3lock-color
 ./install-i3lock-color.sh
+cd ..
 
 echo -e "${C}#### installing betterlockscreen${N}"
-cd ..
 wget https://github.com/betterlockscreen/betterlockscreen/archive/refs/heads/main.zip
 unzip main.zip
 
@@ -114,8 +110,8 @@ echo $pw | sudo -S cp betterlockscreen /usr/local/bin/
 
 echo $pw | sudo -S cp system/betterlockscreen@.service /usr/lib/systemd/system/
 echo $pw | sudo -S systemctl enable betterlockscreen@$USER
+betterlockscreen -u /usr/share/backgrounds/fantacy/wal39.jpg
 cd ../..
-betterlockscreen -u /usr/share/backgrounds/fantacy/wal28.jpg
 
 echo -e "
 \n###############################################
@@ -143,59 +139,49 @@ echo -e "
 ${P}Installing Window manager ${N}
 ###############################################
 "
-echo $pw | sudo -S dnf copr enable frostyx/qtile
-echo $pw | sudo -S dnf copr enable david35mm/pamixer
+yes | echo $pw | sudo -S dnf copr enable frostyx/qtile 
+yes | echo $pw | sudo -S dnf copr enable david35mm/pamixer
+yes | echo $pw | sudo -S dnf copr enable jerrycasiano/FontManager
 yes | echo $pw | sudo -S rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+yes | echo $pw | sudo -S rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+yes | echo $pw | sudo -S dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 echo $pw | printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo -S tee -a /etc/yum.repos.d/vscodium.repo
 
 echo -e "${R}installing require packages${N} ===========\n"
-echo $pw | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu python3-pip mousepad file-roller eog meld pavucontrol scrot galculator brightnessctl qtile pamixer qtile-extras nodejs blueman telegram-desktop vlc chromium codium android-tools android-file-transfer polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader rofimoji google-noto-emoji-color-fonts
+echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission
 
+echo $pw | sudo -S pip install rofimoji
+
+echo -e "${R}enableling services ${N} ===========\n"
+echo $pw | sudo -S systemctl enable tlp
 echo $pw | sudo -S systemctl enable lightdm
+echo $pw | sudo -S systemctl enable betterlockscreen@$USER
+echo $pw | sudo -S plymouth-set-default-theme -R details
+xdg-user-dirs-update
+
 echo $pw | sudo -S dnf copr remove frostyx/qtile
 echo $pw | sudo -S dnf copr remove david35mm/pamixer
+echo $pw | sudo -S dnf copr remove jerrycasiano/FontManag
+echo $pw | sudo -S mv  /etc/yum.repos.d/vscodium.repo /etc/yum.repos.d/vscodium.repo.bak
 
 echo -e "
 \n###############################################
-${P}Copy final configaration${N}
+${P}Copy final configaration and scripts${N}
 ###############################################
 "
+echo -e "${C}created a backup of current '.config' directory.....${N}"
 cp -r $HOME/.config/ $HOME/.config.bak
-echo -e "${C}copying alacritty.....${N}"
-yes|cp -r .config/alacritty $HOME/.config
-echo -e "${C}copying fish.....${N}"
-yes|cp -r .config/fish $HOME/.config
-echo -e "${C}copying gtk.....${N}"
-yes|cp -r .config/gtk-3.0 $HOME/.config
-echo -e "${C}copying htop.....${N}"
-yes|cp -r .config/htop $HOME/.config
-echo -e "${C}copying kitty.....${N}"
-yes|cp -r .config/kitty $HOME/.config
-echo -e "${C}copying neofetch.....${N}"
-yes|cp -r .config/neofetch $HOME/.config
-echo -e "${C}copying nvim.....${N}"
-yes|cp -r .config/nvim $HOME/.config
-echo -e "${C}copying pcmanfm.....${N}"
-yes|cp -r .config/pcmanfm $HOME/.config
-echo -e "${C}copying picom.....${N}"
-yes|cp -r .config/picom $HOME/.config
-echo -e "${C}copying qtile.....${N}"
-yes|cp -r .config/qtile $HOME/.config
-echo -e "${C}copying ranger.....${N}"
-yes|cp -r .config/ranger $HOME/.config
-echo -e "${C}copying rofi.....${N}"
-yes|cp -r .config/rofi $HOME/.config
-echo -e "${C}copying betterlockscreen.....${N}"
-yes|cp .config/betterlockscreenrc $HOME/.config/
-echo -e "${C}copying vscodium....${N}"
-yes|cp -r .config/VSCodium $HOME/.config/
-echo -e "${C}copying mousepad....${N}"
+echo -e "${C}copying scripts.....${N}"
+yes | cp -r .scripts/ $HOME
+echo -e "${C}copying configarations.....${N}"
+yes | cp -r .config/ $HOME
+
+echo -e "${C}copying mousepad theme....${N}"
 mkdir -p "$HOME/.local/share/gtksourceview-4/styles"
 yes|cp  Themeing/mousepad/dracula.xml Themeing/mousepad/draculaDarker.xml $HOME/.local/share/gtksourceview-4/styles
 
 ######removimg catch directory
 rm -rf catch
-rm -f install
 
 echo -e "
 \n###############################################
@@ -221,10 +207,10 @@ UUID=7796BF99038EDBCE	/mnt/Program		ntfs	defaults	0	0
 
 echo -e "${G}############### Updating DNS ############"
 echo $pw | sudo -S sh -c 'echo "
-DNS=45.90.28.0#5bf7d9.dns.nextdns.io
-DNS=2a07:a8c0::#5bf7d9.dns.nextdns.io
-DNS=45.90.30.0#5bf7d9.dns.nextdns.io
-DNS=2a07:a8c1::#5bf7d9.dns.nextdns.io
+DNS=45.90.28.0#****d9.dns.nextdns.io
+DNS=2a07:a8c0::#****d9.dns.nextdns.io
+DNS=45.90.30.0#****d9.dns.nextdns.io
+DNS=2a07:a8c1::#****d9.dns.nextdns.io
 DNSOverTLS=yes
 " >>/etc/systemd/resolved.conf'
 echo $pw | sudo -S systemctl enable systemd-resolved.service
