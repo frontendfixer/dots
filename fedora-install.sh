@@ -62,9 +62,6 @@ mv $HOME/.zshrc $HOME/.zshrc.bak
 mv $HOME/.Xresources $HOME/.Xresources.bak
 cp .aliases .bashrc .zshrc .Xresources .face $HOME
 yes | cp -r .zsh/ $HOME
-yes | cp -r .config/kitty $HOME/.config
-yes | cp -r .config/fish $HOME/.config
-cp .config/starship.toml $HOME/.config
 
 echo -e "\n${G}Installing shell-color-scripts${N} ===============\n"
 echo -e  "${C}You can download the source code from this repository or use a git clone:
@@ -154,6 +151,7 @@ echo $pw | sudo -S pip install rofimoji
 
 echo -e "${R}enableling services ${N} ===========\n"
 echo $pw | sudo -S systemctl enable tlp
+echo $pw | sudo -S systemctl set-default graphical.target
 echo $pw | sudo -S systemctl enable lightdm
 echo $pw | sudo -S systemctl enable betterlockscreen@$USER
 echo $pw | sudo -S plymouth-set-default-theme -R details
@@ -161,7 +159,7 @@ xdg-user-dirs-update
 
 echo $pw | sudo -S dnf copr remove frostyx/qtile
 echo $pw | sudo -S dnf copr remove david35mm/pamixer
-echo $pw | sudo -S dnf copr remove jerrycasiano/FontManag
+echo $pw | sudo -S dnf copr remove jerrycasiano/FontManager
 echo $pw | sudo -S mv  /etc/yum.repos.d/vscodium.repo /etc/yum.repos.d/vscodium.repo.bak
 
 echo -e "
@@ -207,10 +205,10 @@ UUID=7796BF99038EDBCE	/mnt/Program		ntfs	defaults	0	0
 
 echo -e "${G}############### Updating DNS ############"
 echo $pw | sudo -S sh -c 'echo "
-DNS=45.90.28.0#****d9.dns.nextdns.io
-DNS=2a07:a8c0::#****d9.dns.nextdns.io
-DNS=45.90.30.0#****d9.dns.nextdns.io
-DNS=2a07:a8c1::#****d9.dns.nextdns.io
+DNS=45.90.28.0#5bf7d9.dns.nextdns.io
+DNS=2a07:a8c0::#5bf7d9.dns.nextdns.io
+DNS=45.90.30.0#5bf7d9.dns.nextdns.io
+DNS=2a07:a8c1::#5bf7d9.dns.nextdns.io
 DNSOverTLS=yes
 " >>/etc/systemd/resolved.conf'
 echo $pw | sudo -S systemctl enable systemd-resolved.service
