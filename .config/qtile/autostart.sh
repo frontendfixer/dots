@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #betterlockscreen -w blur &
-feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
+$HOME/.fehbg &
 picom -b --config ~/.config/picom/picom.conf &
 #pavucontrol &
 blueman-applet &

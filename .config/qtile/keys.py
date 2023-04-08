@@ -13,7 +13,7 @@ def keybinding():
         Key([mod], "b", lazy.spawn(myBrowser)),
         Key([mod], "c", lazy.spawn(codeEditor)),
         ########## Applications
-        Key([mod, "shift"], "w", lazy.spawn(broswer_alt)),
+        Key([mod, "shift"], "b", lazy.spawn(broswer_alt)),
         Key([mod, "shift"], "c", lazy.spawn("galculator")),
         Key([mod, "shift"], "g", lazy.spawn("gcolor3")),
         ########### Dmenu and Rofi
@@ -40,8 +40,6 @@ def keybinding():
         ),
         ########### Scripts
         Key([mod, "shift"], "l", lazy.spawn("betterlockscreen -l dimblur")),
-        # Key([mod, "shift"], "e", lazy.spawn("sh /home/lakshmi/.config/qtile/scripts/powermenu")),
-        # Key([mod, "shift"], "e", lazy.spawn("rofi -show power-menu -modi power-menu:/home/lakshmi/.config/qtile/scripts/rofi-power-menu -config ~/.config/qtile/scripts/powermenu.rasi")),
         Key([mod, "shift"], "e", lazy.function(show_power_menu)),
         ############ Switch between windows
         Key([mod], "Left", lazy.layout.left()),

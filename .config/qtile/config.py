@@ -1,4 +1,3 @@
-
 ###############################
 #### Importing all Modules ####
 ###############################
@@ -13,16 +12,15 @@ from layouts import layouts, floating_layout
 from workspace import *
 from screens import screens
 
-from extras import *
 
-from graphical_notifications import Notifier
 ##################################
 ######## Autostart Apps ##########
 ##################################
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.Popen([home])
+
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list

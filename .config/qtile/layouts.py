@@ -20,11 +20,13 @@ layout_theme = {
 layouts = [
     layout.Bsp(name="bsp", **layout_theme),
     # layout.Columns(**layout_theme),
-    # layout.MonadTall(
-    #    align = 'MonadTall._left',
-    #    ratio = 0.42,
-    #    new_client_position = 'bottom',
-    #    **layout_theme),
+    layout.MonadTall(
+        align="MonadTall._right",
+        max_ratio=0.75,
+        min_ratio=0.35,
+        new_client_position="bottom",
+        **layout_theme
+    ),
     layout.Max(**layout_theme),
     # layout.Floating(
     #        border_width = 2,
@@ -57,6 +59,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Xarchiver"),
         Match(wm_class="TelegramDesktop"),
         Match(wm_class="Eog"),
+        Match(wm_class="Yad"),
         Match(wm_class="Xreader"),
         Match(wm_class="Engrampa"),
         Match(wm_class="Mousepad"),
