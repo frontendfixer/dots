@@ -5,56 +5,81 @@
   "css.hover.references": false,
   "html.hover.documentation": false,
   "css.hover.documentation": false,
-
-  "explorer.confirmDelete": true,
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.startupEditor": "none",
+  "explorer.confirmDragAndDrop": false,
+  "git.confirmSync": true,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "explorer.confirmDelete": false,
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
   "workbench.productIconTheme": "fluent-icons",
+  "files.autoSave": "onWindowChange",
   "editor.wordWrap": "on",
-  "editor.fontFamily": "'Cascadia Code','FiraCode Nerd Font', monospace",
+  "editor.fontSize": 16,
+  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
   "editor.fontWeight": "300",
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
-  "editor.lineHeight": 24,
-  "editor.tabCompletion": "on",
-  "window.menuBarVisibility": "toggle",
-  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
-  "editor.mouseWheelZoom": true,
-  "editor.renderLineHighlight": "all",
-  "editor.renderLineHighlightOnlyWhenFocus": true,
-  "explorer.decorations.badges": false,
-  "remote.SSH.remotePlatform": {
-    "dsbctech": "linux"
+  "terminal.integrated.cursorStyle": "line",
+  "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#22272b",
+    "statusBar.foreground": "#cfcff7",
+    "statusBar.border": "#106355",
+    "statusBarItem.errorBackground": "#ff5e5e",
+    "statusBarItem.errorForeground": "#212128",
+    "statusBarItem.warningBackground": "#ff5e5e",
+    "statusBarItem.warningForeground": "#212128",
+    "statusBarItem.activeBackground": "#5fff87",
+    "statusBarItem.hoverBackground": "#106355"
   },
-  "workbench.editorAssociations": {
-    // TODO: merge with other settings then remove this comment
-    "*.svg": "svgPreview.previewEditor"
+
+  // ============ Emmit Config ===========
+  "emmet.includeLanguages": {
+    "html": "html",
+    "css": "css",
+    "javascript": "javascript",
+    "plaintext": "pug",
+    "typescript": "typescriptreact"
+    // "javascript": "javascriptreact",
   },
-  // =========== GIT related ==============
-  "github.gitProtocol": "ssh",
-  "git.confirmSync": false,
-  "git.enableSmartCommit": true,
-  "git.autofetch": true,
-  // =========== Live-Server =================
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
-  "liveServer.settings.CustomBrowser": "chromium-browser",
-  "liveSassCompile.settings.useNewCompiler": true,
-  // ===========================================
-  "update.mode": "manual",
+  "emmet.useInlineCompletions": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.excludeLanguages": [],
+  "html.format.contentUnformatted": "pre,code,textarea",
+  "emmet.showSuggestionsAsSnippets": true,
+
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "on",
+      "strings": "on"
+    }
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "on",
+      "strings": "on"
+    }
+  },
+  // "emmet.syntaxProfiles": {
+  //   "html": {
+  //     "filters": "bem"
+  //   }
+  // },
+  "emmet.preferences": {
+    "css.color.short": true
+  },
+  "editor.linkedEditing": true,
   // =========== Prettier config ===========
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.singleQuote": true,
   "prettier.arrowParens": "avoid",
-  // ========== Live SASS ==================
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "expanded",
-      "extensionName": ".css",
-      "savePath": "~/../style",
-      "savePathReplacementPairs": null
-    }
-  ],
-  "liveSassCompile.settings.autoprefix": [],
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 4,
   // ============= ESLint Config =============
   "eslint.format.enable": true,
   "editor.formatOnSave": true,
@@ -62,36 +87,39 @@
   "[javascript, javascriptreact]": {
     "editor.formatOnSave": false
   },
-  "eslint.probe": ["javascript", "javascriptreact", "vue"],
-  // Runs Prettier, then ESLint
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
-  },
-  "vetur.validation.template": false,
+
   "eslint.alwaysShowStatus": true,
+  // ========================================
+  "github.gitProtocol": "ssh",
+  "html.completion.attributeDefaultValue": "singlequotes",
+
+  "editor.snippetSuggestions": "top",
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.tabCompletion": "on",
+
   // ============= Path Intellisence=============
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.autoTriggerNextSuggestion": true,
   "path-intellisense.showHiddenFiles": true,
-  "path-intellisense.extensionOnImport": true,
   "path-intellisense.mappings": {
     "/": "${workspaceFolder}"
   },
-  "[python]": {
-    "editor.formatOnType": true
-  },
-  "security.workspace.trust.untrustedFiles": "open",
-  "terminal.external.linuxExec": "kitty",
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-  "terminal.integrated.fontSize": 12,
-  "editor.linkedEditing": true,
-  "git.openRepositoryInParentFolders": "always",
-  "diffEditor.ignoreTrimWhitespace": false,
-  "editor.fontSize": 16
+  "explorer.compactFolders": false,
+  "editor.tabSize": 2,
+  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
+  "editor.dragAndDrop": false,
+  "editor.foldingStrategy": "indentation",
+  "editor.guides.bracketPairs": "active",
+  "editor.mouseWheelZoom": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderLineHighlightOnlyWhenFocus": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSaveMode": "modifications",
+  "html.format.maxPreserveNewLines": 2,
+  
 }
