@@ -136,7 +136,7 @@ echo -e "
 ${P}Installing Window manager ${N}
 ###############################################
 "
-yes | echo $pw | sudo -S dnf copr enable frostyx/qtile 
+yes | echo $pw | sudo -S dnf copr enable frostyx/qtile
 yes | echo $pw | sudo -S dnf copr enable david35mm/pamixer
 yes | echo $pw | sudo -S dnf copr enable jerrycasiano/FontManager
 yes | echo $pw | sudo -S rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
@@ -145,7 +145,7 @@ yes | echo $pw | sudo -S dnf config-manager --add-repo https://brave-browser-rpm
 echo $pw | printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo -S tee -a /etc/yum.repos.d/vscodium.repo
 
 echo -e "${R}installing require packages${N} ===========\n"
-echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission
+echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp tlp-rdw redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission
 
 echo $pw | sudo -S pip install rofimoji
 
@@ -205,10 +205,10 @@ UUID=7796BF99038EDBCE	/mnt/Program		ntfs	defaults	0	0
 
 echo -e "${G}############### Updating DNS ############"
 echo $pw | sudo -S sh -c 'echo "
-DNS=45.90.28.0#5bf7d9.dns.nextdns.io
-DNS=2a07:a8c0::#5bf7d9.dns.nextdns.io
-DNS=45.90.30.0#5bf7d9.dns.nextdns.io
-DNS=2a07:a8c1::#5bf7d9.dns.nextdns.io
+DNS=45.90.28.0#****d9.dns.nextdns.io
+DNS=2a07:a8c0::#****d9.dns.nextdns.io
+DNS=45.90.30.0#****d9.dns.nextdns.io
+DNS=2a07:a8c1::#****d9.dns.nextdns.io
 DNSOverTLS=yes
 " >>/etc/systemd/resolved.conf'
 echo $pw | sudo -S systemctl enable systemd-resolved.service
