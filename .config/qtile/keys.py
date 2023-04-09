@@ -53,10 +53,30 @@ def keybinding():
         Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
         Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
         ########## Grow windows.
-        Key([mod, "control"], "Left", lazy.layout.grow_left(), resize_left),
-        Key([mod, "control"], "Right", lazy.layout.grow_right(), resize_right),
-        Key([mod, "control"], "Down", lazy.layout.grow_down(), resize_down),
-        Key([mod, "control"], "Up", lazy.layout.grow_up(), resize_up),
+        Key(
+            [mod, "control"],
+            "Right",
+            resize_floating_window(width=10),
+            desc="increase width by 10",
+        ),
+        Key(
+            [mod, "control"],
+            "Left",
+            resize_floating_window(width=-10),
+            desc="decrease width by 10",
+        ),
+        Key(
+            [mod, "control"],
+            "Down",
+            resize_floating_window(height=10),
+            desc="increase height by 10",
+        ),
+        Key(
+            [mod, "control"],
+            "Up",
+            resize_floating_window(height=-10),
+            desc="decrease height by 10",
+        ),
         ######################
         Key([mod], "Escape", lazy.layout.normalize()),
         # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -121,58 +141,15 @@ mouse = [
 ]
 
 
-# BSP resizing taken from https://github.com/qtile/qtile/issues/1402
-def resize(qtile, direction):
-    layout = qtile.current_layout
-    child = layout.current
-    parent = child.parent
-
-    while parent:
-        if child in parent.children:
-            layout_all = False
-
-            if (direction == "left" and parent.split_horizontal) or (
-                direction == "up" and not parent.split_horizontal
-            ):
-                parent.split_ratio = max(5, parent.split_ratio - layout.grow_amount)
-                layout_all = True
-            elif (direction == "right" and parent.split_horizontal) or (
-                direction == "down" and not parent.split_horizontal
-            ):
-                parent.split_ratio = min(95, parent.split_ratio + layout.grow_amount)
-                layout_all = True
-
-            if layout_all:
-                layout.group.layout_all()
-                break
-
-        child = parent
-        parent = child.parent
-
-
-@lazy.function
-def resize_left(qtile):
-    resize(qtile, "left")
-
-
-@lazy.function
-def resize_right(qtile):
-    resize(qtile, "right")
-
-
-@lazy.function
-def resize_up(qtile):
-    resize(qtile, "up")
-
-
-@lazy.function
-def resize_down(qtile):
-    resize(qtile, "down")
-
-
 @lazy.function
 def float_to_front(qtile):
     for group in qtile.groups:
         for window in group.windows:
             if window.floating:
                 window.cmd_bring_to_front()
+
+
+@lazy.function
+def resize_floating_window(qtile, width: int = 0, height: int = 0):
+    w = qtile.current_window
+    w.cmd_set_size_floating(w.width + width, w.height + height)
