@@ -1,0 +1,10 @@
+#!/bin/bash
+# -*- ENCODING: UTF-8 -*-
+#small script to enable root access to x-windows system
+xhost +SI:localuser:root
+notify-send "ALERT: Enable root user on xhost"
+beesu $1
+#disable root access after application terminates
+xhost -SI:localuser:root
+#print access status
+notify-send "Disable root user on xhost"

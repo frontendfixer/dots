@@ -173,6 +173,8 @@ echo -e "${C}copying scripts.....${N}"
 yes | cp -r .scripts/ $HOME
 echo -e "${C}copying configarations.....${N}"
 yes | cp -r .config/ $HOME
+echo -e "${C}copying .local files.....${N}"
+yes | cp -r .local/ $HOME
 
 echo -e "${C}copying mousepad theme....${N}"
 mkdir -p "$HOME/.local/share/gtksourceview-4/styles"
