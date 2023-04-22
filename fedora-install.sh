@@ -153,7 +153,8 @@ echo $pw | printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodiu
 echo -e "${R}installing require packages${N} ===========\n"
 echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp tlp-rdw redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission beesu clang clang-tools-extra
 
-echo $pw | sudo -S pip install rofimoji
+echo -e "${R}pip isntalling services ${N} ===========\n"
+pip install rofimoji beautysh black  
 
 echo -e "${R}enableling services ${N} ===========\n"
 echo $pw | sudo -S systemctl enable tlp
