@@ -118,4 +118,4 @@ export PATH="$PNPM_HOME:$PATH"
 neofetch --ascii ~/.config/neofetch/images/redhat.txt
 
 # Set a default prompt
-exec zsh
+exec fish
