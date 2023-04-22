@@ -35,7 +35,7 @@ def keybinding():
             ["control", "shift"],
             "space",
             lazy.spawn(
-                "rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions"
+                "rofimoji --prompt='Emoji' --action='type' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions"
             ),
         ),
         ########### Scripts
@@ -53,26 +53,30 @@ def keybinding():
         Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
         Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
         ########## Grow windows.
+        Key([mod, "control"], "Down", lazy.layout.grow_down()),
+        Key([mod, "control"], "Up", lazy.layout.grow_up()),
+        Key([mod, "control"], "Left", lazy.layout.grow_left()),
+        Key([mod, "control"], "Right", lazy.layout.grow_right()),
         Key(
-            [mod, "control"],
+            [mod, "control", "shift"],
             "Right",
             resize_floating_window(width=10),
             desc="increase width by 10",
         ),
         Key(
-            [mod, "control"],
+            [mod, "control", "shift"],
             "Left",
             resize_floating_window(width=-10),
             desc="decrease width by 10",
         ),
         Key(
-            [mod, "control"],
+            [mod, "control", "shift"],
             "Down",
             resize_floating_window(height=10),
             desc="increase height by 10",
         ),
         Key(
-            [mod, "control"],
+            [mod, "control", "shift"],
             "Up",
             resize_floating_window(height=-10),
             desc="decrease height by 10",
