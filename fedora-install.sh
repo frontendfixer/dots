@@ -116,11 +116,17 @@ ${P}Updating theme icons fonts and wallpaper ${N}
 ###############################################
 "
 echo -e "${G}Updating theme and icons${N} ===============\n"
-echo -e "copying icons and themes"
+
+echo -e "${C}installing bibata cursor theme${N}"
+yes | echo $pw | sudo -S dnf copr enable peterwu/rendezvous
+echo $pw | sudo -S dnf install -y bibata-cursor-themes
+yes | echo $pw | sudo -S dnf copr remove peterwu/rendezvous
+
+echo -e "${C}copying dracula themes${N}"
 yes | cp -r .icons/ $HOME
 yes | cp -r .themes/ $HOME
-yes | echo $pw | sudo -S cp -r $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
 yes | echo $pw | sudo -S cp -r $HOME/.themes/Dracula /usr/share/themes
+
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
 yes | cp .gtkrc-2.0 .gtkrc-2.0.mine .gtkrc-xfce $HOME
@@ -145,7 +151,7 @@ yes | echo $pw | sudo -S dnf config-manager --add-repo https://brave-browser-rpm
 echo $pw | printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo -S tee -a /etc/yum.repos.d/vscodium.repo
 
 echo -e "${R}installing require packages${N} ===========\n"
-echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp tlp-rdw redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission
+echo lakshmi3 | sudo -S dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip mousepad firefox mozilla-ublock-origin brave-browser file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer nodejs blueman font-manager gnome-characters telegram-desktop vlc codium android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset gnome-clocks network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth tlp tlp-rdw redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission beesu clang clang-tools-extra
 
 echo $pw | sudo -S pip install rofimoji
 
