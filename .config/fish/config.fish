@@ -32,8 +32,13 @@ alias nvm="bass source ~/.nvm/nvm.sh --no-use ';' nvm "
 ########################################################################
 
 ##### make directory and CD into folder #########
-function mkdir-cd
-    mkdir -p -- $argv && cd -- $argv
+function rcomp
+  #set baseDir (command pwd)  
+  #mkdir -p -- $argv[1] && cd -- $argv[1]
+  #mkdir -- $argv[2] && cd -- $argv[2]
+  #touch -- $argv[2].{component.jsx,style.scss}
+  #cd $baseDir
+  mkdir -p src/components/$argv && touch src/components/$argv/$argv.{component.jsx, style.scss}
 end
 
 ######## MOVE#######
@@ -107,9 +112,7 @@ source ~/.aliases
 
 ############### Styling
 # using fish >= 3.4.0
-# fish_config theme choose "Dracula Official"
-
-# neofetch --ascii ~/.config/neofetch/images/mx-linux.txt
+fish_config theme choose "Dracula Official"
 
 ##starship config
 starship init fish | source
