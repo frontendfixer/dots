@@ -1,4 +1,4 @@
-bmewburn.vscode-intelephense-client
+bradlc.vscode-tailwindcss
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
@@ -13,10 +13,15 @@ mads-hartmann.bash-ide-vscode
 magicstack.MagicPython
 MateuszDrewniak.theme-dracula-dark-plus
 miguelsolorio.fluent-icons
-monokai.theme-monokai-pro-vscode
+ms-python.black-formatter
+ms-python.python
 naumovs.color-highlight
 PKief.material-icon-theme
 sndst00m.vscode-native-svg-preview
+streetsidesoftware.code-spell-checker
+styled-components.vscode-styled-components
+stylelint.vscode-stylelint
+svelte.svelte-vscode
 tomoki1207.pdf
 yandeu.five-server
 yzhang.markdown-all-in-one
