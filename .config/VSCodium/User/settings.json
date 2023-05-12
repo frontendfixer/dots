@@ -1,56 +1,99 @@
 {
-  // Generic Setings
-  "workbench.iconTheme": "material-icon-theme",
-  "html.hover.references": false,
-  "css.hover.references": false,
-  "html.hover.documentation": false,
-  "css.hover.documentation": false,
-  "workbench.startupEditor": "none",
-  "explorer.confirmDragAndDrop": false,
-  "git.confirmSync": true,
-  "git.enableSmartCommit": true,
-  "git.autofetch": true,
-  "explorer.confirmDelete": false,
-  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
-  "workbench.productIconTheme": "fluent-icons",
-  "files.autoSave": "onWindowChange",
-  "editor.wordWrap": "on",
-  "editor.fontSize": 16,
-  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
-  "editor.fontWeight": "300",
-  "editor.fontLigatures": true,
-  "editor.cursorBlinking": "smooth",
-  "terminal.integrated.cursorStyle": "line",
-  "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
-  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "window.menuBarVisibility": "toggle",
 
+  "workbench.colorTheme": "Dracula Dark+",
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.files.color": "#1dfafa",
+  "material-icon-theme.folders.color": "#1ddada",
+  "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#22272b",
-    "statusBar.foreground": "#cfcff7",
-    "statusBar.border": "#106355",
+    "statusBar.background": "#0e1316",
+    "statusBar.foreground": "#f9f9ff",
+    "statusBar.border": "#15181b",
     "statusBarItem.errorBackground": "#ff5e5e",
     "statusBarItem.errorForeground": "#212128",
     "statusBarItem.warningBackground": "#ff5e5e",
     "statusBarItem.warningForeground": "#212128",
     "statusBarItem.activeBackground": "#5fff87",
-    "statusBarItem.hoverBackground": "#106355"
+    "statusBarItem.hoverBackground": "#2c8ad6"
   },
 
+  // Editor Settings
+  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
+  "editor.fontSize": 16,
+  "editor.fontWeight": "300",
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  "editor.foldingStrategy": "indentation",
+  "editor.guides.bracketPairs": "active",
+  "editor.mouseWheelZoom": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
+
+  "editor.suggest.showWords": false,
+  "editor.quickSuggestionsDelay": 0,
+  "editor.suggest.showKeywords": false,
+  "editor.snippetSuggestions": "top",
+  "editor.renderWhitespace": "none",
+
+  "explorer.confirmDelete": true,
+  "explorer.autoReveal": true,
+
+  // Ignores
+  "html.hover.references": false,
+  "css.hover.references": false,
+  "html.hover.documentation": false,
+  "css.hover.documentation": false,
+  "explorer.confirmDragAndDrop": false,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
   // ============ Emmit Config ===========
+  "emmet.showAbbreviationSuggestions": false,
+  "emmet.showSuggestionsAsSnippets": true,
   "emmet.includeLanguages": {
     "html": "html",
     "css": "css",
-    "javascript": "javascript",
     "plaintext": "pug",
-    "typescript": "typescriptreact"
     // "javascript": "javascriptreact",
+    // "typescript": "typescriptreact"
+    "javascript": "javascript",
+    "typescript": "typescript"
   },
-  "emmet.useInlineCompletions": true,
+  "emmet.preferences": {
+    "css.color.short": true
+  },
   "emmet.triggerExpansionOnTab": true,
-  "emmet.excludeLanguages": [],
   "html.format.contentUnformatted": "pre,code,textarea",
-  "emmet.showSuggestionsAsSnippets": true,
 
+  // =================== Prettierr ===============
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+
+  // ============= Intellisence=============
+  // Path Intellisense
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "path-intellisense.autoTriggerNextSuggestion": true,
+  "path-intellisense.showHiddenFiles": true,
+  "path-intellisense.extensionOnImport": false,
+  "path-intellisense.mappings": {
+    "/": "${workspaceFolder}"
+  },
+  // NPM Intellisense
+  "npm-intellisense.scanDevDependencies": true,
+
+  // Language Settings
   "[markdown]": {
     "editor.quickSuggestions": {
       "other": "on",
@@ -58,68 +101,13 @@
       "strings": "on"
     }
   },
-  "[json]": {
-    "editor.quickSuggestions": {
-      "other": "on",
-      "comments": "on",
-      "strings": "on"
-    }
+  "git.openRepositoryInParentFolders": "never",
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   },
-  // "emmet.syntaxProfiles": {
-  //   "html": {
-  //     "filters": "bem"
-  //   }
-  // },
-  "emmet.preferences": {
-    "css.color.short": true
-  },
-  "editor.linkedEditing": true,
-  // =========== Prettier config ===========
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.arrowParens": "avoid",
-  "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true,
-  "prettier.tabWidth": 4,
-  // ============= ESLint Config =============
-  "eslint.format.enable": true,
-  "editor.formatOnSave": true,
-  // turn it off for JS and JSX, we will do this via eslint
-  "[javascript, javascriptreact]": {
-    "editor.formatOnSave": false
-  },
-
-  "eslint.alwaysShowStatus": true,
-  // ========================================
-  "github.gitProtocol": "ssh",
-  "html.completion.attributeDefaultValue": "singlequotes",
-
-  "editor.snippetSuggestions": "top",
-  "editor.quickSuggestions": {
-    "comments": "on",
-    "strings": "on"
-  },
-  "editor.tabCompletion": "on",
-
-  // ============= Path Intellisence=============
-  "typescript.suggest.paths": false,
-  "javascript.suggest.paths": false,
-  "path-intellisense.autoSlashAfterDirectory": true,
-  "path-intellisense.autoTriggerNextSuggestion": true,
-  "path-intellisense.showHiddenFiles": true,
-  "path-intellisense.mappings": {
-    "/": "${workspaceFolder}"
-  },
-  "explorer.compactFolders": false,
-  "editor.tabSize": 2,
-  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
-  "editor.dragAndDrop": false,
-  "editor.foldingStrategy": "indentation",
-  "editor.guides.bracketPairs": "active",
-  "editor.mouseWheelZoom": true,
-  "editor.renderLineHighlight": "all",
-  "editor.renderLineHighlightOnlyWhenFocus": true,
+  "svelte.enable-ts-plugin": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.formatOnSaveMode": "modifications",
-  "html.format.maxPreserveNewLines": 2,
-  
+
+  "cSpell.userWords": ["firestore", "imageurl"],
+  "security.workspace.trust.untrustedFiles": "open"
 }
