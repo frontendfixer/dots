@@ -1,14 +1,68 @@
 {
   "Print to console": {
-    "scope": "javascript,typescript",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "cl",
-    "body": ["console.log()"],
+    "body": ["console.log($1);"],
     "description": "Log output to console"
   },
   "Print to console with +": {
-    "scope": "javascript,typescript",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "cl+",
     "body": ["console.log('+'.padStart(50, '+'));"],
     "description": "Log output to console"
+  },
+
+  "Import Styled Component": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "sty",
+    "body": "import styled from 'styled-components' ;",
+    "description": "Import Styled Component"
+  },
+  "Import Styled Component Declare": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "styc",
+    "body": ["export const $1 = styled.$2`", "   $3", "`"],
+    "description": "Import Styled Component"
+  },
+
+  "React Functional Component": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "rf",
+    "body": [
+      "const ${1:name} = () => {",
+      "  return (",
+      "      $2",
+      "  )",
+      "};",
+      "",
+      "export default ${1:name};",
+      ""
+    ],
+    "description": "React Functional Component"
+  },
+
+  "React Context": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "rc",
+    "body": [
+      "/* eslint-disable react/jsx-no-constructed-context-values */",
+      "import {createContext, useState} from 'react';",
+      "",
+      "export const ${1}Context =createContext ({",
+      "   $2: $3,",
+      "   $4: ()=>{},",
+      "});",
+      "",
+      "export const ${1}Provider = ({children}) =>{",
+      " const [$2, $4] = useState($3);",
+
+      " const value = {$2, $4};",
+
+      " return (<${1}Context.Provider value={value}>",
+      "   {children}",
+      " </${1}Context.Provider>)",
+      "};"
+    ],
+    "description": "React Context"
   }
 }
