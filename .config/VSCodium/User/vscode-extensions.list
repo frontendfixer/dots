@@ -1,3 +1,4 @@
+aaron-bond.better-comments
 bradlc.vscode-tailwindcss
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
@@ -12,6 +13,7 @@ jeanp413.open-remote-ssh
 mads-hartmann.bash-ide-vscode
 magicstack.MagicPython
 MateuszDrewniak.theme-dracula-dark-plus
+mhutchie.git-graph
 miguelsolorio.fluent-icons
 ms-python.black-formatter
 ms-python.python

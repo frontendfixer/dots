@@ -1,6 +1,4 @@
-For Linux
-
-On the old machine:
+#For Linux - on the old machine:
 
 codium --list-extensions > vscode-extensions.list
 On the new machine:

@@ -2,7 +2,7 @@
   "Print to console": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "cl",
-    "body": ["console.log($1);"],
+    "body": ["console.log($1)"],
     "description": "Log output to console"
   },
   "Print to console with +": {
@@ -10,6 +10,13 @@
     "prefix": "cl+",
     "body": ["console.log('+'.padStart(50, '+'));"],
     "description": "Log output to console"
+  },
+
+  "Try Catch Block": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "tc",
+    "body": ["try{", "   $1", "}catch(err){", "   console.error(err);", "}"],
+    "description": "Simple try catch block"
   },
 
   "Import Styled Component": {
@@ -23,6 +30,19 @@
     "prefix": "styc",
     "body": ["export const $1 = styled.$2`", "   $3", "`"],
     "description": "Import Styled Component"
+  },
+
+  "Import Module": {
+    // "scope": "all",
+    "prefix": "imp",
+    "body": "import $2 from '${1:module}' ;",
+    "description": "Import module"
+  },
+  "Import Modules": {
+    // "scope": "all",
+    "prefix": "impp",
+    "body": "import { $2 } from '${1:module}' ;",
+    "description": "Import modules"
   },
 
   "React Functional Component": {
