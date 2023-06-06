@@ -497,6 +497,7 @@ awful.rules.rules = {
 	{
 		rule_any = {
 			class = {
+				"kitty",
 				"Alacritty",
 			},
 		},
@@ -505,6 +506,7 @@ awful.rules.rules = {
 	{
 		rule_any = {
 			class = {
+				"Thunar",
 				"Pcmanfm",
 			},
 		},
@@ -514,6 +516,10 @@ awful.rules.rules = {
 		rule_any = {
 			class = {
 				"firefox",
+				"chromium",
+				"chromium-browser",
+				"brave-browser",
+				"qutebrowser",
 			},
 		},
 		except_any = {
@@ -527,9 +533,31 @@ awful.rules.rules = {
 		rule_any = {
 			class = {
 				"Code",
+				"VSCodium",
+				"Sublime-text",
 			},
 		},
 		properties = { screen = 1, tag = awful.screen.focused().tags[4], switchtotag = true },
+	},
+	{
+		rule_any = {
+			class = {
+				"figma-linux",
+				"Gimp-2.10",
+				"Inkscape",
+				"org.inkscape.Inkscape",
+			},
+		},
+		properties = { screen = 1, tag = awful.screen.focused().tags[5], switchtotag = true },
+	},
+	{
+		rule_any = {
+			class = {
+				"vlc",
+				"libreoffice",
+			},
+		},
+		properties = { screen = 1, tag = awful.screen.focused().tags[6], switchtotag = true, floating =true },
 	},
 }
 
@@ -573,7 +601,7 @@ client.connect_signal("request::titlebars", function(c)
 		end)
 	)
 
-	awful.titlebar(c, { size = 16 }):setup({
+	awful.titlebar(c, { size = 24 }):setup({
 		{ -- Left
 			awful.titlebar.widget.iconwidget(c),
 			buttons = buttons,
