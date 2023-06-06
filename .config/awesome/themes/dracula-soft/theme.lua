@@ -250,25 +250,25 @@ local bat = lain.widget.bat({
 	end,
 })
 theme.bat_notification_charged_preset = {
-	title   = "Battery full",
-	text    = "You can unplug the cable",
+	title = "Battery full",
+	text = "You can unplug the cable",
 	timeout = 10,
-	fg      = colors.dark,
-	bg      = colors.green
+	fg = colors.dark,
+	bg = colors.green,
 }
 theme.bat_notification_low_preset = {
 	title = "Battery low",
 	text = "Plug the cable!",
 	timeout = 10,
 	fg = colors.dark,
-	bg = colors.red
+	bg = colors.red,
 }
 theme.bat_notification_critical_preset = {
 	title = "Battery exhausted",
 	text = "Shutdown imminent",
 	timeout = 10,
 	fg = colors.dark,
-	bg = "#ff5555"
+	bg = "#ff5555",
 }
 
 local batterywidget = wibox.container.background(bat.widget, colors.green, gears.shape.rectangle)
