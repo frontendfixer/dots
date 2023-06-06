@@ -124,11 +124,6 @@ theme.menu_height = dpi(22)
 theme.menu_width = dpi(180)
 theme.menu_icon_size = dpi(32)
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus = themes_path .. "/icons/titlebar/close_focus.png"
@@ -199,7 +194,10 @@ local space = wibox.container.background(sp, colors.bg, gears.shape.rectangle)
 local cpu = lain.widget.cpu({
 	settings = function()
 		widget:set_markup(
-			markup(colors.dark, markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, cpu_now.usage .. "% "))
+			markup(
+				colors.dark,
+				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, cpu_now.usage .. "% ")
+			)
 		)
 	end,
 })
@@ -211,7 +209,7 @@ local net = lain.widget.net({
 		widget:set_markup(
 			markup(
 				colors.dark,
-				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, net_now.received .. "kb ")
+				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, net_now.received .. "kb ")
 			)
 		)
 	end,
@@ -220,55 +218,69 @@ local networkwidget = wibox.container.background(net.widget, colors.pink, gears.
 
 local bat = lain.widget.bat({
 	settings = function()
-		if bat_now.status and bat_now.status ~= "N/A" then
-			if bat_now.ac_status == 1 then
-				widget:set_markup(
+		if bat_now.perc == "N/A" or bat_now.perc == "100" then
+			return widget:set_markup(
+				markup(colors.dark, markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, "100% "))
+			)
+		else
+			local bat_perc = tonumber(bat_now.perc) or 0
+			if bat_perc > 50 then
+				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, bat_now.perc .. "% ")
+						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
-				return
-			elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-				widget:set_markup(
+			elseif bat_perc > 15 then
+				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, bat_now.perc .. "% ")
-					)
-				)
-			elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-				widget:set_markup(
-					markup(
-						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, bat_now.perc .. "% ")
+						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
 			else
-				widget:set_markup(
+				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, bat_now.perc .. "% ")
+						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
 			end
-			widget:set_markup(markup.font(fonts.bold, bat_now.perc .. "% "))
-		else
-			widget:set_markup(
-				markup(
-					colors.dark,
-					markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, bat_now.perc .. "% ")
-				)
-			)
 		end
 	end,
 })
+theme.bat_notification_charged_preset = {
+	title   = "Battery full",
+	text    = "You can unplug the cable",
+	timeout = 10,
+	fg      = colors.dark,
+	bg      = colors.green
+}
+theme.bat_notification_low_preset = {
+	title = "Battery low",
+	text = "Plug the cable!",
+	timeout = 10,
+	fg = colors.dark,
+	bg = colors.red
+}
+theme.bat_notification_critical_preset = {
+	title = "Battery exhausted",
+	text = "Shutdown imminent",
+	timeout = 10,
+	fg = colors.dark,
+	bg = "#ff5555"
+}
+
 local batterywidget = wibox.container.background(bat.widget, colors.green, gears.shape.rectangle)
 
 -- Brigtness
 local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, stdout, stderr, exitreason, exitcode)
 	local brightness_level = tonumber(string.format("%.0f", stdout))
 	widget:set_markup(
-		markup(colors.dark, markup.font(fonts.bold_big, "  ") .. markup.font(fonts.bold, brightness_level .. "% "))
+		markup(
+			colors.dark,
+			markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, brightness_level .. "% ")
+		)
 	)
 end)
 local brightwidget = wibox.container.background(brightness, colors.orange, gears.shape.rectangle)
@@ -277,6 +289,7 @@ local brightwidget = wibox.container.background(brightness, colors.orange, gears
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 -- systray
+theme.systray_icon_spacing = 10
 local systray = wibox.widget.systray()
 local systray_widget = wibox.container.background(systray, colors.cyan, gears.shape.rectangle)
 systray_widget = wibox.container.margin(systray_widget, dpi(3), dpi(3), dpi(3), dpi(3))
