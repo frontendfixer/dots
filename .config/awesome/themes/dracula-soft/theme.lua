@@ -280,12 +280,39 @@ local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, s
 			markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, brightness_level .. "% ")
 		)
 	)
+	widget:buttons(my_table.join(
+    awful.button({ }, 4, function ()
+			awful.util.spawn_with_shell("xbacklight -inc 5")
+		end ),
+    awful.button({ }, 5, function ()
+			awful.util.spawn_with_shell("xbacklight -dec 5")
+		end  )
+))
 end)
+
 local brightwidget = wibox.container.background(brightness, colors.orange, gears.shape.rectangle)
 
 -- volume
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local volume = lain.widget.alsa({
+	-- cmd = "pamixer --get-volume",
+	settings = function()
+		widget:set_markup(
+			markup(
+				colors.dark,
+				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, volume_now.level .. "% ")
+			))
+	end,
+})
 
+volume.widget:buttons(my_table.join(
+    awful.button({ }, 4, function ()
+			awful.util.spawn_with_shell("pamixer -i 5")
+		end ),
+    awful.button({ }, 5, function ()
+			awful.util.spawn_with_shell("pamixer -d 5")
+		end  )
+		))
+local volume_widget = wibox.container.background(volume.widget, colors.yellow, gears.shape.rectangle)
 -- systray
 theme.systray_icon_spacing = 10
 local systray = wibox.widget.systray()
@@ -391,12 +418,7 @@ function theme.at_screen_connect(s)
 			networkwidget,
 			batterywidget,
 			brightwidget,
-			space,
-			volume_widget({
-				widget_type = "icon_and_text",
-				font = fonts.regular,
-				with_icon = true,
-			}),
+			volume_widget,
 			space,
 			systray_widget,
 			space,
