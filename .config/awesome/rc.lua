@@ -353,10 +353,10 @@ local globalkeys = gears.table.join(
 
 	-- ##### multimedia ####
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn.with_shell("pamixer +i 5")
+		awful.spawn.with_shell("pamixer -i 5")
 	end, { description = "increase volume", group = "multimedia" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn.with_shell("pamixer -i 5")
+		awful.spawn.with_shell("pamixer -d 5")
 	end, { description = "decrease volume", group = "multimedia" }),
 	awful.key({}, "XF86AudioMute", function()
 		awful.spawn.with_shell("pamixer -t")
