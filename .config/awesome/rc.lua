@@ -249,7 +249,7 @@ end)
 -- ######## Mouse bindings ########
 root.buttons(mytable.join(
 	awful.button({}, 3, function()
-		mymainmenu:toggle()
+		awful.util.mymainmenu:toggle()
 	end),
 	awful.button({}, 4, awful.tag.viewnext),
 	awful.button({}, 5, awful.tag.viewprev)
@@ -260,7 +260,7 @@ local globalkeys = gears.table.join(
 	-- ##### awesome ####
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "w", function()
-		mymainmenu:show()
+		awful.util.mymainmenu:show()
 	end, { description = "show main menu", group = "awesome" }),
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
@@ -545,7 +545,6 @@ awful.rules.rules = {
 				"figma-linux",
 				"Gimp-2.10",
 				"Inkscape",
-				"org.inkscape.Inkscape",
 			},
 		},
 		properties = { screen = 1, tag = awful.screen.focused().tags[5], switchtotag = true },
