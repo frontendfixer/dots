@@ -108,8 +108,6 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_
 theme.notification_font = fonts["regular"]
 theme.notification_bg = colors["gray"]
 theme.notification_fg = colors["fg"]
-theme.notification_width = 400
-theme.notification_height = 120
 theme.notification_margin = 10
 
 -- Variables set for theming the menu:
@@ -274,7 +272,7 @@ theme.bat_notification_critical_preset = {
 local batterywidget = wibox.container.background(bat.widget, colors.green, gears.shape.rectangle)
 
 -- Brigtness
-local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, stdout, stderr, exitreason, exitcode)
+local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, stdout, _, _, _)
 	local brightness_level = tonumber(string.format("%.0f", stdout))
 	widget:set_markup(
 		markup(
@@ -395,13 +393,8 @@ function theme.at_screen_connect(s)
 			brightwidget,
 			space,
 			volume_widget({
-				widget_type = "horizontal_bar",
-				main_color = colors.orange,
-				mute_color = colors.gray,
-				bg_color = colors.fg,
-				width = 50,
-				margins = 8,
-				shape = "octogon",
+				widget_type = "icon_and_text",
+				font = fonts.regular,
 				with_icon = true,
 			}),
 			space,
