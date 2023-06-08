@@ -80,8 +80,8 @@ run_once({
 -- ############# Themes for WM ################
 local themes = {
 	"dracula-soft", --1
-	"holo", -- 2
-	"powerarrow", -- 3
+	"holo",        -- 2
+	"powerarrow",  -- 3
 }
 local chosen_theme = themes[1]
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
@@ -105,10 +105,10 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- ##### personal variables ######
 local browser = "firefox"
 local editor = os.getenv("EDITOR") or "nvim"
-local editor_gui = "mousepad"
+local editor_gui = "xed"
 local main_editor = "code"
 local filemanager = "pcmanfm"
-local terminal = "alacritty"
+local terminal = "kitty"
 
 local powermenu_prompt = "$HOME/.scripts/rofi-powermenu.sh"
 local lock_prompt = "betterlockscreen -l dimblur"
@@ -117,7 +117,7 @@ local dmenu_prompt = string.format(
 	"dmenu_run -nb '#1a1e1e' -sf '#212128' -sb '#f24054' -nf '#00e5ff' -fn 'Cascadia Code 9' -p 'Applications:'"
 )
 local emoji_prompt =
-	"rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions"
+"rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions"
 local screenshot_prompt = "scrot /home/lakshmi/Pictures/%Y-%m-%d-%T-scr.png"
 
 local modkey = "Mod4"
@@ -144,7 +144,7 @@ local myawesomemenu = {
 		end,
 	},
 	{ "edit config", string.format("%s %s", editor_gui, awesome.conffile) },
-	{ "restart", awesome.restart },
+	{ "restart",     awesome.restart },
 	{
 		"quit",
 		function()
@@ -160,8 +160,8 @@ local powermenu = {
 			awesome.quit()
 		end,
 	},
-	{ "Sleep", "systemctl suspend" },
-	{ "Restart", "systemctl reboot" },
+	{ "Sleep",    "systemctl suspend" },
+	{ "Restart",  "systemctl reboot" },
 	{ "Shutdown", "systemctl poweroff" },
 }
 
@@ -172,7 +172,7 @@ awful.util.mymainmenu = freedesktop.menu.build({
 	},
 	after = {
 		{ "Open terminal", terminal },
-		{ "Powermenu", powermenu },
+		{ "Powermenu",     powermenu },
 	},
 	--sub_menu = "Applications"
 })
@@ -181,11 +181,11 @@ menubar.utils.terminal = terminal
 -- Hide the menu when the mouse leaves it
 awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
 	if
-		not awful.util.mymainmenu.active_child
-		or (
-			awful.util.mymainmenu.wibox ~= mouse.current_wibox
-			and awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox
-		)
+			not awful.util.mymainmenu.active_child
+			or (
+				awful.util.mymainmenu.wibox ~= mouse.current_wibox
+				and awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox
+			)
 	then
 		awful.util.mymainmenu:hide()
 	else
@@ -257,7 +257,7 @@ root.buttons(mytable.join(
 
 -- ############# Key bindings ##############
 local globalkeys = gears.table.join(
-	-- ##### awesome ####
+-- ##### awesome ####
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "w", function()
 		awful.util.mymainmenu:show()
@@ -353,13 +353,13 @@ local globalkeys = gears.table.join(
 
 	-- ##### multimedia ####
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn.with_shell("pamixer -i 5")
+		awful.util.spawn_with_shell("amixer -D pulse sset Master 5%+")
 	end, { description = "increase volume", group = "multimedia" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn.with_shell("pamixer -d 5")
+		awful.util.spawn_with_shell("amixer -D pulse sset Master 5%-")
 	end, { description = "decrease volume", group = "multimedia" }),
 	awful.key({}, "XF86AudioMute", function()
-		awful.spawn.with_shell("pamixer -t")
+		awful.util.spawn_with_shell("amixer -D pulse set Master 1+ toggle")
 	end, { description = "toggle mute", group = "multimedia" })
 )
 
@@ -465,6 +465,7 @@ awful.rules.rules = {
 				"Grub Customize",
 				"gcolor3",
 				"Xed",
+				"Synaptic",
 				"Pavucontrol",
 				"Xfce4-power-manager-settings",
 			},
@@ -556,7 +557,7 @@ awful.rules.rules = {
 				"libreoffice",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[6], switchtotag = true, floating =true },
+		properties = { screen = 1, tag = awful.screen.focused().tags[6], switchtotag = true, floating = true },
 	},
 }
 
@@ -601,20 +602,24 @@ client.connect_signal("request::titlebars", function(c)
 	)
 
 	awful.titlebar(c, { size = 24 }):setup({
-		{ -- Left
+		{
+		-- Left
 			awful.titlebar.widget.iconwidget(c),
 			buttons = buttons,
 			layout = wibox.layout.fixed.horizontal,
 		},
-		{ -- Middle
-			{ -- Title
+		{
+		 -- Middle
+			{
+			-- Title
 				align = "center",
 				widget = awful.titlebar.widget.titlewidget(c),
 			},
 			buttons = buttons,
 			layout = wibox.layout.flex.horizontal,
 		},
-		{ -- Right
+		{
+		-- Right
 			awful.titlebar.widget.stickybutton(c),
 			awful.titlebar.widget.minimizebutton(c),
 			awful.titlebar.widget.maximizedbutton(c),
