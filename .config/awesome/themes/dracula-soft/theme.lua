@@ -166,7 +166,10 @@ theme.layout_floating = themes_path .. "/icons/floating.png"
 
 -- Generates icons:
 theme.awesome_icon = theme_assets.awesome_icon(16, theme.bg_focus, theme.fg_focus)
-theme.linux_icon = themes_path .. "/icons/distro/redhat.png"
+theme.redhat_icon = themes_path .. "/icons/distro/redhat.png"
+theme.linuxmint_icon = themes_path .. "/icons/distro/linuxmint.png"
+
+theme.linux_icon = theme.redhat_icon
 
 theme.clock_icon = themes_path .. "/icons/apps/clock.png"
 theme.calendar_icon = themes_path .. "/icons/apps/calendar.png"
@@ -272,7 +275,7 @@ theme.bat_notification_critical_preset = {
 local batterywidget = wibox.container.background(bat.widget, colors.green, gears.shape.rectangle)
 
 -- Brigtness
-local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, stdout, _, _, _)
+local brightness = awful.widget.watch("light -G", 0.1, function(widget, stdout, _, _, _)
 	local brightness_level = tonumber(string.format("%.0f", stdout))
 	widget:set_markup(
 		markup(
@@ -281,43 +284,50 @@ local brightness = awful.widget.watch("xbacklight -get", 0.1, function(widget, s
 		)
 	)
 	widget:buttons(my_table.join(
-    awful.button({ }, 4, function ()
-			awful.util.spawn_with_shell("xbacklight -inc 5")
-		end ),
-    awful.button({ }, 5, function ()
-			awful.util.spawn_with_shell("xbacklight -dec 5")
-		end  )
-))
+		awful.button({}, 4, function()
+			awful.util.spawn_with_shell("light -A 5")
+		end),
+		awful.button({}, 5, function()
+			awful.util.spawn_with_shell("light -U 5")
+		end)
+	))
 end)
 
 local brightwidget = wibox.container.background(brightness, colors.orange, gears.shape.rectangle)
 
 -- volume
 local volume = lain.widget.alsa({
-	-- cmd = "pamixer --get-volume",
+	cmd = "amixer -D pulse sget Master",
 	settings = function()
-		widget:set_markup(
-			markup(
-				colors.dark,
-				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, volume_now.level .. "% ")
-			))
+		if volume_now.status == "on" then
+			widget:set_markup(
+				markup(
+					colors.dark,
+					markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, volume_now.level .. "% ")
+				))
+		else
+			widget:set_markup(
+				markup(
+					colors.gray,
+					markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, "mute ")
+				))
+		end
 	end,
 })
 
 volume.widget:buttons(my_table.join(
-    awful.button({ }, 4, function ()
-			awful.util.spawn_with_shell("pamixer -i 5")
-		end ),
-    awful.button({ }, 5, function ()
-			awful.util.spawn_with_shell("pamixer -d 5")
-		end  )
-		))
+	awful.button({}, 4, function()
+		awful.util.spawn_with_shell("amixer -D pulse sset Master 5%+")
+	end),
+	awful.button({}, 5, function()
+		awful.util.spawn_with_shell("amixer -D pulse sset Master 5%-")
+	end)
+))
 local volume_widget = wibox.container.background(volume.widget, colors.yellow, gears.shape.rectangle)
 -- systray
 theme.systray_icon_spacing = 10
 local systray = wibox.widget.systray()
-local systray_widget = wibox.container.background(systray, colors.cyan, gears.shape.rectangle)
-systray_widget = wibox.container.margin(systray_widget, dpi(3), dpi(3), dpi(3), dpi(3))
+local systray_widget = wibox.container.margin(systray, dpi(3), dpi(3), dpi(3), dpi(3))
 -- Clock
 local mytextclock = wibox.widget.textclock(
 	markup(colors.dark, markup.font(fonts.bold_big, " ") .. markup.font(fonts.bold, " %H:%M %p "))
@@ -403,7 +413,8 @@ function theme.at_screen_connect(s)
 	-- Add widgets to the wibox
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
-		{ -- Left widgets
+		{
+		-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			mylauncher,
 			space,
@@ -412,7 +423,8 @@ function theme.at_screen_connect(s)
 			space,
 		},
 		s.mytasklist, -- Middle widget
-		{ -- Right widgets
+		{
+		            -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			cpuwidget,
 			networkwidget,
