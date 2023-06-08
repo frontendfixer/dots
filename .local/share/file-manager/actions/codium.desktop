@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Action
 Profiles=profile_id
-Name=Open in VSCodium
-Icon=vscodium
+Name=Open in VSCode
+Icon=vscode
  
 [X-Action-Profile profile_id]
 MimeTypes=inode/directory;text/plain
-Exec=codium -a . %f
+Exec=code -a . %f

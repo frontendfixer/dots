@@ -1,0 +1,17 @@
+                                    
+ ${c1}:MMMMMMMMMMMMMMMMMMMMMMMMMMMM:       
+ ${c2}:MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:    
+ ${c3}:MMMMMMMM   MMMMMMMMMMMMMMMMMMMMMM   
+ ${c4}     MMMM   MMMMM:     :::    :MMMM  
+ ${c5}     MMMM   MMMM                MMM: 
+ ${c6}     MMMM   MMM:   MMM:   MMM:   MMM 
+ ${c2}     MMMM   MMM   :MMM:   MMM:   MMM 
+ ${c3}     MMMM   MMM   :MMM:   MMM:   MMM 
+ ${c5}     MMMM   MMM   :MMM:   MMM:   MMM 
+ ${c6}     MMMM   MMMMMMMMMMMMMMMMM:   MMM 
+ ${c2}     :MMM   :MMMMMMMMMMMMMMMM    MMM 
+ ${c1}      MMM:    :::::::::::::     MMMM 
+ ${c4}       MMMM:                  :MMMMM 
+ ${c3}        :MMMMMMMMMMMMMMMMMMMMMMMMMMM 
+ ${c5}          ::MMMMMMMMMMMMMMMMMMMMMMM  
+                           
