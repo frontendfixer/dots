@@ -136,6 +136,12 @@ local alsa_volume = lain.widget.alsa({
 })
 
 alsa_volume.widget:buttons(my_table.join(
+	awful.button({ }, 1, function ()
+		awful.util.spawn_with_shell("amixer -D pulse set Master 1+ toggle")
+	end ),
+	awful.button({ }, 3, function ()
+		awful.spawn("pavucontrol")
+	end ),
     awful.button({ }, 4, function ()
 			awful.util.spawn_with_shell("amixer -D pulse sset Master 5%+")
 		end ),
