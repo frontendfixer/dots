@@ -9,7 +9,6 @@
 
 local awful = require("awful")
 local beautiful = require("beautiful")
-local keys = require("keys")
 
 -- define screen height and width
 local screen_height = awful.screen.focused().geometry.height
@@ -65,6 +64,7 @@ function rules.create(clientkeys, clientbuttons)
           "Synaptic",
           "Pavucontrol",
           "Xfce4-power-manager-settings",
+          "Transmission-gtk",
         },
         name = {
           "Event Tester", -- xev.
@@ -99,7 +99,7 @@ function rules.create(clientkeys, clientbuttons)
 				"Alacritty",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[1], switchtotag = true },
+		properties = { screen = 1, tag = " 1 ", switchtotag = true },
 	},
 	{
 		rule_any = {
@@ -108,7 +108,7 @@ function rules.create(clientkeys, clientbuttons)
 				"Pcmanfm",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[2], switchtotag = true },
+		properties = { screen = 1, tag = " 2 ", switchtotag = true },
 	},
 	{
 		rule_any = {
@@ -125,7 +125,7 @@ function rules.create(clientkeys, clientbuttons)
 			instance = { "Toolkit" },
 			type = { "dialog" },
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[3], switchtotag = true },
+		properties = { screen = 1, tag = " 3 ", switchtotag = true},
 	},
 	{
 		rule_any = {
@@ -135,7 +135,7 @@ function rules.create(clientkeys, clientbuttons)
 				"Sublime-text",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[4], switchtotag = true },
+		properties = { screen = 1, tag = " 4 ", switchtotag = true },
 	},
 	{
 		rule_any = {
@@ -145,7 +145,7 @@ function rules.create(clientkeys, clientbuttons)
 				"Inkscape",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[5], switchtotag = true },
+		properties = { screen = 1, tag = " 5 ", switchtotag = true },
 	},
 	{
 		rule_any = {
@@ -154,7 +154,7 @@ function rules.create(clientkeys, clientbuttons)
 				"libreoffice",
 			},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[6], switchtotag = true, floating = true },
+		properties = { screen = 1, tag = " 6 ", switchtotag = true, floating = true },
 	},
   -- ####### specify size for a perticular window 
   {
@@ -165,7 +165,7 @@ function rules.create(clientkeys, clientbuttons)
  -- Pavucontrol & Bluetooth Devices
  {
     rule_any = {class = {"Pavucontrol"}, name = {"Bluetooth Devices"}},
-    properties = {floating = true, width = screen_width * 0.55, height = screen_height * 0.45}
+    properties = {floating = true, width = screen_width * 0.35, height = screen_height * 0.45}
  },
 }
 
