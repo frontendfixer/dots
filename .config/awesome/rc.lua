@@ -123,8 +123,8 @@ awful.util.mymainmenu = freedesktop.menu.build({
 		-- other triads can be put here
 	},
 	after = {
-		{ "Open terminal", terminal },
-		{ "Powermenu",     powermenu },
+		{ "Open terminal", terminal, beautiful.terminal_icon },
+		{ "Powermenu",     powermenu, beautiful.power_icon },
 	},
 	--sub_menu = "Applications"
 })
