@@ -121,9 +121,11 @@ theme.layout_tile = themes_path .. "/icons/tiled.png"
 theme.layout_max = themes_path .. "/icons/maximized.png"
 theme.layout_floating = themes_path .. "/icons/floating.png"
 
--- Generates icons:
+--########### Generates icons ###########
 theme.awesome_icon = theme_assets.awesome_icon(menubar_height, theme.bg_focus, theme.fg_focus)
 theme.icon_theme = "Papirus-Dark"
+theme.terminal_icon = themes_path.."/icons/apps/kitty.png"
+theme.power_icon = themes_path .. "/icons/power.png"
 
 -- ########## Notification ############
 theme.notification_font = fonts.regular
