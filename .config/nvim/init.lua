@@ -1,37 +1,21 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.gitsigns"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.impatient"
-require "user.indentline"
-require "user.alpha"
-require "user.whichkey"
-require "user.autocommands"
+require "core"
 
-require('scrollview').setup({
-  excluded_filetypes = {'nerdtree'},
-  current_only = true,
-  winblend = 75,
-  --base = 'buffer',
-  --column = 80
-})
+local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
--- Use the `default_options` as the second parameter, which uses
--- `foreground` for every mode. This is the inverse of the previous
--- setup configuration.
-require 'colorizer'.setup {
-  '*'; -- Highlight all files, but customize some others.
-  css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.  
-}
+if custom_init_path then
+  dofile(custom_init_path)
+end
+
+require("core.utils").load_mappings()
+
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"

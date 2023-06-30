@@ -68,6 +68,11 @@ function rules.create(clientkeys, clientbuttons)
         },
         name = {
           "Event Tester", -- xev.
+          "Software Manager",
+          "System Reports",
+          "Timeshift",
+          "Update Manager",
+          "Backup Tool",
         },
         role = {
           "AlarmWindow",
@@ -116,6 +121,7 @@ function rules.create(clientkeys, clientbuttons)
 				"firefox",
 				"chromium",
 				"Chromium-browser",
+        "Google-chrome",
 				"brave-browser",
 				"qutebrowser",
 			},
@@ -154,7 +160,7 @@ function rules.create(clientkeys, clientbuttons)
 				"libreoffice",
 			},
 		},
-		properties = { screen = 1, tag = " 6 ", switchtotag = true, floating = true },
+		properties = { screen = 1, tag = " 6 ", switchtotag = true },
 	},
   -- ####### specify size for a perticular window 
   {

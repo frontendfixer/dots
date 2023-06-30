@@ -16,6 +16,7 @@ alias sctl='sudo systemctl'
 alias r='ranger'
 alias rq='ranger ~/.config/qtile/'
 alias rb='ranger ~/.config/bspwm'
+alias ra='ranger ~/.config/awesome'
 alias rc='ranger ~/.config/'
 #### XAMPP 
 alias xampp='sudo /opt/lampp/lampp'
@@ -24,6 +25,8 @@ alias xampp='sudo /opt/lampp/lampp'
 alias snpm="sudo npm"
 alias pn='pnpm'
 alias spn='sudo pnpm'
+alias yrn='yarn'
+alias syrn='sudo yarn'
 
 #vim
 alias vim="$EDITOR"
@@ -83,25 +86,25 @@ alias fgrep='fgrep --color=auto'
 #alias search="paru"
 
 #dnf command
-alias pacins='sudo dnf install'
-alias pacrmv='sudo dnf remove --noautoremove'
-alias pacrmvwd='sudo dnf remove'
-alias pacup='sudo dnf update'
-alias search='dnf search'
-alias paclist='dnf list --installed'
-alias cleanup='sudo dnf autoremove'
-alias dnflist='dnf grouplist'
-alias groupins='sudo dnf groupinstall'
-alias grouprmv='sudo dnf groupremove'
+#alias pacins='sudo dnf install'
+#alias pacrmv='sudo dnf remove --noautoremove'
+#alias pacrmvwd='sudo dnf remove'
+#alias pacup='sudo dnf update'
+#alias search='dnf search'
+#alias paclist='dnf list --installed'
+#alias cleanup='sudo dnf autoremove'
+#alias dnflist='dnf grouplist'
+#alias groupins='sudo dnf groupinstall'
+#alias grouprmv='sudo dnf groupremove'
 
 ###### apt command
-#alias pacins='sudo nala install'
-#alias pacrmv='sudo nala remove'
-#alias pacup='sudo nala update && sudo nala upgrade'
-#alias paclist='nala list --installed'
-#alias pacshow='nala show'
-#alias nalahis='nala history'
-#alias search='nala search'
+alias pacins='sudo nala install'
+alias pacrmv='sudo nala remove'
+alias pacup='sudo nala update && sudo nala upgrade'
+alias paclist='nala list --installed'
+alias pacshow='nala show'
+alias nalahis='nala history'
+alias search='nala search'
 
 #Source config
 alias fsource='source ~/.config/fish/config.fish'
@@ -149,8 +152,8 @@ alias wget="wget -c"
 alias userlist="cut -d: -f1 /etc/passwd"
 
 #grub update
-alias grub-update="sudo grub2-mkconfig -o /boot/grub2/grub.cfg"
-#alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+#alias grub-update="sudo grub2-mkconfig -o /boot/grub2/grub.cfg"
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

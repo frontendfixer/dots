@@ -23,7 +23,7 @@ local bar = require("themes.menubar")
 local menubar_height =dpi(24)
 local menubar_width = dpi(180)
 local gap = 4
-local border_width = 2
+local border_width = 1
 
 local theme = {}
 
@@ -161,8 +161,8 @@ theme.bat_notification_critical_preset = {
 }
 
 -- ########## Systray ############
-theme.bg_systray = colors.bg
-theme.fg_systray = colors.fg
+--theme.bg_systray = colors.bg
+--theme.fg_systray = colors.fg
 theme.systray_icon_spacing = 10
 
 -- ########## Create menubar ############

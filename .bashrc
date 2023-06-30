@@ -39,6 +39,7 @@ export PATH="$PATH:$HOME/.local/bin/"
 ### NPM Global Config
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
+export PATH="$PATH:${HOME}/.yarn/bin"
 # Preserve MANPATH if you already defined it somewhere in your config.
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -122,7 +123,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 #Customized start programe
 #neofetch
-neofetch --ascii ~/.config/neofetch/images/redhat.txt
-
+neofetch --ascii ~/.config/neofetch/images/linuxmint.txt
 # Set a default prompt
 exec fish
+

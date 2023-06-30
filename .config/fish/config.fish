@@ -112,7 +112,7 @@ source ~/.aliases
 
 ############### Styling
 # using fish >= 3.4.0
-fish_config theme choose "Dracula Official"
+#fish_config theme choose "Dracula Official"
 
 ##starship config
 starship init fish | source
