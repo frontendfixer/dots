@@ -1,12 +1,19 @@
 {
   "window.menuBarVisibility": "toggle",
+  "files.exclude": {
+    "**/node_modules": true
+  },
 
+  "material-icon-theme.activeIconPack": "react_redux",
+  "material-icon-theme.files.color": "#f1fa8c",
+  "material-icon-theme.folders.color": "#8be9fd",
   "workbench.colorTheme": "Dracula Dark+",
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.pinnedTabSizing": "compact",
+  "workbench.editor.wrapTabs": true,
+  "workbench.preferredDarkColorTheme": "Dracula Dark+",
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.iconTheme": "material-icon-theme",
-  "material-icon-theme.activeIconPack": "react",
-  "material-icon-theme.files.color": "#1dfafa",
-  "material-icon-theme.folders.color": "#1ddada",
   "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {
     "statusBar.background": "#0e1316",
@@ -20,8 +27,8 @@
     "statusBarItem.hoverBackground": "#2c8ad6"
   },
 
-  // Editor Settings
-  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
+  //! ================ Editor Settings ===============
+  "editor.fontFamily": "'Hack Nerd Font','Cascadia Code', 'FiraCode Nerd Font'",
   "editor.fontSize": 16,
   "editor.fontWeight": "300",
   "editor.fontLigatures": true,
@@ -33,23 +40,27 @@
   "editor.mouseWheelZoom": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": true
+    "source.fixAll": true
   },
   "editor.quickSuggestionsDelay": 0,
   "editor.renderWhitespace": "none",
-
+  "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": true,
   "explorer.autoReveal": true,
+  "editor.suggest.preview": true,
+  "editor.rename.enablePreview": false,
+  "editor.wordBasedSuggestionsMode": "allDocuments",
 
-  // Ignores
+  //! ================ Ignores ==================
   "html.hover.references": false,
   "css.hover.references": false,
   "html.hover.documentation": false,
   "css.hover.documentation": false,
-  "explorer.confirmDragAndDrop": false,
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
+
+  //! =================== Emmet ===============
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.includeLanguages": {
     "html": "html",
@@ -63,14 +74,11 @@
   "emmet.preferences": {
     "css.color.short": true
   },
+  "emmet.excludeLanguages": [],
   "emmet.triggerExpansionOnTab": true,
-  "html.format.contentUnformatted": "pre,code,textarea",
-  "tailwindCSS.emmetCompletions": true,
 
-  // =================== Prettierr ===============
+  //! =================== Prettier ===============
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnPaste": false,
-  "editor.formatOnType": false,
   "editor.formatOnSave": true,
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.autoTriggerNextSuggestion": true,
@@ -79,10 +87,14 @@
   "path-intellisense.mappings": {
     "/": "${workspaceFolder}"
   },
-  // NPM Intellisense
-  "npm-intellisense.scanDevDependencies": true,
 
-  // Language Settings
+  //! ============ Language Settings ===============
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.formatOnSave": false
+  },
   "[markdown]": {
     "editor.quickSuggestions": {
       "other": "on",
@@ -90,28 +102,42 @@
       "strings": "on"
     }
   },
-  "git.openRepositoryInParentFolders": "never",
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "svelte.enable-ts-plugin": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
+  "Lua.format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "2"
+  },
 
+  // ! ================ cSpell =============
   "cSpell.userWords": [
     "firestore",
     "fontawesome",
     "fortawesome",
+    "frontendfixer",
     "imageurl",
     "Lakshmikanta",
     "Patra",
     "tailwindcss"
   ],
-  "editor.suggest.preview": true,
-  "editor.rename.enablePreview": false,
-  "editor.wordBasedSuggestionsMode": "allDocuments",
+
+  // ! =========== terminal =============
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontWeight": "300",
+
+  // ! ==================================
   "debug.console.acceptSuggestionOnEnter": "on",
-  "editor.suggestSelection": "recentlyUsed",
-  "typescript.suggest.paths": false,
-  "javascript.suggest.paths": false,
-  "javascript.format.insertSpaceAfterConstructor": true
+  "security.workspace.trust.untrustedFiles": "open",
+  "better-comments.highlightPlainText": true,
+  "color-highlight.matchWords": true,
+  "github.gitProtocol": "ssh",
+  "tailwindCSS.emmetCompletions": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  }
 }

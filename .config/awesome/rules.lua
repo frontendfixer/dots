@@ -61,6 +61,7 @@ function rules.create(clientkeys, clientbuttons)
           "Grub Customize",
           "gcolor3",
           "Xed",
+					"Parole",
           "Synaptic",
           "Pavucontrol",
           "Xfce4-power-manager-settings",
@@ -83,6 +84,7 @@ function rules.create(clientkeys, clientbuttons)
       },
       properties = {
         floating = true,
+				placement = awful.placement.centered
       },
     },
 
@@ -119,7 +121,7 @@ function rules.create(clientkeys, clientbuttons)
 		rule_any = {
 			class = {
 				"firefox",
-				"chromium",
+				"Chromium",
 				"Chromium-browser",
         "Google-chrome",
 				"brave-browser",

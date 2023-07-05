@@ -40,8 +40,8 @@ M.luasnip = function(opts)
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
       if
-        require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not require("luasnip").session.jump_active
+          require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+          and not require("luasnip").session.jump_active
       then
         require("luasnip").unlink_current()
       end
@@ -51,12 +51,12 @@ end
 
 M.gitsigns = {
   signs = {
-    add = { text = "│" },
-    change = { text = "│" },
-    delete = { text = "󰍵" },
-    topdelete = { text = "‾" },
-    changedelete = { text = "~" },
-    untracked = { text = "│" },
+    add = { text = "✅" },
+    change = { text = "🩹" },
+    delete = { text = "📛" },
+    topdelete = { text = "⛔" },
+    changedelete = { text = "📛" },
+    untracked = { text = "⚠️" },
   },
   on_attach = function(bufnr)
     utils.load_mappings("gitsigns", { buffer = bufnr })

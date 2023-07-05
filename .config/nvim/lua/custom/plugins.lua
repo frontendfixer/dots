@@ -46,6 +46,9 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
+  {
+    "lukas-reineke/lsp-format.nvim"
+  },
 
   -- To make a plugin not be loaded
   -- {

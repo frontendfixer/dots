@@ -8,9 +8,9 @@
 
 
 local var = {
-	browser = "firefox",
+	browser = "chromium",
 	editor = os.getenv("EDITOR") or "nvim",
-	editor_gui = "xed",
+	editor_gui = "mousepad",
 	main_editor = "code",
 	filemanager = "pcmanfm",
 	terminal = "kitty",
