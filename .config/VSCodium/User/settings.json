@@ -3,6 +3,9 @@
   "files.exclude": {
     "**/node_modules": true
   },
+  "workbench.editorAssociations": {
+    "*.svg": "svgPreview.previewEditor"
+  },
 
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.files.color": "#f1fa8c",
@@ -139,5 +142,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
-  }
+  },
+  "git.autofetch": true
 }

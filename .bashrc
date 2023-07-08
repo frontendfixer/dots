@@ -36,6 +36,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export PATH="$PATH:$HOME/.local/bin/"
 
+##### Deno PATH
+export DENO_INSTALL="/home/lakshmi/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 ### NPM Global Config
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
@@ -123,7 +127,6 @@ export PATH="$PNPM_HOME:$PATH"
 
 #Customized start programe
 #neofetch
-neofetch --ascii ~/.config/neofetch/images/linuxmint.txt
+neofetch --ascii ~/.config/neofetch/images/debian.txt
 # Set a default prompt
-exec fish
-
+exec zsh

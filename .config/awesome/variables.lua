@@ -11,7 +11,7 @@ local var = {
 	browser = "chromium",
 	editor = os.getenv("EDITOR") or "nvim",
 	editor_gui = "mousepad",
-	main_editor = "code",
+	main_editor = "codium",
 	filemanager = "pcmanfm",
 	terminal = "kitty",
 

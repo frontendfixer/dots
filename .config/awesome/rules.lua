@@ -74,6 +74,7 @@ function rules.create(clientkeys, clientbuttons)
           "Timeshift",
           "Update Manager",
           "Backup Tool",
+          "Color Picker",
         },
         role = {
           "AlarmWindow",

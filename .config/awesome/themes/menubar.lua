@@ -30,9 +30,10 @@ menubar.utils.terminal = var.terminal
 local launcher_icon = {
 	redhat_icon = themes_path .. "/icons/distro/redhat.png",
 	linuxmint_icon = themes_path .. "/icons/distro/linuxmint.png",
+  debian_icon = themes_path .. "/icons/distro/debian.svg",
 }
 
-bar.linux_icon = launcher_icon.linuxmint_icon
+bar.linux_icon = launcher_icon.debian_icon
 
 local mylauncher = awful.widget.button({ image = bar.linux_icon })
 mylauncher:connect_signal("button::press", function()

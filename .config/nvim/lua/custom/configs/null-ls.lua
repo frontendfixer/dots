@@ -25,11 +25,11 @@ local sources = {
   b.formatting.clang_format,
 
   --diagnostics
-  b.diagnostics.cspell,
+  --b.diagnostics.cspell,
   b.diagnostics.deno_lint,
 
   --Code Actions
-  b.code_actions.cspell
+  --b.code_actions.cspell
 }
 
 null_ls.setup {
