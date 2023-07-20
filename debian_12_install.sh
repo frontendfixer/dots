@@ -17,7 +17,7 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
 echo -e "${G}setting up the envirenment ${N} ===============\n"
 read -p "Enter your hostname: " host
 echo -e "Changed hostname to ${G}$host${N}"
-echo $pw | sudo -S hostnamectl set-hostname "$host"
+sudo -S hostnamectl set-hostname "$host"
 
 ## updateing system...
 echo -e "\n${G}updateing system...${N} ===============\n"
@@ -142,8 +142,6 @@ echo -e "${C}copying dracula themes${N}"
 yes | cp -r .icons/ $HOME
 sudo mv $HOME/.icon/Bibata-Modern-Ice /usr/share/icons
 sudo mv .themes/Dracula /usr/share/themes
-gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
