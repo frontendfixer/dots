@@ -134,7 +134,6 @@ ${P}Updating theme icons fonts and wallpaper ${N}
 echo -e "\n${G}updating wallpaer${N} ===============\n"
 echo $pw | sudo -S mkdir -p /usr/share/backgrounds/fantacy
 echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
-cp .fehbg $HOME
 
 echo -e "${G}Updating theme and icons${N} ===============\n"
 
@@ -223,7 +222,7 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 sudo apt update && sudo apt install -y codium mousepad
 
 # Other Essential packages
-sudo apt install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission xscreensaver unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
+sudo apt install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters feh synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission xscreensaver unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
 
 # Enable Services
 sudo systemctl enable tlp
