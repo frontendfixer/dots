@@ -4,16 +4,20 @@
 ############### Autostart #############
 #######################################
 sxhkd -c $HOME/.config/bspwm/sxhkdrc &
-#betterlockscreen -w blur &
-# feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
-$HOME/.fehbg &
+
+feh --bg-fill --randomize /usr/share/backgrounds/fantacy/* &
+xscreensaver &
 picom &
 blueman-applet &
 nm-applet &
-/usr/libexec/polkit-gnome-authentication-agent-1 &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+#Fedora
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 numlockx on &
-# clipit &
+killall clipit
+clipit &
 dunst &
+unclutter -root &
 $HOME/.config/polybar/launch_bspwm.sh &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0

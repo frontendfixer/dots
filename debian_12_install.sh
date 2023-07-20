@@ -223,7 +223,7 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 sudo apt update && sudo apt install -y codium mousepad
 
 # Other Essential packages
-sudo apt install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
+sudo apt install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission xscreensaver unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
 
 # Enable Services
 sudo systemctl enable tlp

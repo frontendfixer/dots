@@ -29,7 +29,7 @@ shift + ctrl + @space
 	rofimoji --prompt='Emoji' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions
 
 super + shift + l
-	betterlockscreen -l dimblur
+	xscreensaver-command -lock
 
 super + shift + e
 	sh $HOME/.scripts/rofi-powermenu.sh
