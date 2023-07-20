@@ -195,8 +195,7 @@ sudo systemctl enable lightdm
 # Browsers (Firefox and Chromium)
 sudo sh -c 'echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list'
 
-sudo sh -c 'echo 
-"
+sudo sh -c 'echo "
 Package: *
 Pin: release a=bookworm
 Pin-Priority: 500
@@ -210,8 +209,8 @@ Pin: release a=unstable
 Pin-Priority: 100
 " >> /etc/apt/preferences'
 
-sudo nala update && sudo nala install -y firefox chromium chromium-l10n
-sudo nala install -y firefox-l10n-all -t unstable
+sudo nala update && sudo nala install -y chromium chromium-l10n
+sudo apt install -y firefox firefox-l10n-all -t unstable
 
 # GUI Editors (VSCodium, mousepad)
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
