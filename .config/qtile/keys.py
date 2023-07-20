@@ -35,7 +35,7 @@ def keybinding():
             ["control", "shift"],
             "space",
             lazy.spawn(
-                "rofimoji --prompt='Emoji' --action='type' --selector-args='-theme /home/lakshmi/.config/rofi/emoji-selector.rasi' --hidden-descriptions"
+                "rofi -modi 'run,drun,emoji:/home/lakshmi/.scripts/rofiemoji.sh' -show emoji"
             ),
         ),
         ########### Scripts
