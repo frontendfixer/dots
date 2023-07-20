@@ -38,7 +38,7 @@ local cpuUses = lain.widget.cpu({
 		widget:set_markup(
 			markup(
 				colors.dark,
-				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, cpu_now.usage .. "% ")
+				markup.font(fonts.big, "   ") .. markup.font(fonts.regular, cpu_now.usage .. "% ")
 			)
 		)
 	end,
@@ -51,7 +51,7 @@ local net = lain.widget.net({
 		widget:set_markup(
 			markup(
 				colors.dark,
-				markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, net_now.received .. "kb ")
+				markup.font(fonts.big, "  ") .. markup.font(fonts.regular, net_now.received .. "kb ")
 			)
 		)
 	end,
@@ -62,29 +62,37 @@ local bat = lain.widget.bat({
 	settings = function()
 		if bat_now.perc == "N/A" or bat_now.perc == "100" then
 			return widget:set_markup(
-				markup(colors.dark, markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, "100% "))
+				markup(colors.dark, markup.font(fonts.big, " 󱊦 ") .. markup.font(fonts.regular, "󱃱 "))
 			)
 		else
 			local bat_perc = tonumber(bat_now.perc) or 0
-			if bat_perc > 50 then
+      if bat_perc > 80 then
 				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
+						markup.font(fonts.big, " 󱊣 ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
+					)
+				)
+
+      elseif bat_perc > 50 then
+				return widget:set_markup(
+					markup(
+						colors.dark,
+						markup.font(fonts.big, " 󱊢 ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
 			elseif bat_perc > 15 then
 				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
+						markup.font(fonts.big, " 󱊡 ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
 			else
 				return widget:set_markup(
 					markup(
 						colors.dark,
-						markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
+						markup.font(fonts.big, "  ") .. markup.font(fonts.regular, bat_now.perc .. "% ")
 					)
 				)
 			end
@@ -100,7 +108,7 @@ local bright = awful.widget.watch("light -G", 0.1, function(widget, stdout, _, _
 	widget:set_markup(
 		markup(
 			colors.dark,
-			markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, bright_level .. "% ")
+			markup.font(fonts.big, "   ") .. markup.font(fonts.regular, bright_level .. "% ")
 		)
 	)
 	widget:buttons(my_table.join(
@@ -117,19 +125,19 @@ widgets.brightness = wibox.container.background(bright, colors.orange, gears.sha
 
 -- volume
 local alsa_volume = lain.widget.alsa({
-	cmd = "amixer -D pulse sget Master",
+	-- cmd = "pamixer -- get-volume",
 	settings = function()
 		if volume_now.status=="on" then			
 			widget:set_markup(
 				markup(
 					colors.dark,
-					markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, volume_now.level .. "% ")
+					markup.font(fonts.big, " 󰕾  ") .. markup.font(fonts.regular, volume_now.level .. "% ")
 				))
 				else
 					widget:set_markup(
 				markup(
 					colors.gray,
-					markup.font(fonts.bold_big, "  ") .. markup.font(fonts.regular, "mute ")
+					markup.font(fonts.big, " 󰖁  ") .. markup.font(fonts.regular, "mute ")
 				))
 		end
 	end,
@@ -137,16 +145,16 @@ local alsa_volume = lain.widget.alsa({
 
 alsa_volume.widget:buttons(my_table.join(
 	awful.button({ }, 1, function ()
-		awful.util.spawn_with_shell("amixer -D pulse set Master 1+ toggle")
+		awful.util.spawn_with_shell("pamixer -t")
 	end ),
 	awful.button({ }, 3, function ()
 		awful.spawn("pavucontrol")
 	end ),
     awful.button({ }, 4, function ()
-			awful.util.spawn_with_shell("amixer -D pulse sset Master 5%+")
+			awful.util.spawn_with_shell("pamixer -i 5")
 		end ),
     awful.button({ }, 5, function ()
-			awful.util.spawn_with_shell("amixer -D pulse sset Master 5%-")
+			awful.util.spawn_with_shell("pamixer -d :")
 		end  )
 		))
 widgets.volume = wibox.container.background(alsa_volume.widget, colors.yellow, gears.shape.rectangle)
@@ -157,7 +165,7 @@ widgets.systray = wibox.container.margin(tray, dpi(3), dpi(3), dpi(3), dpi(3))
 
 -- Clock
 local mytextclock = wibox.widget.textclock(
-	markup(colors.dark, markup.font(fonts.bold_big, " ") .. markup.font(fonts.bold, "%l:%M %p "))
+	markup(colors.dark, markup.font(fonts.big, "  ") .. markup.font(fonts.bold, "%l:%M %p "))
 )
 widgets.clock = wibox.container.background(mytextclock, colors.pink, gears.shape.rectangle)
 

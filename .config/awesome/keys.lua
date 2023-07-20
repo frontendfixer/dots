@@ -22,36 +22,34 @@ local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
 
 local function resize_client(c, direction)
-   if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
-      if direction == "up" then
-         c:relative_move(0, 0, 0, -floating_resize_amount)
-      elseif direction == "down" then
-         c:relative_move(0, 0, 0, floating_resize_amount)
-      elseif direction == "left" then
-         c:relative_move(0, 0, -floating_resize_amount, 0)
-      elseif direction == "right" then
-         c:relative_move(0, 0, floating_resize_amount, 0)
-      end
-   else
-      if direction == "up" then
-         awful.client.incwfact(-tiling_resize_factor)
-      elseif direction == "down" then
-         awful.client.incwfact(tiling_resize_factor)
-      elseif direction == "left" then
-         awful.tag.incmwfact(-tiling_resize_factor)
-      elseif direction == "right" then
-         awful.tag.incmwfact(tiling_resize_factor)
-      end
-   end
+	if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
+		if direction == "up" then
+			c:relative_move(0, 0, 0, -floating_resize_amount)
+		elseif direction == "down" then
+			c:relative_move(0, 0, 0, floating_resize_amount)
+		elseif direction == "left" then
+			c:relative_move(0, 0, -floating_resize_amount, 0)
+		elseif direction == "right" then
+			c:relative_move(0, 0, floating_resize_amount, 0)
+		end
+	else
+		if direction == "up" then
+			awful.client.incwfact(-tiling_resize_factor)
+		elseif direction == "down" then
+			awful.client.incwfact(tiling_resize_factor)
+		elseif direction == "left" then
+			awful.tag.incmwfact(-tiling_resize_factor)
+		elseif direction == "right" then
+			awful.tag.incmwfact(tiling_resize_factor)
+		end
+	end
 end
-
-
 
 local keys = {}
 
 -- ############# Key bindings ##############
 keys.globalkeys = gears.table.join(
--- ##### awesome ####
+	-- ##### awesome ####
 	awful.key({ var.modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ var.modkey }, "w", function()
 		awful.util.mymainmenu:show()
@@ -68,9 +66,24 @@ keys.globalkeys = gears.table.join(
 	end, { description = "lua execute prompt", group = "awesome" }),
 
 	-- ##### workspace ####
-	awful.key({ var.modkey, var.altkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "workspace" }),
-	awful.key({ var.modkey, var.altkey }, "Right", awful.tag.viewnext, { description = "view next", group = "workspace" }),
-	awful.key({ var.modkey, var.altkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "workspace" }),
+	awful.key(
+		{ var.modkey, var.altkey },
+		"Left",
+		awful.tag.viewprev,
+		{ description = "view previous", group = "workspace" }
+	),
+	awful.key(
+		{ var.modkey, var.altkey },
+		"Right",
+		awful.tag.viewnext,
+		{ description = "view next", group = "workspace" }
+	),
+	awful.key(
+		{ var.modkey, var.altkey },
+		"Escape",
+		awful.tag.history.restore,
+		{ description = "go back", group = "workspace" }
+	),
 
 	-- ##### client ####
 	awful.key({ var.modkey }, "Right", function()
@@ -85,7 +98,12 @@ keys.globalkeys = gears.table.join(
 	awful.key({ var.modkey, "Shift" }, "Left", function()
 		awful.client.swap.byidx(-1)
 	end, { description = "swap with previous window", group = "client" }),
-	awful.key({ var.modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent window", group = "client" }),
+	awful.key(
+		{ var.modkey },
+		"u",
+		awful.client.urgent.jumpto,
+		{ description = "jump to urgent window", group = "client" }
+	),
 	awful.key({ var.modkey }, "Tab", function()
 		awful.client.focus.history.previous()
 		if client.focus then
@@ -124,8 +142,8 @@ keys.globalkeys = gears.table.join(
 	awful.key({ var.modkey }, "r", function()
 		awful.spawn(var.dmenu_prompt)
 	end, { description = "show dmenu", group = "run scripts" }),
-	awful.key({ var.modkey, "Shift" }, ".", function()
-		awful.spawn(var.emoji_prompt)
+	awful.key({ var.modkey, "Shift" }, "space", function()
+		awful.spawn(var.rofi_emoji_prompt)
 	end, { description = "show emoji", group = "run scripts" }),
 	awful.key({ var.modkey }, "Insert", function()
 		awful.spawn(var.screenshot_prompt)
@@ -142,26 +160,18 @@ keys.globalkeys = gears.table.join(
 	-- 	awful.tag.incmwfact(-0.05)
 	-- end, { description = "decrease master width", group = "layout" }),
 
-	awful.key({var.modkey, var.ctrl}, "Down",
-      function(c)
-         resize_client(client.focus, "down")
-      end,{ description = "increase height downward", group = "layout" }
-	),
-   awful.key({var.modkey, var.ctrl}, "Up",
-      function(c)
-         resize_client(client.focus, "up")
-      end,{ description = "increase height upward", group = "layout" }
-   ),
-   awful.key({var.modkey, var.ctrl}, "Left",
-      function(c)
-         resize_client(client.focus, "left")
-      end, { description = "increase width leftside", group = "layout" }
-   ),
-   awful.key({var.modkey, var.ctrl}, "Right",
-      function(c)
-         resize_client(client.focus, "right")
-      end, { description = "increase width rightside", group = "layout" }
-   ),
+	awful.key({ var.modkey, var.ctrl }, "Down", function(c)
+		resize_client(client.focus, "down")
+	end, { description = "increase height downward", group = "layout" }),
+	awful.key({ var.modkey, var.ctrl }, "Up", function(c)
+		resize_client(client.focus, "up")
+	end, { description = "increase height upward", group = "layout" }),
+	awful.key({ var.modkey, var.ctrl }, "Left", function(c)
+		resize_client(client.focus, "left")
+	end, { description = "increase width leftside", group = "layout" }),
+	awful.key({ var.modkey, var.ctrl }, "Right", function(c)
+		resize_client(client.focus, "right")
+	end, { description = "increase width rightside", group = "layout" }),
 
 	awful.key({ var.altkey }, "l", function()
 		awful.layout.inc(1)

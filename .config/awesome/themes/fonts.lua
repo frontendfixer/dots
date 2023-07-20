@@ -7,9 +7,9 @@
 --	╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝
 
 local fonts = {
-	regular = "FiraCode Nerd Font Regular 11",
-	bold = "FiraCode Nerd Font Bold 11",
-	big = "FiraCode Nerd Font Bold 12",
-	bold_big = "FiraCode Nerd Font Bold 12",
+	regular = "Hack Nerd Font Regular 11",
+	bold = "Hack Nerd Font Bold 11",
+	big = "Hack Nerd Font 14",
+	bold_big = "Hack Nerd Font Bold 13",
 }
 return fonts
