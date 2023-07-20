@@ -127,6 +127,6 @@ export PATH="$PNPM_HOME:$PATH"
 
 #Customized start programe
 #neofetch
-neofetch --ascii ~/.config/neofetch/images/debian.txt
+neofetch --ascii ~/.config/neofetch/images/picachu.txt
 # Set a default prompt
 exec zsh
