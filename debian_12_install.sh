@@ -25,7 +25,7 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\n${G}installing ${R}nala${N} ===============\n"
 sudo apt install nala -y
-Y | 1..5 | sudo nala fetch
+sudo nala fetch
 
 echo -e "
 ################################################
