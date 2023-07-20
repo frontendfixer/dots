@@ -25,7 +25,7 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\n${G}installing ${R}nala${N} ===============\n"
 sudo apt install nala -y
-sudo nala fetch
+#sudo nala fetch
 
 echo -e "
 ################################################
@@ -34,7 +34,7 @@ ${P}Initialized basic theming${N}
 "
 ## terminal settings
 echo -e "\n${G}installing packages${N} ===============\n"
-sudo nala install -y exa zsh fish neofetch htop curl git wget kitty
+sudo apt install -y exa zsh fish neofetch htop curl git wget kitty
 
 echo -e "\n${G}installing starship....${N} ===============\n"
 curl -sS https://starship.rs/install.sh | sh
@@ -67,7 +67,7 @@ echo -e "
 ${P}Installing Window manager ${N}
 ###############################################
 "
-sudo nala install -y unzip build-essential xorg xbacklight xbindkeys xvkbd xinput
+sudo apt install -y unzip build-essential xorg xbacklight xbindkeys xvkbd xinput
 
 mkdir cache
 
@@ -85,7 +85,7 @@ echo -e "${G}Installing Qtile ...${N} ===============\n"
 
 sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
 
-sudo nala install -y python3-full python3-pip libpangocairo-1.0-0 python3-cffi python3-xcffib
+sudo apt install -y python3-full python3-pip libpangocairo-1.0-0 python3-cffi python3-xcffib
 
 pip install --no-cache-dir cairocffi
 
@@ -124,7 +124,7 @@ cd ../..
 
 # ============ AwesomeWM =============
 echo -e "${G}Installing AwesomeWM ...${N} ===============\n"
-sudo nala install -y awesome
+sudo apt install -y awesome
 
 echo -e "
 \n###############################################
@@ -170,26 +170,26 @@ ${P}Installing Essentials Packages ${N}
 ###############################################
 "
 # Network File Tools/System Events
-sudo nala install -y dialog mtools dosfstools gvfs gvfs-backends xfce4-power-manager policykit-1-gnome network-manager network-manager-gnome
+sudo apt install -y dialog mtools dosfstools gvfs gvfs-backends xfce4-power-manager policykit-1-gnome network-manager network-manager-gnome
 
 # Sound packages
-sudo nala install -y pulseaudio alsa-utils pavucontrol volumeicon-alsa pamixer
+sudo apt install -y pulseaudio alsa-utils pavucontrol volumeicon-alsa pamixer
 
 # Appearance management
-sudo nala install -y lxappearance 
+sudo apt install -y lxappearance 
 
 # Fonts and icons for now
 sudo apt install -y fonts-recommended fonts-ubuntu fonts-font-awesome fonts-terminus fonts-beng fonts-lohit-beng-bengali
 
 # Bluetooth 
-sudo nala install -y bluez blueman
+sudo apt install -y bluez blueman
 sudo systemctl enable bluetooth
 
 # Packages needed for window manager installation
-sudo nala install -y picom rofi libnotify-bin unzip pcmanfm ranger xserver-xorg-input-synaptics
+sudo apt install -y picom rofi libnotify-bin unzip pcmanfm ranger xserver-xorg-input-synaptics
 
 # Install Lightdm Console Display Manager
-sudo nala install -y lightdm lightdm-gtk-greeter-settings
+sudo apt install -y lightdm lightdm-gtk-greeter-settings
 sudo systemctl enable lightdm
 
 # Browsers (Firefox and Chromium)
@@ -209,7 +209,7 @@ Pin: release a=unstable
 Pin-Priority: 100
 " >> /etc/apt/preferences'
 
-sudo nala update && sudo nala install -y chromium chromium-l10n
+sudo apt update && sudo apt install -y chromium chromium-l10n
 sudo apt install -y firefox firefox-l10n-all -t unstable
 
 # GUI Editors (VSCodium, mousepad)
@@ -220,10 +220,10 @@ wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.g
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | sudo tee /etc/apt/sources.list.d/vscodium.list
 
-sudo nala update && sudo nala install -y codium mousepad
+sudo apt update && sudo apt install -y codium mousepad
 
 # Other Essential packages
-sudo nala install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
+sudo apt install -y file-roller eog meld scrot galculator xdg-user-dirs brightnessctl light npm font-manager gnome-characters synaptic telegram-desktop vlc gparted adb fastboot android-file-transfer clipit numlockx papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 fonts-noto-color-emoji node-emoji python3-emoji tlp tlp-rdw redshift yad transmission unclutter evince libreoffice-writer libreoffice-calc libreoffice-help-en-gb libreoffice-help-en-us libreoffice-l10n-bn hyphen-bn 
 
 # Enable Services
 sudo systemctl enable tlp
@@ -278,7 +278,7 @@ rm -rf grub2-themes
 # " >>/etc/fstab'
 
 # echo -e "${G}############### Updating DNS ############"
-# sudo nala install -y systemd-resolved
+# sudo apt install -y systemd-resolved
 # sudo sh -c 'echo "
 # DNS=45.90.28.0#******.dns.nextdns.io
 # DNS=2a07:a8c0::#******.dns.nextdns.io
