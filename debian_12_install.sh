@@ -140,8 +140,10 @@ echo -e "${G}Updating theme and icons${N} ===============\n"
 
 echo -e "${C}copying dracula themes${N}"
 yes | cp -r .icons/ $HOME
-yes | cp -r .themes/ $HOME
-yes | sudo mv $HOME/.themes/Dracula /usr/share/themes
+sudo mv $HOME/.icon/Bibata-Modern-Ice /usr/share/icons
+sudo mv .themes/Dracula /usr/share/themes
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
