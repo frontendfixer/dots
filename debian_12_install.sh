@@ -284,6 +284,7 @@ rm -rf grub2-themes
 # DNSOverTLS=yes
 # " >>/etc/systemd/resolved.conf'
 # sudo systemctl enable systemd-resolved.service
+# sudo service NetworkManager restart
 
 echo -e "
 ${R}###############################################
