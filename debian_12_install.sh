@@ -185,7 +185,7 @@ sudo systemctl enable bluetooth
 sudo apt install -y picom rofi libnotify-bin unzip pcmanfm ranger xserver-xorg-input-synaptics
 
 # Install Lightdm Console Display Manager
-sudo apt install -y lightdm lightdm-gtk-greeter-settings
+sudo apt install -y lightdm lightdm-settings
 sudo systemctl enable lightdm
 
 # Browsers (Firefox and Chromium)
@@ -249,6 +249,7 @@ yes|cp  Themeing/mousepad/dracula.xml Themeing/mousepad/draculaDarker.xml $HOME/
 echo -e "${C}copying lightdm config file${N}"
 yes | sudo cp -r Themeing/lightdm/dracula.png Themeing/lightdm/logo.png /usr/share/backgrounds/
 yes | sudo cp -r Themeing/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
+yes | sudo cp -r Themeing/lightdm/slick-greeter.conf /etc/lightdm
 
 ######removimg cache directory
 rm -rf cache
