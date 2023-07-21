@@ -134,7 +134,7 @@ echo -e "${G}Updating theme and icons${N} ===============\n"
 
 echo -e "${C}copying dracula themes${N}"
 yes | cp -r .icons/ $HOME
-sudo mv $HOME/.icon/Bibata-Modern-Ice /usr/share/icons
+sudo mv $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
 sudo mv .themes/Dracula /usr/share/themes
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
