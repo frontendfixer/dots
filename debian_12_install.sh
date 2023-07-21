@@ -164,7 +164,7 @@ ${P}Installing Essentials Packages ${N}
 ###############################################
 "
 # Network File Tools/System Events
-sudo apt install -y dialog mtools dosfstools gvfs gvfs-backends xfce4-power-manager policykit-1-gnome network-manager network-manager-gnome
+sudo apt install -y dialog mtools dosfstools gvfs gvfs-backends xfce4-power-manager policykit-1-gnome network-manager network-manager-gnome linux-headers-amd64
 
 sudo systemctl enable NetworkManager.service
 
