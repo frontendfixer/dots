@@ -39,7 +39,7 @@ def keybinding():
             ),
         ),
         ########### Scripts
-        Key([mod, "shift"], "l", lazy.spawn("betterlockscreen -l dimblur")),
+        Key([mod, "shift"], "l", lazy.spawn("xscreensaver-command -lock")),
         Key([mod, "shift"], "e", lazy.function(show_power_menu)),
         ############ Switch between windows
         Key([mod], "Left", lazy.layout.left()),
