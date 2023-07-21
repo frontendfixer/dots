@@ -100,7 +100,7 @@ pip install psutil
 cd ..
 git clone https://github.com/elParaguayo/qtile-extras.git
 cd qtile-extras
-python setup.py install
+sudo python3 setup.py install
 
 
 # Adding qtile.desktop to Lightdm xsessions directory
