@@ -14,11 +14,6 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \t${G}░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░░▀░░▀░▀
 ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
 
-echo -e "${G}setting up the envirenment ${N} ===============\n"
-read -p "Enter your hostname: " host
-echo -e "Changed hostname to ${G}$host${N}"
-sudo -S hostnamectl set-hostname "$host"
-
 ## updateing system...
 echo -e "\n${G}updateing system...${N} ===============\n"
 sudo apt update && sudo apt upgrade -y
