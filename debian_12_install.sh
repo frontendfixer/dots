@@ -166,6 +166,19 @@ ${P}Installing Essentials Packages ${N}
 # Network File Tools/System Events
 sudo apt install -y dialog mtools dosfstools gvfs gvfs-backends xfce4-power-manager policykit-1-gnome network-manager network-manager-gnome linux-headers-amd64
 
+sudo mv /etc/NetworkManager/NetworkManager.conf /etc/NetworkManager/NetworkManager.conf.bak
+
+echo "
+[main]
+plugins=ifupdown,keyfile
+
+[ifupdown]
+managed=true
+
+[device]
+wifi.scan-rand-mac-address=no
+" | sudo tee -a /etc/NetworkManager/NetworkManager.conf 
+
 sudo systemctl enable NetworkManager.service
 
 # Sound packages
