@@ -15,30 +15,30 @@ from colors import colors, backgroundColor, foregroundColor, workspaceColor
 ##### DEFAULT WIDGET SETTINGS #####
 ###################################
 widget_defaults = dict(
-    font="FiraCode Nerd Font",
-    fontsize=16,
-    padding=5,
+    font="Hack Nerd Font",
+    fontsize=12,
+    padding=4,
     background=backgroundColor,
 )
 extension_defaults = widget_defaults.copy()
 
-fonts = {"font": "Cascadia Code", "fontsize": 13, "padding": 4}
+fonts = {"font": "Hack Nerd Font SemiBold", "fontsize": 13, "padding": 4}
 
 fonts_large = {
-    "font": "Cascadia Code SemiBold",
+    "font": "Hack Nerd Font Bold",
     "fontsize": 16,
     "padding": 8,
 }
 
 top_bar = [
     widget.TextBox(
-        text="",
+        text="",
         width=36,
         background="#ff5555",
         foreground=backgroundColor,
         padding=8,
-        # margin = 5,
-        fontsize=33,
+        font="Hack Nerd Font Bold",
+        fontsize=20,
         mouse_callbacks={
             "Button1": lazy.spawn(
                 "rofi -modi drun -show drun -config ~/.config/rofi/panel.rasi"
@@ -75,7 +75,7 @@ top_bar = [
         foreground=colors[4],
         padding=0,
         margin=-5,
-        fontsize=20,
+        fontsize=18,
     ),
     widget.TextBox("❱", foreground=foregroundColor, background=colors[4], name="icon"),
     widget.WindowName(
@@ -96,7 +96,7 @@ top_bar = [
         foreground=colors[4],
         padding=0,
         margin=-5,
-        fontsize=20,
+        fontsize=18,
     ),
     widget.Sep(
         linewidth=0,
@@ -104,12 +104,12 @@ top_bar = [
         background=colors[9],
     ),
     widget.TextBox(
-        text=" ",
+        text="",
         width=22,
         background=colors[9],
         foreground=foregroundColor,
         padding=0,
-        fontsize=30,
+        fontsize=18,
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(terminal + " -e htop")},
     ),
     widget.CPU(
@@ -121,17 +121,17 @@ top_bar = [
     ),
     widget.Sep(linewidth=0, padding=8, background=colors[9]),
     widget.TextBox(
-        text="",
-        width=18,
+        text=" ",
+        width=24,
         padding=0,
-        fontsize=30,
+        fontsize=18,
         foreground=foregroundColor,
         background=colors[8],
     ),
     widget.Net(
         background=colors[8],
         foreground=foregroundColor,
-        format="{down}",
+        format=" {down} ",
         prefix="k",
         **fonts,
     ),
@@ -142,7 +142,12 @@ top_bar = [
         foreground=foregroundColor,
     ),
     widget.TextBox(
-        text="", background=colors[5], foreground=foregroundColor, **fonts_large
+        text="󱊣",
+        width=22,
+        background=colors[5],
+        foreground=foregroundColor,
+        padding=4,
+        fontsize=18,
     ),
     widget.Battery(
         background=colors[5],
@@ -171,8 +176,8 @@ top_bar = [
         width=22,
         background=colors[6],
         foreground=foregroundColor,
-        padding=0,
-        fontsize=30,
+        padding=4,
+        fontsize=18,
         mouse_callbacks={
             "Button4": lambda: qtile.cmd_spawn("brightnessctl set +5%"),
             "Button5": lambda: qtile.cmd_spawn("brightnessctl set 5%-"),
@@ -184,7 +189,7 @@ top_bar = [
         backlight_name="intel_backlight",
         # brightness_file = '/sys/class/backlight/intel_backlight/brightness',
         # max_brightness_file = '/sys/class/backlight/intel_backlight/max_brightness',
-        format="{percent:2.0%}",
+        format=" {percent:2.0%} ",
         mouse_callbacks={
             "Button4": lambda: qtile.cmd_spawn("brightnessctl set +5%"),
             "Button5": lambda: qtile.cmd_spawn("brightnessctl set 5%-"),
@@ -198,12 +203,12 @@ top_bar = [
         foreground=foregroundColor,
     ),
     widget.TextBox(
-        text="",
+        text="󰕾",
         width=22,
         foreground=foregroundColor,
         background=colors[10],
-        padding=0,
-        fontsize=30,
+        padding=4,
+        fontsize=18,
         mouse_callbacks={"Button1": lazy.spawn("pavucontrol")},
     ),
     widget.Volume(background=colors[10], foreground=foregroundColor, **fonts),
@@ -226,11 +231,11 @@ top_bar = [
     ),
     widget.TextBox(
         text="",
-        width=19,
+        width=22,
         foreground=foregroundColor,
         background=colors[7],
-        padding=0,
-        fontsize=30,
+        padding=4,
+        fontsize=18,
     ),
     widget.Clock(
         foreground=foregroundColor,
@@ -241,15 +246,15 @@ top_bar = [
                 'yad --calendar --undecorated --close-on-unfocus --no-buttons --posx=-10 --posy=30 --text=" Yad Calendar"'
             )
         },
-        **fonts_large,
+        **fonts,
     ),
     widget.TextBox(
         text="",
-        width=30,
+        width=27,
         foreground=foregroundColor,
         background="#ff5555",
-        padding=10,
-        fontsize=32,
+        padding=8,
+        fontsize=22,
         mouse_callbacks={"Button1": lazy.function(show_power_menu)},
     ),
     widget.Sep(
