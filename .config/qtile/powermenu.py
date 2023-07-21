@@ -15,7 +15,7 @@ def show_power_menu(qtile):
     config_txt = {
         "width": 80,
         "height": 20,
-        "font": "FiraCode Nerd Font",
+        "font": "Hack Nerd Font",
         "fontsize": 14,
         "foreground": colors[0],
         "h_align": "center",
@@ -27,7 +27,7 @@ def show_power_menu(qtile):
             pos_x=25,
             pos_y=20,
             highlight=colors[4],
-            mouse_callbacks={"Button1": lazy.spawn("betterlockscreen -l dimblur")},
+            mouse_callbacks={"Button1": lazy.spawn("xscreensaver-command -lock")},
             **config_img,
         ),
         PopupText(
