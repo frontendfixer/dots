@@ -132,7 +132,7 @@ echo $pw | sudo -S mkdir -p /usr/share/backgrounds/fantacy
 echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
 
 echo -e "${G}Updating theme and icons${N} ===============\n"
-sudo apt install gtk2-engines-murrine gtk2-engines-pixbuf
+sudo apt install -y gtk2-engines-murrine gtk2-engines-pixbuf
 sudo ./theme_install.sh
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
