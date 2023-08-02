@@ -132,11 +132,8 @@ echo $pw | sudo -S mkdir -p /usr/share/backgrounds/fantacy
 echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
 
 echo -e "${G}Updating theme and icons${N} ===============\n"
-
-echo -e "${C}copying Dracula themes and Bibata Cursor${N}"
-yes | cp -r .icons/ $HOME
-sudo mv $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
-sudo cp -r .themes/Dracula /usr/share/themes
+sudo apt install gtk2-engines-murrine gtk2-engines-pixbuf
+sudo ./theme_install.sh
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak

@@ -18,23 +18,23 @@ ${C}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${N}\n"
 mkdir themes
 cd themes
 
-echo -e "+#+#+#+#+#+#+#+#+#+# Installing ${R}cursor icons{N} +#+#+#+#+#+#+#+#+#+#"
+echo -e "${Y}+#+#+#+#+#+#+#+#+#+# Installing cursor icons +#+#+#+#+#+#+#+#+#+#${N}"
 curl -OL https://github.com/dracula/gtk/releases/latest/download/Dracula-cursors.tar.xz
-sudo tar -xf Dracula-cursors.tar.xz --directory=/usr/share/icons
+tar -xf Dracula-cursors.tar.xz --directory=/usr/share/icons
 curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Ice.tar.gz
-sudo tar -xf Bibata-Modern-Ice.tar.gz --directory=/usr/share/icons
+tar -xf Bibata-Modern-Ice.tar.gz --directory=/usr/share/icons
 
-echo -e "+#+#+#+#+#+#+#+#+#+# Installing ${R}Dracula theme{N} +#+#+#+#+#+#+#+#+#+#"
+echo -e "${Y}+#+#+#+#+#+#+#+#+#+# Installing theme +#+#+#+#+#+#+#+#+#+#${N}"
 curl -OL https://github.com/dracula/gtk/releases/latest/download/Dracula.tar.xz
-sudo tar -xf Dracula.tar.xz --directory=/usr/share/themes
+tar -xf Dracula.tar.xz --directory=/usr/share/themes
 curl -OL https://github.com/EliverLara/Nordic/releases/latest/download/Nordic-darker.xz
-sudo tar -xf Nordic-darker.xz --directory=/usr/share/themes
+tar -xf Nordic-darker.xz --directory=/usr/share/themes
 
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git
 cd vimix-gtk-themes
-yes | ./install.sh -d /usr/share/themes -t doder beryl ruby jade -c dark -s compact -l --tweaks translucent
+./install.sh -d /usr/share/themes -t doder beryl ruby jade -c dark -s compact -l --tweaks translucent
 cd ..
 
 git clone https://github.com/vinceliuice/vimix-icon-theme.git
 cd vimix-icon-theme
-sudo ./install.sh -d /usr/share/icons doder beryl ruby jade white
+./install.sh -d /usr/share/icons doder beryl ruby jade white
