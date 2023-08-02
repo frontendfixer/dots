@@ -27,19 +27,12 @@ echo -e "
 ${P}Initialized basic theming${N}
 ################################################
 "
-## terminal settings
+# ============ terminal settings ==============
 echo -e "\n${G}installing packages${N} ===============\n"
 sudo apt install -y exa zsh fish neofetch htop curl git wget kitty
 
 echo -e "\n${G}installing starship....${N} ===============\n"
 curl -sS https://starship.rs/install.sh | sh
-
-echo -e "\n${G}copying config file${N} ===============\n"
-mv $HOME/.bashrc $HOME/.bashrc.bak
-mv $HOME/.zshrc $HOME/.zshrc.bak
-mv $HOME/.Xresources $HOME/.Xresources.bak
-cp .aliases .bashrc .zshrc .Xresources .face $HOME
-yes | cp -r .zsh/ $HOME
 
 # ======= Shell-Color-Script  ========
 echo -e "\n${G}Installing shell-color-scripts${N} ===============\n"
@@ -53,7 +46,15 @@ cd Themeing/shell-color-scripts
 sudo make install
 cd ../..
 
+echo -e "\n${G}copying config file${N} ===============\n"
+mv $HOME/.bashrc $HOME/.bashrc.bak
+mv $HOME/.zshrc $HOME/.zshrc.bak
+mv $HOME/.Xresources $HOME/.Xresources.bak
+cp .aliases .bashrc .zshrc .Xresources .face $HOME
+yes | cp -r .zsh/ $HOME
+
 echo -e "\n${G}clearing termiinal${N} ===============\n"
+source ~/.bashrc
 clear;colorscript random
 
 
@@ -123,7 +124,7 @@ sudo apt install -y awesome
 
 echo -e "
 \n###############################################
-${P}Updating theme icons fonts and wallpaper ${N}
+${P}Updating theme, icons and wallpaper ${N}
 ###############################################
 "
 echo -e "\n${G}updating wallpaer${N} ===============\n"
@@ -132,31 +133,14 @@ echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
 
 echo -e "${G}Updating theme and icons${N} ===============\n"
 
-echo -e "${C}copying dracula themes${N}"
+echo -e "${C}copying Dracula themes and Bibata Cursor${N}"
 yes | cp -r .icons/ $HOME
 sudo mv $HOME/.icons/Bibata-Modern-Ice /usr/share/icons
-sudo mv .themes/Dracula /usr/share/themes
+sudo cp -r .themes/Dracula /usr/share/themes
 
 echo -e "\ncopying config file for ${G}gtkrc-2.0${N}"
 mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0.bak
 yes | cp .gtkrc-2.0 .gtkrc-2.0.mine .gtkrc-xfce $HOME
-
-echo -e "\n${G}updateing fonts.....${N}"
-mkdir -p $HOME/.local/share/fonts
-fonts=( 
-"CascadiaCode"
-"FiraCode" 
-"Hack"
-)
-
-for font in ${fonts[@]}
-do
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.zip
-	unzip $font.zip -d $HOME/.local/share/fonts/$font/
-    rm $font.zip
-done
-
-fc-cache -v $HOME/.local/share/fonts
 
 echo -e "
 \n###############################################
@@ -180,6 +164,7 @@ wifi.scan-rand-mac-address=no
 " | sudo tee -a /etc/NetworkManager/NetworkManager.conf 
 
 sudo systemctl enable NetworkManager.service
+sudo service NetworkManager restart 
 
 # Sound packages
 sudo apt install -y pulseaudio alsa-utils pavucontrol volumeicon-alsa pamixer
@@ -189,6 +174,7 @@ sudo apt install -y lxappearance
 
 # Fonts and icons for now
 sudo apt install -y fonts-recommended fonts-ubuntu fonts-font-awesome fonts-terminus fonts-beng fonts-lohit-beng-bengali
+./font_install.sh
 
 # Bluetooth 
 sudo apt install -y bluez blueman
@@ -279,26 +265,7 @@ sudo ./install.sh -t tela
 cd ..
 rm -rf grub2-themes
 
-# ======= Optional(Personal) =========
-
-# echo -e "${G}########## Mounting drives ##########"
-# sudo sh -c 'echo "
-# UUID=6E9781F365706FF3	/mnt/Entertainment	ntfs	defaults	0	0
-# UUID=7796BF99038EDBCE	/mnt/Program		ntfs	defaults	0	0
-# " >>/etc/fstab'
-
-# echo -e "${G}############### Updating DNS ############"
-# sudo apt install -y systemd-resolved
-# sudo sh -c 'echo "
-# DNS=45.90.28.0#******.dns.nextdns.io
-# DNS=2a07:a8c0::#******.dns.nextdns.io
-# DNS=45.90.30.0#******.dns.nextdns.io
-# DNS=2a07:a8c1::#******.dns.nextdns.io
-# DNSOverTLS=yes
-# " >>/etc/systemd/resolved.conf'
-# sudo systemctl enable systemd-resolved.service
-# sudo service NetworkManager restart
-
+clear;colorscript random
 echo -e "
 ${R}###############################################
 ${N}########### Installations complete ############
