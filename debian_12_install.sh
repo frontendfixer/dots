@@ -235,9 +235,6 @@ yes | cp -r .config/ $HOME
 echo -e "${C}copying .local files.....${N}"
 yes | cp -r .local/ $HOME
 
-gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-
 echo -e "${C}copying mousepad theme....${N}"
 mkdir -p "$HOME/.local/share/gtksourceview-4/styles"
 yes|cp  Themeing/mousepad/dracula.xml Themeing/mousepad/draculaDarker.xml $HOME/.local/share/gtksourceview-4/styles
