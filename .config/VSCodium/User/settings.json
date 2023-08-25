@@ -1,12 +1,12 @@
 {
   "window.menuBarVisibility": "toggle",
-  "files.exclude": {
-    "**/node_modules": true
-  },
+  // "files.exclude": {
+  //   "**/node_modules": true
+  // },
   "workbench.editorAssociations": {
     "*.svg": "svgPreview.previewEditor"
   },
-
+  "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.files.color": "#f1fa8c",
   "material-icon-theme.folders.color": "#8be9fd",
@@ -31,9 +31,10 @@
   },
 
   //! ================ Editor Settings ===============
-  "editor.fontFamily": "'Hack Nerd Font','Cascadia Code', 'FiraCode Nerd Font'",
+  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
   "editor.fontSize": 16,
   "editor.fontWeight": "300",
+  "editor.lineHeight": 24,
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
   "editor.wordWrap": "on",
@@ -42,9 +43,6 @@
   "editor.guides.bracketPairs": "active",
   "editor.mouseWheelZoom": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  },
   "editor.quickSuggestionsDelay": 0,
   "editor.renderWhitespace": "none",
   "explorer.confirmDragAndDrop": false,
@@ -53,15 +51,13 @@
   "editor.suggest.preview": true,
   "editor.rename.enablePreview": false,
   "editor.wordBasedSuggestionsMode": "allDocuments",
+  "explorer.decorations.badges": false,
 
   //! ================ Ignores ==================
   "html.hover.references": false,
   "css.hover.references": false,
   "html.hover.documentation": false,
   "css.hover.documentation": false,
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
 
   //! =================== Emmet ===============
   "emmet.showSuggestionsAsSnippets": true,
@@ -82,7 +78,6 @@
 
   //! =================== Prettier ===============
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.autoTriggerNextSuggestion": true,
   "path-intellisense.showHiddenFiles": true,
@@ -91,12 +86,36 @@
     "/": "${workspaceFolder}"
   },
 
+  //! =================== Stylelint ===============
+
+  "stylelint.validate": ["css", "scss"],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  //! =================== Code-Action ===============
+  "editor.formatOnSave": true,
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fiXAll.stylelint": true
+  },
+
   //! ============ Language Settings ===============
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "[javascript][javascriptreact][typescript][typescriptreact]": {
-    "editor.formatOnSave": false
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
   },
   "[markdown]": {
     "editor.quickSuggestions": {
@@ -123,6 +142,8 @@
     "imageurl",
     "Lakshmikanta",
     "Patra",
+    "stylelint",
+    "stylelintrc",
     "tailwindcss"
   ],
 
@@ -139,9 +160,7 @@
   "color-highlight.matchWords": true,
   "github.gitProtocol": "ssh",
   "tailwindCSS.emmetCompletions": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua"
-  },
-  "git.autofetch": true
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "never",
+  "tabnine.experimentalAutoImports": true
 }

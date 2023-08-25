@@ -15,7 +15,13 @@
   "Try Catch Block": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "tc",
-    "body": ["try{", "   $1", "}catch(err){", "   console.error(err);", "}"],
+    "body": [
+      "try{",
+      "   $1",
+      "}catch(error){",
+      "   console.error(error);",
+      "}"
+    ],
     "description": "Simple try catch block"
   },
 
@@ -46,23 +52,23 @@
   },
 
   "React Functional Component": {
-    "scope": "javascriptreact,typescriptreact",
+    "scope": "javascriptreact,typescriptreact, javascript, typescript",
     "prefix": "rf",
     "body": [
-      "const ${1:name} = () => {",
+      "const $TM_FILENAME_BASE = () => {",
       "  return (",
       "      $2",
       "  )",
       "};",
       "",
-      "export default ${1:name};",
+      "export default $TM_FILENAME_BASE;",
       ""
     ],
     "description": "React Functional Component"
   },
 
   "React Context": {
-    "scope": "javascriptreact,typescriptreact",
+    "scope": "javascriptreact,typescriptreact, javascript, typescript",
     "prefix": "rc",
     "body": [
       "/* eslint-disable react/jsx-no-constructed-context-values */",
