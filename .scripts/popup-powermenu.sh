@@ -6,7 +6,7 @@ case "$1" in
 
         case "$yad" in
             '🔒 Lock')
-                betterlockscreen -l dimblur
+                xscreensaver-command -lock
                 ;;
             '⚡ Shutdown')
                 systemctl poweroff
@@ -23,6 +23,6 @@ case "$1" in
         esac
         ;;
     *)
-        echo ""
+        echo "  "
         ;;
 esac
