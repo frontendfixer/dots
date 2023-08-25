@@ -1,5 +1,5 @@
 # Dracula_Flat
-def flatCol():
+def fantacy():
     colors = [
         ["#1a1a1e", "#212128"],  # background (dark grey) [0]
         ["#565656", "#888888"],  # light grey [1]
@@ -159,7 +159,7 @@ def gruvbox():
 
 #################################
 ########### Selecting Colorscheme
-flatCol = flatCol()
+fantacy = fantacy()
 mbfs = mbfs()
 doomOne = doomOne()
 dracula = dracula()
@@ -167,7 +167,7 @@ everforest = everforest()
 nord = nord()
 gruvbox = gruvbox()
 
-colorscheme = flatCol
+colorscheme = fantacy
 
 colors = colorscheme[0]
 backgroundColor = colorscheme[1]

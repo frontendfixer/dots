@@ -17,7 +17,7 @@ def assign_app_group(client):
         "qutebrowser",
     ]  # Web Browsers
     d["4"] = ["code", "vscodium", "Sublime-text"]  # Code Editor
-    d["5"] = ["figma-linux", "gimp-2.10", "Inkscape", "org.inkscape.Inkscape"]
+    d["5"] = ["figma-linux", "gimp-2.10", "Inkscape", "postman"]
     d["6"] = ["vlc", "libreoffice"]  # media
     d["7"] = [
         "",

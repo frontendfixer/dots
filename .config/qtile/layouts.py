@@ -55,6 +55,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Galculator"),
         Match(wm_class="GParted"),
         Match(wm_class="Lxappearance"),
+        Match(wm_class="Synaptic"),
         Match(wm_class="Nitrogen"),
         Match(wm_class="Xarchiver"),
         Match(wm_class="TelegramDesktop"),
