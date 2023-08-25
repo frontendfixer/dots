@@ -21,3 +21,4 @@ killall clipit
 clipit &
 dunst &
 unclutter -root &
+~/.scripts/redshift-on &

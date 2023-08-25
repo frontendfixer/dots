@@ -12,3 +12,5 @@ nm-applet &
 numlockx on &
 clipit &
 dunst &
+unclutter -root &
+~/.scripts/redshift-on &
