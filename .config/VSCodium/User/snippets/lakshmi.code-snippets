@@ -53,7 +53,7 @@
 
   "React Functional Component": {
     "scope": "javascriptreact,typescriptreact, javascript, typescript",
-    "prefix": "rf",
+    "prefix": "rfc",
     "body": [
       "const $TM_FILENAME_BASE = () => {",
       "  return (",
@@ -69,7 +69,7 @@
 
   "React Context": {
     "scope": "javascriptreact,typescriptreact, javascript, typescript",
-    "prefix": "rc",
+    "prefix": "rcp",
     "body": [
       "/* eslint-disable react/jsx-no-constructed-context-values */",
       "import {createContext, useState} from 'react';",

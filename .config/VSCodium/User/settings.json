@@ -135,6 +135,8 @@
 
   // ! ================ cSpell =============
   "cSpell.userWords": [
+    "bootstarp",
+    "clsx",
     "firestore",
     "fontawesome",
     "fortawesome",
@@ -144,6 +146,7 @@
     "Patra",
     "stylelint",
     "stylelintrc",
+    "Swal",
     "tailwindcss"
   ],
 
@@ -162,5 +165,6 @@
   "tailwindCSS.emmetCompletions": true,
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "liveServer.settings.donotShowInfoMsg": true
 }

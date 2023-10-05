@@ -3,6 +3,7 @@ bradlc.vscode-tailwindcss
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
+cweijan.vscode-database-client2
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
@@ -20,12 +21,11 @@ ms-python.python
 naumovs.color-highlight
 PKief.material-icon-theme
 Prisma.prisma
+rangav.vscode-thunder-client
 ritwickdey.LiveServer
 sndst00m.vscode-native-svg-preview
 streetsidesoftware.code-spell-checker
 styled-components.vscode-styled-components
-stylelint.vscode-stylelint
 svelte.svelte-vscode
-TabNine.tabnine-vscode
 WakaTime.vscode-wakatime
 yzhang.markdown-all-in-one
