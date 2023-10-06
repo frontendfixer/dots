@@ -18,6 +18,7 @@ fonts=(
 
 mkdir fonts 
 cd fonts
+mkdir $HOME/.local/share/fonts/
 echo -e " "
 for font in ${fonts[@]}
 do
