@@ -11,7 +11,7 @@
 super + Return
 	kitty
 super + {e,b,c}
-	{pcmanfm,brave-browser,codium}
+	{pcmanfm,firefox,codium}
 super + Shift + {c,g} 
 	{galculator, gcolor3}
 
