@@ -130,3 +130,7 @@ export PATH="$PNPM_HOME:$PATH"
 neofetch --ascii ~/.config/neofetch/images/picachu.txt
 # Set a default prompt
 exec zsh
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
