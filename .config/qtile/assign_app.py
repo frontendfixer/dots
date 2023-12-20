@@ -13,12 +13,13 @@ def assign_app_group(client):
         "Navigator",
         "chromium",
         "chromium-browser",
+        "Google-chrome"
         "brave-browser",
         "qutebrowser",
     ]  # Web Browsers
     d["4"] = ["code", "vscodium", "Sublime-text"]  # Code Editor
     d["5"] = ["figma-linux", "gimp-2.10", "Inkscape", "postman"]
-    d["6"] = ["vlc", "libreoffice"]  # media
+    d["6"] = ["vlc", "libreoffice", "DBeaver"]  # media
     d["7"] = [
         "",
     ]  #
