@@ -55,16 +55,33 @@
     "scope": "javascriptreact,typescriptreact, javascript, typescript",
     "prefix": "rfc",
     "body": [
-      "const $TM_FILENAME_BASE = () => {",
+      "const $1 = () => {",
       "  return (",
-      "      $2",
+      "     <div>"
+      "       $2",
+      "     </div>"
       "  )",
       "};",
       "",
-      "export default $TM_FILENAME_BASE;",
+      "export default $1;",
       ""
     ],
     "description": "React Functional Component"
+  },
+
+  "React Functional Component Without Default Export": {
+    "scope": "javascriptreact,typescriptreact, javascript, typescript",
+    "prefix": "rfcc",
+    "body": [
+      "export function $1 () {",
+      "  return (",
+      "     <div>"
+      "       $2",
+      "     </div>"
+      "  )",
+      "};",
+    ],
+    "description": "React Functional Component Without Default Export"
   },
 
   "React Context": {
@@ -89,6 +106,6 @@
       " </${1}Context.Provider>)",
       "};"
     ],
-    "description": "React Context"
+    "description": "React Context Component"
   }
 }
