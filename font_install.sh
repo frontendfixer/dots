@@ -12,8 +12,6 @@ fonts=(
   "CascadiaCode"
   "FiraCode" 
   "Hack"
-  "IBMPlexMono"
-  "Ubuntu"
 )
 
 mkdir fonts 

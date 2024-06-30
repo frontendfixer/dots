@@ -128,8 +128,8 @@ ${P}Updating theme, icons and wallpaper ${N}
 ###############################################
 "
 echo -e "\n${G}updating wallpaer${N} ===============\n"
-echo $pw | sudo -S mkdir -p /usr/share/backgrounds/fantacy
-echo $pw | sudo -S cp -r .background/* /usr/share/backgrounds/fantacy/
+sudo mkdir -p /usr/share/backgrounds/fantacy
+sudo cp -r .background/* /usr/share/backgrounds/fantacy/
 
 echo -e "${G}Updating theme and icons${N} ===============\n"
 sudo apt install -y gtk2-engines-murrine gtk2-engines-pixbuf
