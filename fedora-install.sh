@@ -37,10 +37,10 @@ sudo dnf update -y
 echo -e "\n${G}installing reqired groups${N} ===============\n"
 sudo dnf group install -y "Administration Tools" "C Development Tools and Libraries" "Fonts" "Standard" "Hardware Support" "Input Methods" "base-x"
 
-echo -e "${G}installing multimedia codac${N} ===============\n"
-sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-sudo dnf install -y lame\* --exclude=lame-devel
-sudo dnf -y group upgrade --with-optional Multimedia
+# echo -e "${G}installing multimedia codac${N} ===============\n"
+# sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+# sudo dnf install -y lame\* --exclude=lame-devel
+# sudo dnf -y group upgrade Multimedia
 
 echo -e "
 ################################################
@@ -104,11 +104,9 @@ ${P}Installing Window manager ${N}
 yes | sudo dnf copr enable frostyx/qtile
 yes | sudo dnf copr enable david35mm/pamixer
 yes | sudo dnf copr enable jerrycasiano/FontManager
-yes | sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
 echo -e "${R}installing require packages${N} ===========\n"
-sudo dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip firefox file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer blueman font-manager gnome-characters android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset network-manager-applet papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting gimp gcolor3 xreader google-noto-emoji-color-fonts plymouth redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission xscreensaver unclutter
+sudo dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip firefox file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer blueman font-manager android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset network-manager-applet zsh-autosuggestions zsh-syntax-highlighting google-noto-emoji-color-fonts plymouth redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission xscreensaver unclutter
 
 echo -e "${R}pip isntalling services ${N} ===========\n"
 pip install rofimoji beautysh black  
@@ -120,9 +118,9 @@ sudo systemctl enable betterlockscreen@$USER
 sudo plymouth-set-default-theme -R details
 xdg-user-dirs-update
 
-sudo dnf copr remove frostyx/qtile
-sudo dnf copr remove david35mm/pamixer
-sudo dnf copr remove jerrycasiano/FontManager
+# sudo dnf copr remove frostyx/qtile
+# sudo dnf copr remove david35mm/pamixer
+# sudo dnf copr remove jerrycasiano/FontManager
 
 echo -e "
 \n###############################################
