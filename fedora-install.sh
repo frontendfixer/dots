@@ -38,9 +38,9 @@ echo -e "\n${G}installing reqired groups${N} ===============\n"
 sudo dnf group install -y "Administration Tools" "C Development Tools and Libraries" "Fonts" "Standard" "Hardware Support" "Input Methods" "base-x"
 
 # echo -e "${G}installing multimedia codac${N} ===============\n"
-# sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-# sudo dnf install -y lame\* --exclude=lame-devel
-# sudo dnf -y group upgrade Multimedia
+sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf install -y lame\* --exclude=lame-devel
+sudo dnf group upgrade -y --with-optional Multimedia
 
 echo -e "
 ################################################
@@ -106,7 +106,7 @@ yes | sudo dnf copr enable david35mm/pamixer
 yes | sudo dnf copr enable jerrycasiano/FontManager
 
 echo -e "${R}installing require packages${N} ===========\n"
-sudo dnf install -y htop pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip firefox file-roller eog meld pavucontrol scrot galculator brightnessctl pamixer blueman font-manager android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset network-manager-applet zsh-autosuggestions zsh-syntax-highlighting google-noto-emoji-color-fonts plymouth redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission xscreensaver unclutter
+sudo dnf install -y htop lxappearance pcmanfm picom ranger mousepad lightdm lightdm-gtk-greeter rofi dmenu xdg-user-dirs python3-pip firefox file-roller papirus-icon-theme eog meld pavucontrol scrot galculator brightnessctl pamixer blueman nodejs font-manager android-tools android-file-transfer gvfs gvfs-mtp polkit-gnome clipit numlockx xset NetworkManager-wifi NetworkManager-wwan network-manager-applet zsh-autosuggestions zsh-syntax-highlighting google-noto-emoji-color-fonts plymouth redshift polybar qtile qtile-extras i3-gaps bspwm sxhkd yad transmission xscreensaver unclutter
 
 echo -e "${R}pip isntalling services ${N} ===========\n"
 pip install rofimoji beautysh black  
@@ -114,13 +114,8 @@ pip install rofimoji beautysh black
 echo -e "${R}enableling services ${N} ===========\n"
 sudo systemctl set-default graphical.target
 sudo systemctl enable lightdm
-sudo systemctl enable betterlockscreen@$USER
 sudo plymouth-set-default-theme -R details
 xdg-user-dirs-update
-
-# sudo dnf copr remove frostyx/qtile
-# sudo dnf copr remove david35mm/pamixer
-# sudo dnf copr remove jerrycasiano/FontManager
 
 echo -e "
 \n###############################################
