@@ -2,7 +2,7 @@ return {
   -- Code formatting and linting
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre',
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
@@ -44,10 +44,21 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "vim", "lua", "vimdoc",
-        "html", "css", "javascript", "typescript",
-        "php", "go", "scss", "json", "bash", "markdown",
-        "tsx", "yaml",
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "php",
+        "go",
+        "scss",
+        "json",
+        "bash",
+        "markdown",
+        "tsx",
+        "yaml",
       },
     },
     config = function(_, opts)
@@ -58,80 +69,30 @@ return {
   -- Codeium for AI autocompletion
   {
     "Exafunction/codeium.nvim",
-    event = 'BufEnter',
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
     },
     config = function()
-      require("codeium").setup({})
-    end
+      require("codeium").setup {}
+    end,
   },
 
   -- nvim-cmp for autocompletion
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("luasnip").config.set_config(opts)
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-      },
-      {
-        "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
-      },
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "f3fora/cmp-spell",
-      },
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
     },
     config = function()
-      local cmp = require 'cmp'
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- Use LuaSnip for snippet expansion
-          end,
-        },
-        mapping = {
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        },
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' }, -- Use LuaSnip for snippets
-          { name = 'codeium' },
-        }, {
-          { name = 'buffer' },
-          { name = 'path' },
-          { name = 'spell' },
-        })
-      })
+      require "configs.cmp"
     end,
   },
-
 
   -- Additional recommended plugins
   {
