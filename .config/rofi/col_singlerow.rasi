@@ -9,9 +9,9 @@
 
 
 configuration {
-	font:							"Cascadia Code 10";
+	font:							"FiraCode Nerd Font 11";
     show-icons:                     true;
-	  icon-theme: 					"Papirus-Dark";
+	  icon-theme: 					"Papirus";
     display-drun: 					"Applications";
     drun-display-format:            "{name}";
     disable-history:                false;
@@ -61,7 +61,7 @@ window {
 	border:							2px 15px;
 	border-color:					@ac;
     border-radius:                  10px;
-	width:							50%;
+	width:							40%;
     location:                       center;
     x-offset:                       0;
     y-offset:                       -5%;
@@ -116,8 +116,8 @@ inputbar {
 listview {
     background-color:               @al;
     padding:                        0px;
-    columns:                        3;
-    lines:                          7;
+    columns:                        4;
+    lines:                          6;
     spacing:                       	0.5%;
     cycle:                          true;
     dynamic:                        true;
