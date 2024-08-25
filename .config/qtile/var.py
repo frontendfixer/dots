@@ -1,7 +1,7 @@
 #########set default
 mod = "mod4"
 terminal = "kitty"
-myBrowser = "firefox"
-broswer_alt = "google-chrome"
-codeEditor = "codium"
+myBrowser = "google-chrome"
+broswer_alt = "firefox"
+codeEditor = "code"
 file = "pcmanfm"
