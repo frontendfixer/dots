@@ -24,6 +24,13 @@ alias "sudoedit"='function _sudoedit(){sudo -e "$1";};_sudoedit'
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+########### fnm
+FNM_PATH="/home/lakshmi/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
 export PATH="$PATH:$HOME/.local/bin/"
 
 # bun
@@ -140,7 +147,9 @@ source ~/.aliases
 ############### Styling
 # neofetch --ascii ~/.config/neofetch/images/mx-linux.txt
 
-#starship startup scripts
+#startup scripts
 eval "$(starship init zsh)"
 
+#fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
