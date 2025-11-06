@@ -30,24 +30,6 @@ PS1='\[\e[0;1;38;5;203m\]\h\[\e[0;1;97m\]@\[\e[0;1;38;5;49m\]\u\[\e[0;1;2;38;5;2
 echo $PATH | grep -Eq "(^|:)/sbin(:|)"     || PATH=$PATH:/sbin
 echo $PATH | grep -Eq "(^|:)/usr/sbin(:|)" || PATH=$PATH:/usr/sbin
 
-######### PATH
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-export PATH="$PATH:$HOME/.local/bin/"
-
-##### Deno PATH
-export DENO_INSTALL="/home/lakshmi/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-### NPM Global Config
-NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export PATH="$PATH:${HOME}/.yarn/bin"
-# Preserve MANPATH if you already defined it somewhere in your config.
-# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
-
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|kitty|gnome*|alacritty|st|konsole*)
@@ -109,38 +91,54 @@ up () {
     fi
 }
 
+################################################
+###############     PATHS        ###############
+################################################
+
+##### NVM #####
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+##### SET LOCAL BIN ######
+export PATH="$PATH:$HOME/.local/bin/"
+
+##### Deno PATH #####
+DENO_INSTALL_PATH="$HOME/.deno"
+if [ -d "$DENO_INSTALL_PATH" ]; then
+    export PATH="$DENO_INSTALL_PATH/bin:$PATH"
+fi
+
+###### NPM Global Config ######
+NPM_PACKAGES="$HOME/.npm-packages"
+if [ -d "$NPM_PACKAGES" ]; then
+    export PATH="$NPM_PACKAGES/bin:$PATH"
+fi
+
+###### FNM ######
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 ######### Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.aliases
 fi
 
-# pnpm
-export PNPM_HOME="/home/lakshmi/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-########################################################################
-###############                   Styling                ###############
-########################################################################
+################################################
+###############     STYLES        ###############
+################################################
 
-#starship startup scripts
-#eval "$(starship init bash)"
-
-#Customized start programe
-#neofetch
-neofetch --ascii ~/.config/neofetch/images/picachu.txt
+#fastfetch
+fastfetch
 # Set a default prompt
 exec zsh
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-
-# fnm
-FNM_PATH="/home/lakshmi/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
