@@ -15,7 +15,7 @@ alias cs='cd $HOME/.scripts'
 #### systemctl
 alias sctl='sudo systemctl'
 
-##### Rabger
+##### Ranger
 alias r='ranger'
 alias rq='ranger ~/.config/qtile/'
 alias rb='ranger ~/.config/bspwm'
@@ -33,26 +33,23 @@ alias yrn='yarn'
 alias syrn='sudo yarn'
 
 #vim
-alias vim="$EDITOR"
-alias svim="sudo $EDITOR"
+alias edi="$EDITOR"
+alias sedi="sudo $EDITOR"
 
 #Make a directory with parent-child
 alias mkdir="mkdir -p"
 
 # confirm before overwriting something
-alias cp="cp -i"
+alias cp="cp -i -r"
 alias mv='mv -i'
 alias rm='rm -i'
-alias rmf='rm -rf'
+alias rmf='rm -rf -i'
 
 #Custom Clear command
 alias clr='clear;colorscript random'
 
 #java runtime
 alias jar='java -jar'
-
-# fastboot sudo permission
-alias fastboot='sudo fastboot'
 
 #dd command
 alias dd='sudo dd bs=4M status=progress'
@@ -64,12 +61,12 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# Changing "ls" to "exa"
-alias ls='exa -alh --color=always --group-directories-first' # listing
-alias la='exa -ah --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -lh --color=always --group-directories-first'  # long format
-alias lt='exa -aTh --color=always --group-directories-first' # tree listing
-alias l.='exa -ah | egrep "^\."'
+# Changing "ls" to "eza"
+alias ls='eza -alh --color=always --group-directories-first' # listing
+alias la='eza -ah --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -lh --color=always --group-directories-first'  # long format
+alias lt='eza -aTh --color=always --group-directories-first' # tree listing
+alias l.='eza -ah | egrep "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -147,7 +144,7 @@ alias gemail='git config --global user.email'
 alias gname='git config --global user.name'
 
 #list all drive with UUID
-alias list_drive='lsblk -f'
+alias list-drive='lsblk -f'
 
 #continue download
 alias wget="wget -c"
@@ -190,7 +187,7 @@ alias nxresources="$VISUAL ~/.Xresources"
 alias nstarship="$VISUAL ~/.config/starship.toml"
 alias nhtop="$VISUAL ~/.config/htop/htoprc"
 alias nneofetch="$VISUAL ~/.config/neofetch/config.conf"
-alias nnvim='$VISUAL ~/.config/nvim/init.lua'
+alias nnvim="$VISUAL ~/.config/nvim/init.lua"
 #systeminfo
 alias probe="sudo -E hw-probe -all -upload"
 alias sysfailed="systemctl list-units --failed"
