@@ -45,7 +45,7 @@ fi
 ###### NPM Global Config (Kept here) ######
 NPM_PACKAGES="$HOME/.npm-packages"
 if [ -d "$NPM_PACKAGES" ]; then
-    # Add bin to PATH
+    # Add bin to PATH using case for cross-shell compatibility
     case ":$PATH:" in
       *":$NPM_PACKAGES/bin:"*) ;;
       *) export PATH="$NPM_PACKAGES/bin:$PATH" ;;
@@ -57,13 +57,16 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
+    # Note: `eval "$(pnpm env --shell bash)"` is also a common method for pnpm
 esac
 
 ##### NVM (Simplified to one common check) #####
+# $NVM_DIR is set without the Zsh XDG check, keeping it simple.
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# Bash completion is optional, kept here for bash users
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Bash completion is only sourced if Bash is running
+[ -n "$BASH_VERSION" ] && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 
 # -----------------------------------------------------------------------------
 #                                 ALIASES
@@ -78,7 +81,7 @@ fi
 #                                 FUNCTIONS
 # -----------------------------------------------------------------------------
 
-### ARCHIVE EXTRACTION (Simplified to the original .bashrc version for simplicity)
+### ARCHIVE EXTRACTION
 # usage: extract <file>
 extract ()
 {
@@ -129,9 +132,9 @@ up () {
 #                                 BASH-SPECIFIC
 # -----------------------------------------------------------------------------
 
-### PROMPT (Bash prompt variable - Zsh will use Starship or Oh-My-Zsh theme)
-# Only set PS1 if it's Bash AND not already set by Zsh sourcing this file.
+# Only run this section if Bash is the interactive shell
 if [ -n "$BASH_VERSION" ] && [ -z "$ZSH_VERSION" ]; then
+  ### PROMPT
   PS1='\[\e[0;1;38;5;203m\]\h\[\e[0;1;97m\]@\[\e[0;1;38;5;49m\]\u\[\e[0;1;2;38;5;226m\]:\[\e[0;1;2;38;5;226m\]:\[\e[0;2;3;38;5;227m\]\w\n \[\e[0;38;5;43m\]➜ \[\e[0m\]'
 
   ### CHANGE TITLE OF TERMINALS (Using BASH PROMPT_COMMAND)
@@ -150,9 +153,4 @@ if [ -n "$BASH_VERSION" ] && [ -z "$ZSH_VERSION" ]; then
 fi
 
 # -----------------------------------------------------------------------------
-#                              SHELL-SPECIFIC (Bash)
-# -----------------------------------------------------------------------------
-
-# Fastfetch and zsh execution are removed as they are Zsh startup tasks.
-# fastfetch
-# exec zsh
+# *** REMOVED: exec zsh *** # -----------------------------------------------------------------------------
