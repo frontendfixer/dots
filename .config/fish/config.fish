@@ -7,6 +7,9 @@
 #     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
 #
 
+﻿## Source from conf.d before our fish config
+source ~/.config/fish/conf.d/done.fish
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
@@ -26,6 +29,21 @@ set VISUAL "nvim"                                 # $VISUAL use your editor of c
 
 #### NVM ########
 alias nvm="bass source ~/.nvm/nvm.sh --no-use ';' nvm "
+
+# Add ~/.local/bin to PATH
+if test -d ~/.local/bin
+    if not contains -- ~/.local/bin $PATH
+        set -p PATH ~/.local/bin
+    end
+end
+
+# Add depot_tools to PATH
+if test -d ~/Applications/depot_tools
+    if not contains -- ~/Applications/depot_tools $PATH
+        set -p PATH ~/Applications/depot_tools
+    end
+end
+
 
 ########################################################################
 ###############                 FUNCTION                 ###############
