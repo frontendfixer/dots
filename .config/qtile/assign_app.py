@@ -13,7 +13,7 @@ def assign_app_group(client):
         "Navigator",
         "chromium",
         "chromium-browser",
-        "Google-chrome"
+        "Google-chrome",
         "brave-browser",
         "qutebrowser",
     ]  # Web Browsers

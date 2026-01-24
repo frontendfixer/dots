@@ -1,4 +1,4 @@
-from libqtile.config import Group, Click, Drag, ScratchPad, DropDown, Key
+from libqtile.config import Click, Drag, Key
 from libqtile.lazy import lazy
 from powermenu import show_power_menu
 
@@ -83,7 +83,7 @@ def keybinding():
         ),
         ######################
         Key([mod], "Escape", lazy.layout.normalize()),
-        # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+        # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
         ########### Toggle between split and unsplit sides of stack.
         # Split = all windows displayed
         # Unsplit = 1 window displayed, like Max layout, but still with
@@ -106,27 +106,6 @@ def keybinding():
             lazy.spawn("scrot /home/lakshmi/Pictures/%Y-%m-%d-%T-scr.png"),
         ),
     ]
-
-    groups = [Group(i) for i in "123456789"]
-    for i in groups:
-        keys.extend(
-            [
-                # mod1 + letter of group = switch to group
-                Key(
-                    [mod],
-                    i.name,
-                    lazy.group[i.name].toscreen(),
-                    desc="Switch to group {}".format(i.name),
-                ),
-                # mod1 + shift + letter of group = switch to & move focused window to group
-                Key(
-                    [mod, "shift"],
-                    i.name,
-                    lazy.window.togroup(i.name, switch_group=True),
-                    desc="Switch to & move focused window to group {}".format(i.name),
-                ),
-            ]
-        )
 
     return keys
 

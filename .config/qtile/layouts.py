@@ -21,7 +21,6 @@ layouts = [
     layout.Bsp(name="bsp", **layout_theme),
     # layout.Columns(**layout_theme),
     layout.MonadTall(
-        align="MonadTall._right",
         max_ratio=0.75,
         min_ratio=0.35,
         new_client_position="bottom",
