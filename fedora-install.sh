@@ -34,18 +34,18 @@ deltarpm=True
 echo -e "\n${G}Installing RPM Fusion free and non-free${N} ===============\n"
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf groupupdate -y core
+sudo dnf group upgrade -y core
 sudo dnf update -y
 
 echo -e "\n${G}Installing required groups${N} ===============\n"
-sudo dnf group install -y "C Development Tools and Libraries" "Development Tools"
+sudo dnf group install -y c-development development-tools
 
 echo -e "\n${G}Installing multimedia codecs${N} ===============\n"
 sudo dnf install -y gstreamer1-plugins-{bad-free,bad-free-extras,good,ugly} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 sudo dnf install -y lame\* --exclude=lame-devel
 sudo dnf install -y ffmpeg --allowerasing
-sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-sudo dnf groupupdate -y sound-and-video
+sudo dnf group upgrade -y multimedia --exclude=PackageKit-gstreamer-plugin
+sudo dnf group install -y sound-and-video
 
 echo -e "
 ################################################
@@ -54,11 +54,11 @@ ${P}ThinkPad Laptop Optimization${N}
 "
 
 echo -e "\n${G}Installing ThinkPad AMD tools and power management${N} ===============\n"
-sudo dnf install -y tlp tlp-rdw powertop
-sudo dnf install -y acpi acpid kernel-devel
-sudo dnf install -y libinput libinput-utils xorg-x11-drv-libinput
-sudo dnf install -y mesa-dri-drivers mesa-vulkan-drivers vulkan-tools
-sudo dnf install -y xf86-video-amdgpu mesa-amdgpu-va mesa-amdgpu-vdpau
+sudo dnf install -y tlp tlp-rdw powertop acpi acpid kernel-devel libinput libinput-utils \
+	xorg-x11-drv-libinput mesa-dri-drivers mesa-vulkan-drivers vulkan-tools \
+	xorg-x11-drv-amdgpu mesa-vulkan-drivers mesa-vulkan-drivers.i686 \
+	libva-utils mesa-va-drivers
+
 
 echo -e "\n${G}Installing laptop utilities${N} ===============\n"
 sudo dnf install -y bluez bluez-tools
@@ -94,7 +94,7 @@ ${P}Terminal Theming${N}
 "
 
 echo -e "\n${G}Installing packages${N} ===============\n"
-sudo dnf install -y eza zsh neofetch fastfetch curl git wget neovim feh kitty
+sudo dnf install -y zsh fish fastfetch curl git wget neovim feh kitty
 
 echo -e "\n${G}Installing starship...${N} ===============\n"
 curl -sS https://starship.rs/install.sh | sh -s -- -y
@@ -117,8 +117,7 @@ fi
 
 echo -e "\n${G}Clearing terminal${N} ===============\n"
 source ~/.bashrc
-clear
-command -v colorscript &> /dev/null && colorscript random || neofetch
+command -v colorscript &> /dev/null && colorscript random || fastfetch
 
 echo -e "
 \n###############################################
@@ -127,12 +126,12 @@ ${P}Installing Window Managers & Desktop Environment${N}
 "
 
 echo -e "${G}Enabling COPR repositories${N} ===========\n"
-sudo dnf copr enable -y frostyx/qtile 2>/dev/null || echo -e "${Y}qtile COPR not available, will use default repo${N}"
+sudo dnf copr enable -y alternateved/eza 2>/dev/null || echo -e "${Y}eza COPR not available, will use default repo${N}"
 sudo dnf copr enable -y jerrycasiano/FontManager 2>/dev/null || echo -e "${Y}FontManager COPR not available${N}"
 
 echo -e "\n${G}Installing XFCE Desktop Environment${N} ===========\n"
-sudo dnf group install -y "Xfce Desktop"
-sudo dnf install -y xfce4-goodies xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin \
+sudo dnf install -y @xfce-desktop-environment
+sudo dnf install -y xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin \
     xfce4-weather-plugin xfce4-screenshooter xfce4-taskmanager \
     xfce4-clipman-plugin xfce4-systemload-plugin xfce4-cpugraph-plugin \
     xfce4-netload-plugin xfce4-sensors-plugin xfce4-battery-plugin \
@@ -143,8 +142,8 @@ sudo dnf install -y i3 i3status i3lock awesome \
     bspwm sxhkd
 
 echo -e "\n${G}Installing required packages${N} ===========\n"
-sudo dnf install -y btop lxappearance-gtk3 pcmanfm picom rofi rofi-calc dunst \
-    ranger thunar mousepad vim-enhanced \
+sudo dnf install -y btop lxappearance pcmanfm picom rofi dunst \
+    eza ranger thunar mousepad vim-enhanced \
     lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
     dmenu xdg-user-dirs python3-pip python3-devel \
     firefox file-roller papirus-icon-theme eog meld \
@@ -156,7 +155,7 @@ sudo dnf install -y btop lxappearance-gtk3 pcmanfm picom rofi rofi-calc dunst \
     nodejs npm \
     android-tools android-file-transfer \
     gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-archive \
-    polkit-gnome \
+    mate-polkit \
     network-manager-applet nm-connection-editor \
     xset xsetroot \
     zsh-autosuggestions zsh-syntax-highlighting \
@@ -170,11 +169,10 @@ sudo dnf install -y btop lxappearance-gtk3 pcmanfm picom rofi rofi-calc dunst \
     unclutter \
     feh nitrogen \
     arandr \
-    volumeicon \
-    lxpolkit
+    volumeicon
 
 # Install qtile if available
-sudo dnf install -y qtile python3-qtile-extras 2>/dev/null || echo -e "${Y}qtile not available in repos${N}"
+sudo dnf install -y qtile qtile-extras 2>/dev/null || echo -e "${Y}qtile not available in repos${N}"
 
 # Install font-manager if available
 sudo dnf install -y font-manager 2>/dev/null || echo -e "${Y}font-manager not available, using system fonts${N}"
@@ -215,6 +213,18 @@ echo -e "${C}Copying configurations...${N}"
 
 echo -e "${C}Copying .local files...${N}"
 [ -d ".local" ] && yes | cp -r .local/ $HOME
+
+echo -e "${C}Copying .zsh files...${N}"
+[ -d ".zsh" ] && yes | cp -r .zsh/ $HOME
+
+echo -e "${C}Copying .aliases file...${N}"
+[ -f ".aliases" ] && yes | cp .aliases $HOME
+
+echo -e "${C}Copying .bashrc file...${N}"
+[ -f ".bashrc" ] && yes | cp .bashrc $HOME
+
+echo -e "${C}Copying .zshrc file...${N}"
+[ -f ".zshrc" ] && yes | cp .zshrc $HOME
 
 echo -e "${C}Copying mousepad theme...${N}"
 mkdir -p "$HOME/.local/share/gtksourceview-4/styles"
