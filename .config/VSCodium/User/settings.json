@@ -1,20 +1,13 @@
 {
   "window.menuBarVisibility": "toggle",
-  "workbench.editorAssociations": {
-    "*.svg": "svgPreview.previewEditor"
-  },
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.files.color": "#f1fa8c",
   "material-icon-theme.folders.color": "#8be9fd",
-  "workbench.colorTheme": "Dracula Dark+",
   "workbench.editor.closeOnFileDelete": true,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.pinnedTabSizing": "compact",
   "workbench.editor.wrapTabs": true,
-  "workbench.preferredDarkColorTheme": "Dracula Dark+",
+  "workbench.preferredDarkColorTheme": "Dracula Refined",
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {
     "statusBar.background": "#0e1316",
     "statusBar.foreground": "#f9f9ff",
@@ -26,11 +19,8 @@
     "statusBarItem.activeBackground": "#5fff87",
     "statusBarItem.hoverBackground": "#2c8ad6"
   },
-
-  //! ================ Editor Settings ===============
-  "editor.fontFamily": "'Cascadia Code', 'FiraCode Nerd Font'",
-  "editor.fontSize": 16,
-  "editor.fontWeight": "300",
+  "editor.fontFamily": "'FiraCode Nerd Font','Hack Nerd Font'",
+  "editor.fontWeight": "400",
   "editor.lineHeight": 24,
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
@@ -46,33 +36,16 @@
   "explorer.autoReveal": true,
   "editor.suggest.preview": true,
   "editor.rename.enablePreview": false,
-  "editor.wordBasedSuggestionsMode": "allDocuments",
   "explorer.decorations.badges": false,
-
-  //! ================ Ignores ==================
   "html.hover.references": false,
   "css.hover.references": false,
   "html.hover.documentation": false,
   "css.hover.documentation": false,
-
-  //! =================== Emmet ===============
   "emmet.showSuggestionsAsSnippets": true,
-  "emmet.includeLanguages": {
-    "html": "html",
-    "css": "css",
-    "plaintext": "pug",
-    // "javascript": "javascriptreact",
-    // "typescript": "typescriptreact"
-    "javascript": "javascript",
-    "typescript": "typescript"
-  },
   "emmet.preferences": {
     "css.color.short": true
   },
-  "emmet.excludeLanguages": [],
   "emmet.triggerExpansionOnTab": true,
-
-  //! =================== Prettier ===============
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.autoTriggerNextSuggestion": true,
@@ -81,50 +54,14 @@
   "path-intellisense.mappings": {
     "/": "${workspaceFolder}"
   },
-
-  //! =================== Code-Action ===============
-  "editor.formatOnSave": true,
-  "[javascript][javascriptreact][typescript][typescriptreact]": {
-    "editor.formatOnSave": false
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fiXAll.stylelint": "explicit"
-  },
-
-  //! ============ Language Settings ===============
-  "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua"
-  },
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
-  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  },
-  "[php]": {
-    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-  },
-  "[markdown]": {
-    "editor.quickSuggestions": {
-      "other": "on",
-      "comments": "on",
-      "strings": "on"
-    }
-  },
-  "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
-  },
-  "svelte.enable-ts-plugin": true,
-
-  // ! ================ cSpell =============
   "cSpell.userWords": [
     "aadhaar",
     "bootstarp",
+    "bullmq",
     "clsx",
     "datatable",
     "daterangepicker",
@@ -135,9 +72,16 @@
     "hookform",
     "imageurl",
     "Lakshmikanta",
+    "lucide",
+    "mysqldump",
     "NEXTAUTH",
     "nextui",
+    "oklch",
+    "oxfmt",
+    "oxlint",
     "Patra",
+    "rediss",
+    "shadcn",
     "signin",
     "signup",
     "stylelint",
@@ -146,16 +90,14 @@
     "Swal",
     "tailwindcss",
     "toastify",
-    "WBSCSGS"
+    "usehooks",
+    "WBSCSGS",
+    "workos"
   ],
-
-  // ! =========== terminal =============
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.fontSize": 12,
   "terminal.integrated.fontWeight": "300",
-
-  // ! ==================================
   "debug.console.acceptSuggestionOnEnter": "on",
   "security.workspace.trust.untrustedFiles": "open",
   "better-comments.highlightPlainText": true,
@@ -166,8 +108,47 @@
   "liveServer.settings.donotShowInfoMsg": true,
   "git.ignoreRebaseWarning": true,
   "editor.linkedEditing": true,
-  "files.exclude": {
-    ".next": true,
-    "node_modules": true
-  }
+  "explorer.confirmDragAndDrop": false,
+  "git.confirmSync": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "git.suggestSmartCommit": false,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.scss": "scss"
+  },
+  "workbench.editor.highlightModifiedTabs": true,
+  "editor.minimap.enabled": true,
+  "git.openRepositoryInParentFolders": "always",
+  "redhat.telemetry.enabled": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "workbench.startupEditor": "none",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "json.schemaDownload.trustedDomains": {
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://json-schema.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://turborepo.com": true,
+    "https://ui.shadcn.com": true,
+    "https://www.schemastore.org/": true
+  },
+  "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "dotenv": true
+  },
+  "diffEditor.hideUnchangedRegions.enabled": true
 }
