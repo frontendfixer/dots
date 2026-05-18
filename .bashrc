@@ -60,13 +60,16 @@ case ":$PATH:" in
     # Note: `eval "$(pnpm env --shell bash)"` is also a common method for pnpm
 esac
 
-##### NVM (Simplified to one common check) #####
-# $NVM_DIR is set without the Zsh XDG check, keeping it simple.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# Bash completion is only sourced if Bash is running
-[ -n "$BASH_VERSION" ] && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+##### fnm (Node version manager) #####
+FNM_DIR="$HOME/.local/share/fnm"
+if [ -d "$FNM_DIR" ]; then
+    export PATH="$FNM_DIR:$PATH"
+fi
 
+# Simplified: If fnm exists and we are in Bash, initialize it
+if command -v fnm &> /dev/null && [ -n "${BASH_VERSION:-}" ]; then
+    eval "$(fnm env --use-on-cd --shell bash)"
+fi
 
 # -----------------------------------------------------------------------------
 #                                 ALIASES
