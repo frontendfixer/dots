@@ -10,14 +10,20 @@ def assign_app_group(client):
     d["1"] = ["kitty", "Alacritty"]
     d["2"] = ["thunar", "pcmanfm"]  # File Manager
     d["3"] = [
+        "firefox",
+        "Firefox",
         "Navigator",
         "chromium",
         "chromium-browser",
+        "Chromium",
+        "google-chrome",
         "Google-chrome",
         "brave-browser",
         "qutebrowser",
+        "Helium",
+        "helium",
     ]  # Web Browsers
-    d["4"] = ["code", "vscodium", "Sublime-text"]  # Code Editor
+    d["4"] = ["codium", "VSCodium", "Code", "code-oss", "Sublime-text"]  # Code Editor
     d["5"] = ["figma-linux", "gimp-2.10", "Inkscape", "postman"]
     d["6"] = ["vlc", "libreoffice", "DBeaver"]  # media
     d["7"] = [
