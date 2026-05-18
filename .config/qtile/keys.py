@@ -15,7 +15,7 @@ def keybinding():
         ########## Applications
         Key([mod, "shift"], "b", lazy.spawn(broswer_alt)),
         Key([mod, "shift"], "c", lazy.spawn("galculator")),
-        Key([mod, "shift"], "g", lazy.spawn("gcolor3")),
+        Key([mod, "shift"], "g", lazy.spawn("flameshot gui")),
         ########### Dmenu and Rofi
         Key(
             [mod, "shift"],
@@ -35,7 +35,7 @@ def keybinding():
             ["control", "shift"],
             "space",
             lazy.spawn(
-                "rofi -modi 'run,drun,emoji:/home/lakshmi/.scripts/rofiemoji.sh' -show emoji"
+                "rofi -modi 'run,drun,emoji:~/.scripts/rofiemoji.sh' -show emoji"
             ),
         ),
         ########### Scripts
@@ -103,7 +103,9 @@ def keybinding():
         Key(
             [mod],
             "insert",
-            lazy.spawn("scrot /home/lakshmi/Pictures/%Y-%m-%d-%T-scr.png"),
+            lazy.spawn(
+                "sh -c 'mkdir -p ~/Pictures && flameshot full -p ~/Pictures/$(date +%Y-%m-%d-%T-scr.png)'"
+            ),
         ),
     ]
 
