@@ -66,19 +66,6 @@ else
     echo -e "${R}Failed to download Nordic-darker theme${N}"
 fi
 
-# Optional: Install additional popular themes
-echo -e "\n${Y}Installing additional themes (optional)...${N}\n"
-
-# Gruvbox Theme
-if curl -fSL https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme/archive/refs/heads/master.tar.gz -o gruvbox.tar.gz; then
-    echo -e "${G}Downloaded Gruvbox theme${N}"
-    tar -xf gruvbox.tar.gz
-    sudo cp -r Gruvbox-GTK-Theme-master/themes/* /usr/share/themes/ 2>/dev/null || true
-    echo -e "${G}Installed Gruvbox theme${N}"
-else
-    echo -e "${Y}Skipping Gruvbox theme${N}"
-fi
-
 echo -e "\n${G}Theme installation complete!${N}"
 echo -e "${Y}Installed themes and cursors can be selected in:${N}"
 echo -e "  - lxappearance (GTK theme selector)"
