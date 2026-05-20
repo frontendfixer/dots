@@ -34,15 +34,18 @@ append_dnf_conf_if_missing() {
     sudo tee -a /etc/dnf/dnf.conf > /dev/null <<EOF
 
 $marker
-# install_weak_deps=False: fewer weak deps on install (smaller footprint; some optional plugins skipped)
-# defaultyes is NOT set — dnf prompts unless you pass -y (safer for manual dnf runs)
-max_parallel_downloads=10
-fastestmirror=True
-deltarpm=True
-metadata_expire=43200
+gpgcheck=1
+installonly_limit=2
 clean_requirements_on_remove=True
-install_weak_deps=False
 best=True
+skip_if_unavailable=True
+
+# Speed optimizations
+max_parallel_downloads=10
+deltarpm=0
+fastestmirror=True
+metadata_expire=1d
+defaultyes=True
 EOF
 }
 
