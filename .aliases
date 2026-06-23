@@ -57,20 +57,26 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 ###############           2. PACKAGE MANAGEMENT       ##################
 ########################################################################
 
-###### Pacman/AUR (Arch/Paru) commands
-alias pacins='sudo pacman -S'
-alias pacrmv='sudo pacman -R'
-alias pacrmv-d='sudo pacman -Rns'
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
-alias parurmv='paru -Rns'
-alias pacup='sudo pacman -Syu'
-alias yup='yay -Syu'
-alias pup='paru -Syu'
-alias yin='yay -S'
-alias pin='paru -S'
-alias search="paru"
+###### DNF commands
+alias pacins='sudo dnf install'
+alias pacrmv='sudo dnf remove'
+alias cleanup='sudo dnf autoremove'
+alias pacup='sudo dnf update'
 
-# NOTE: DNF and APT aliases are commented out as they conflict with Pacman aliases.
+###### Pacman/AUR (Arch/Paru) commands
+# alias pacins='sudo pacman -S'
+# alias pacrmv='sudo pacman -R'
+# alias pacrmv-d='sudo pacman -Rns'
+# alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
+# alias parurmv='paru -Rns'
+# alias pacup='sudo pacman -Syu'
+# alias yup='yay -Syu'
+# alias pup='paru -Syu'
+# alias yin='yay -S'
+# alias pin='paru -S'
+# alias search="paru"
+
+# NOTE: Pacman and APT aliases are commented out as they conflict with DNF aliases.
 #       Uncomment the set you need for your active distribution.
 
 ########################################################################

@@ -47,11 +47,6 @@ fi
 # -----------------------------------------------------------------------------
 #                               ZSH OVERRIDES/ADDITIONS
 # -----------------------------------------------------------------------------
-
-# Zsh-specific PATH additions (Bun and MANPATH for NPM)
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-
 # NPM MANPATH (using Zsh-style MANPATH variable definition)
 # Note: $NPM_PACKAGES is already set by sourcing ~/.bashrc
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -62,6 +57,11 @@ if command -v fnm &> /dev/null; then
   # fnm eval is often preferred over manually setting FNM_PATH
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
+
+# bun completions
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # Custom Terminal Title setting for Zsh (using preexec hook, standard Zsh method)
 # Using Zsh's hooks for window title is more reliable than PROMPT_COMMAND

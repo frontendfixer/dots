@@ -55,8 +55,8 @@ fi
 # pnpm (Standard Bash check)
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
     # Note: `eval "$(pnpm env --shell bash)"` is also a common method for pnpm
 esac
 
@@ -71,6 +71,16 @@ if command -v fnm &> /dev/null && [ -n "${BASH_VERSION:-}" ]; then
     eval "$(fnm env --use-on-cd --shell bash)"
 fi
 
+# Android SDK PATH
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+if [ -d "$ANDROID_HOME" ]; then
+    export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin
+fi
+if [ -d /usr/lib/jvm/temurin-17-jdk ]; then
+    export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk
+    export PATH=$JAVA_HOME/bin:$PATH
+fi
 # -----------------------------------------------------------------------------
 #                                 ALIASES
 # -----------------------------------------------------------------------------
