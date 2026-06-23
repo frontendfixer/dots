@@ -188,4 +188,11 @@
 		}   
 	},
 
+"hyprland/window#qtile": {
+	"format": "{}",
+	"max-length": 60,
+	"separate-outputs": true,
+	"tooltip": true,
+},
+
 }

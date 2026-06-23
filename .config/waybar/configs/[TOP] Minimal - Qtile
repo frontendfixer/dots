@@ -1,0 +1,37 @@
+/* ---- Qtile-parity minimal bar ---- */
+
+{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  ],
+"layer": "top",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 4,
+"fixed-center": false,
+"ipc": true,
+"margin-top": 3,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"custom/menu",
+	"hyprland/workspaces",
+	"hyprland/window#qtile",
+	],
+
+"modules-right": [
+	"cpu#qtile",
+	"memory#qtile",
+	"network#qtile",
+	"pulseaudio#qtile",
+	"backlight#qtile",
+	"tray",
+	"clock",
+	"custom/power",
+	],
+}

@@ -411,15 +411,15 @@ set $ws0 "10"
 #workspace $ws4 output HDMI-0
 #workspace $ws5 output HDMI-0
 
-### assign applications to workspaces
+### assign applications to workspaces (Qtile assign_app.py parity)
 assign [class="Alacritty|kitty"] $ws1
-assign [class="firefox"] $ws3
 assign [class="Thunar|Pcmanfm"] $ws2
-assign [class="code-oss|Code|Subl|VSCodium|Geany|Atom"] $ws4
-assign [class="Gimp|kdenlive|figma-linux|Inkscape"] $ws8
-assign [class="vlc|libreoffice"] $ws6
-assign [class="$vm"] $ws5 
-assign [class="Chromium-browser"] $ws5
+assign [class="firefox|Firefox|Navigator|chromium|chromium-browser|Chromium|Google-chrome|brave-browser|qutebrowser|Helium|helium"] $ws3
+assign [class="code-oss|Code|Subl|VSCodium|Geany|Atom|Sublime-text"] $ws4
+assign [class="Gimp|kdenlive|figma-linux|Inkscape|postman"] $ws5
+assign [class="vlc|libreoffice|DBeaver"] $ws6
+assign [class="$vm|VirtualBox Manager"] $ws8
+assign [class="meld|Meld"] $ws10
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Alacritty] focus
@@ -492,6 +492,16 @@ for_window [class="Gedit"] floating enable
 for_window [class="Xed"] floating enable
 for_window [class="gcolor2"] floating enable
 for_window [class="Tk"] floating enable resize set 960 760
+for_window [class="Flameshot"] floating enable
+for_window [class="dmenu"] floating enable
+for_window [class="copyq"] floating enable
+for_window [class="meld|Meld"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="transmission-gtk|Transmission-gtk"] floating enable
+for_window [class="ssh-askpass"] floating enable
+for_window [title="pinentry"] floating enable
+for_window [class="zenity"] floating enable
+for_window [class="Nitrogen"] floating enable
 
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [title="alsamixer"] floating enable border pixel 1

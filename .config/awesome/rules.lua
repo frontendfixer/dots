@@ -65,6 +65,14 @@ function rules.create(clientkeys, clientbuttons)
 					"Pavucontrol",
 					"Xfce4-power-manager-settings",
 					"Transmission-gtk",
+					"Flameshot",
+					"dmenu",
+					"meld",
+					"Meld",
+					"VirtualBox",
+					"zenity",
+					"ssh-askpass",
+					"copyq",
 				},
 				name = {
 					"Event Tester", -- xev.
@@ -129,6 +137,8 @@ function rules.create(clientkeys, clientbuttons)
 					"Google-chrome",
 					"brave-browser",
 					"qutebrowser",
+					"Helium",
+					"helium",
 				},
 			},
 			except_any = {
@@ -144,6 +154,8 @@ function rules.create(clientkeys, clientbuttons)
 					"Code",
 					"VSCodium",
 					"Sublime-text",
+					"codium",
+					"code-oss",
 				},
 			},
 			properties = { screen = 1, tag = " 4 ", switchtotag = true },
@@ -154,6 +166,7 @@ function rules.create(clientkeys, clientbuttons)
 					"figma-linux",
 					"Gimp-2.10",
 					"Inkscape",
+					"postman",
 				},
 			},
 			properties = { screen = 1, tag = " 5 ", switchtotag = true },
@@ -163,9 +176,27 @@ function rules.create(clientkeys, clientbuttons)
 				class = {
 					"vlc",
 					"libreoffice",
+					"DBeaver",
 				},
 			},
 			properties = { screen = 1, tag = " 6 ", switchtotag = true },
+		},
+		{
+			rule_any = {
+				class = {
+					"VirtualBox Manager",
+				},
+			},
+			properties = { screen = 1, tag = " 8 ", switchtotag = true },
+		},
+		{
+			rule_any = {
+				class = {
+					"meld",
+					"Meld",
+				},
+			},
+			properties = { screen = 1, tag = " 9 ", switchtotag = true },
 		},
 		-- ####### specify size for a perticular window
 		{
