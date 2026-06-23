@@ -259,7 +259,7 @@ ${P}Web development (fnm)${N}
 "
 
 echo -e "\n${G}Installing optional web-dev tools${N} ===============\n"
-for pkg in git-lfs github-cli jq tmux; do
+for pkg in git-lfs github-cli jq; do
     pacman_install "$pkg" \
         || echo -e "${Y}$pkg not available, skipping${N}"
 done
@@ -323,23 +323,22 @@ pacman_install \
     xorg-server xorg-xinit xorg-xset xorg-xsetroot xorg-xrandr arandr \
     lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
     hyprland hypridle hyprlock awesome i3 i3blocks bspwm sxhkd qtile \
-    polybar picom dunst rofi waybar swaync wlogout swappy \
+    polybar picom dunst rofi waybar swaync swappy \
     btop lxappearance pcmanfm thunar ranger mousepad vim \
     firefox file-roller eog meld flameshot maim xclip scrot \
-    galculator brightnessctl light blueman android-tools \
-    gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-afc nfs \
+    galculator brightnessctl blueman android-tools \
+    gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-afc \
     polkit-gnome network-manager-applet nm-connection-editor \
     eza dmenu xdg-user-dirs papirus-icon-theme \
     redshift yad zenity transmission-gtk xscreensaver unclutter \
-    feh nitrogen numlockx volumeicon plymouth \
-    gtk-engine-murrine gtk-engines \
+    feh numlockx volumeicon plymouth \
     noto-fonts noto-fonts-emoji \
     swww wl-clipboard cliphist xdg-desktop-portal-hyprland \
     wlsunset gammastep dex xfce4-power-manager \
     zsh-autosuggestions zsh-syntax-highlighting
 
 echo -e "\n${G}Installing AUR packages (paru)${N} ===========\n"
-for aur_pkg in vscodium-bin qtile-extras pyprland wallust clipit autotiling ags; do
+for aur_pkg in qtile-extras pyprland wallust clipit autotiling ags; do
     aur_install "$aur_pkg" || true
 done
 aur_install android-file-transfer \
