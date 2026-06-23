@@ -15,9 +15,6 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
 	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
-    "persistent-workspaces": {
-      "*": 5
-	},
 	"format-icons": {
 		"1": "1",
 		"2": "2",
