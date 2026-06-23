@@ -5,14 +5,14 @@
 // HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
 
 {
-// NUMBERS style (Hyprland 0.55+ Lua dispatch)
+// NUMBERS style (Hyprland 0.55+ — use "activate" on waybar >= post-0.15 git; legacy 0.15.0 needs custom/workspaces#qtile)
 "hyprland/workspaces": {
 	"active-only": false,
 	"all-outputs": true,
 	"sort-by-number": true,
 	"format": "{icon}",
 	"show-special": false,
-	"on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"{}\" })'",
+	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
 	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "persistent-workspaces": {
@@ -39,8 +39,8 @@
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "persistent-workspaces": {
       "*": 5
 	},
@@ -63,8 +63,8 @@
 	"all-outputs": true,
 	"format": "{icon}",
 	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
 	"show-special": false,
     "persistent-workspaces": {
       "*": 5
@@ -105,8 +105,8 @@
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "persistent-workspaces": {
       "*": 5
 	},
@@ -131,8 +131,8 @@
 	//"format": " {icon} ",
 	"show-special": false,
 	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
 	"all-outputs": true,
 	"sort-by-number": true,
 	"format-icons": {
@@ -158,8 +158,8 @@
 	"sort-by-number": true,
 	"show-special": false,
 	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
 	"format": "{icon} {windows}",
 	"format-window-separator": " ",
 	"window-rewrite-default": " ",

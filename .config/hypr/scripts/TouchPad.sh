@@ -3,7 +3,7 @@
 # For disabling touchpad.
 
 notif="$HOME/.config/swaync/images/bell.png"
-TOUCHPAD_DEVICE="asue1209:00-04f3:319f-touchpad"
+TOUCHPAD_DEVICE="elan06c7:00-04f3:3193-touchpad"
 export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 
 enable_touchpad() {

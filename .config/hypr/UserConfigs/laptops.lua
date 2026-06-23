@@ -4,7 +4,7 @@
 local paths = require("lib.paths")
 local mainMod = "SUPER"
 local s = paths.scripts
-local touchpadDevice = "asue1209:00-04f3:319f-touchpad"
+local touchpadDevice = "elan06c7:00-04f3:3193-touchpad"
 
 hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd(s .. "/BrightnessKbd.sh --dec"), { repeating = true })
 hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd(s .. "/BrightnessKbd.sh --inc"), { repeating = true })
