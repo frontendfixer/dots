@@ -16,8 +16,21 @@ require_repo_root() {
         || die "Run from the dots repo root (arch-install.sh and .config must exist)."
 }
 
+require_not_root() {
+    [ "$EUID" -ne 0 ] || die "Run as your regular user, not with sudo."
+}
+
 require_sudo() {
     sudo -v || die "sudo is required."
+}
+
+ensure_curl() {
+    if command -v curl &>/dev/null; then
+        return 0
+    fi
+    echo -e "${G}Installing curl for network checks and bootstrap downloads...${N}"
+    sudo pacman -Syu --needed --noconfirm curl \
+        || die "curl is required and could not be installed."
 }
 
 require_network() {
@@ -64,7 +77,11 @@ pacman_install() {
 
 aur_install() {
     paru -S --needed --noconfirm "$@" \
-        || echo -e "${Y}AUR install failed for: $*${N}"
+        || {
+            echo -e "${Y}AUR install failed for: $*${N}"
+            AUR_FAILED+=("$*")
+            return 1
+        }
 }
 
 copy_into_home() {
@@ -95,6 +112,22 @@ install_vscodium_extensions() {
         codium --install-extension "$ext" --force 2>/dev/null \
             || echo -e "${Y}Could not install extension: $ext${N}"
     done < "$list"
+}
+
+install_python_user_tools() {
+    local venv="$HOME/.local/share/dots-python-tools"
+    local bin_dir="$HOME/.local/bin"
+
+    mkdir -p "$bin_dir"
+    python -m venv "$venv"
+    "$venv/bin/python" -m pip install --upgrade pip
+    "$venv/bin/python" -m pip install rofimoji beautysh black psutil
+
+    for tool in rofimoji beautysh black; do
+        if [ -x "$venv/bin/$tool" ]; then
+            ln -sf "$venv/bin/$tool" "$bin_dir/$tool"
+        fi
+    done
 }
 
 patch_x11_polkit_autostarts() {
@@ -134,8 +167,11 @@ init_postgresql_if_needed() {
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd "$SCRIPT_DIR"
+AUR_FAILED=()
 require_repo_root
+require_not_root
 require_sudo
+ensure_curl
 require_network
 
 echo -e "
@@ -255,7 +291,9 @@ echo -e "\n${G}Copying shell dotfiles${N} ===============\n"
 [ -f "$HOME/.bashrc" ] && mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
 [ -f "$HOME/.Xresources" ] && mv "$HOME/.Xresources" "$HOME/.Xresources.bak"
-cp -a .aliases .bashrc .zshrc .Xresources .face "$HOME/"
+for dotfile in .aliases .bashrc .zshrc .Xresources .face; do
+    copy_into_home "$dotfile" "$HOME/"
+done
 copy_into_home .zsh "$HOME/.zsh"
 
 echo -e "\n${G}Installing shell-color-scripts${N} ===============\n"
@@ -302,13 +340,13 @@ pacman_install \
 
 echo -e "\n${G}Installing AUR packages (paru)${N} ===========\n"
 for aur_pkg in vscodium-bin qtile-extras pyprland wallust clipit autotiling ags; do
-    aur_install "$aur_pkg"
+    aur_install "$aur_pkg" || true
 done
 aur_install android-file-transfer \
     || echo -e "${Y}android-file-transfer not installed (gvfs-mtp may be sufficient)${N}"
 
 echo -e "\n${G}Installing Python packages${N} ===========\n"
-pip install --user rofimoji beautysh black psutil
+install_python_user_tools
 
 echo -e "\n${G}Enabling services${N} ===========\n"
 sudo systemctl set-default graphical.target
@@ -450,6 +488,11 @@ sudo powertop --auto-tune
 echo "Laptop optimized for battery life"
 EOF
 chmod +x "$HOME/.scripts/laptop-optimize.sh"
+
+if [ "${#AUR_FAILED[@]}" -gt 0 ]; then
+    echo -e "\n${Y}AUR packages that failed to install:${N}"
+    printf ' - %s\n' "${AUR_FAILED[@]}"
+fi
 
 clear
 command -v colorscript &> /dev/null && colorscript random || fastfetch
