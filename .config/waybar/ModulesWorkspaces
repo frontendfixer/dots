@@ -5,21 +5,31 @@
 // HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
 
 {
-// CIRCLES Style
+// NUMBERS style (Hyprland 0.55+ Lua dispatch)
 "hyprland/workspaces": {
 	"active-only": false,
 	"all-outputs": true,
+	"sort-by-number": true,
 	"format": "{icon}",
 	"show-special": false,
-	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"{}\" })'",
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "persistent-workspaces": {
       "*": 5
 	},
 	"format-icons": {
-		"active": "",
-		"default": "",
+		"1": "1",
+		"2": "2",
+		"3": "3",
+		"4": "4",
+		"5": "5",
+		"6": "6",
+		"7": "7",
+		"8": "8",
+		"9": "9",
+		"10": "10",
+		"default": "•",
 	},
 },
 // ROMAN Numerals style

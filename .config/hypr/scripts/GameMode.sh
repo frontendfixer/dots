@@ -9,15 +9,9 @@ SCRIPTSDIR="$HOME/.config/hypr/scripts"
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 if [ "$HYPRGAMEMODE" = 1 ] ; then
     hyprctl --batch "\
-        keyword animations:enabled 0;\
-        keyword decoration:drop_shadow 0;\
-		keyword decoration:blur:passes 0;\
-        keyword general:gaps_in 0;\
-        keyword general:gaps_out 0;\
-        keyword general:border_size 1;\
-        keyword decoration:rounding 0"
-	
-	hyprctl keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
+        eval 'hl.config({ animations = { enabled = false } })';\
+        eval 'hl.config({ decoration = { shadow = { enabled = false }, blur = { passes = 0 }, rounding = 0, active_opacity = 1.0, inactive_opacity = 1.0, fullscreen_opacity = 1.0 } })';\
+        eval 'hl.config({ general = { gaps_in = 0, gaps_out = 0, border_size = 1 } })'"
     swww kill 
     notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
     exit
@@ -26,6 +20,7 @@ else
 	sleep 0.1
 	${SCRIPTSDIR}/WallustSwww.sh
 	sleep 0.5
+	hyprctl reload
 	${SCRIPTSDIR}/Refresh.sh	 
     notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
     exit

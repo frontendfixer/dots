@@ -33,17 +33,17 @@ main() {
     
     # Map choices to corresponding files
     case $choice in
-        1) file="$UserConfigs/ENVariables.conf" ;;
-        2) file="$UserConfigs/WindowRules.conf" ;;
-        3) file="$UserConfigs/Startup_Apps.conf" ;;
-        4) file="$UserConfigs/UserKeybinds.conf" ;;
-        5) file="$UserConfigs/Monitors.conf" ;;
-        6) file="$UserConfigs/Laptops.conf" ;;
-        7) file="$UserConfigs/UserSettings.conf" ;;
-        8) file="$UserConfigs/UserDecorAnimations.conf" ;;
-        9) file="$UserConfigs/WorkspaceRules.conf" ;;
-        10) file="$configs/Settings.conf" ;;
-        11) file="$configs/Keybinds.conf" ;;
+        1) file="$UserConfigs/envariables.lua" ;;
+        2) file="$UserConfigs/window_rules.lua" ;;
+        3) file="$UserConfigs/startup_apps.lua" ;;
+        4) file="$UserConfigs/user_keybinds.lua" ;;
+        5) file="$UserConfigs/monitors.lua" ;;
+        6) file="$UserConfigs/laptops.lua" ;;
+        7) file="$UserConfigs/user_settings.lua" ;;
+        8) file="$UserConfigs/user_decor_animations.lua" ;;
+        9) file="$UserConfigs/workspace_rules.lua" ;;
+        10) file="$configs/settings.lua" ;;
+        11) file="$configs/keybinds.lua" ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 

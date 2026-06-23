@@ -7,8 +7,19 @@ function random_hex() {
     echo $random_hex
 }
 
+border=""
+for _ in $(seq 1 10); do
+    border+="$(random_hex) "
+done
+border+="270deg"
+
 # rainbow colors only for active window
-hyprctl keyword general:col.active_border $(random_hex)  $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex)  270deg
+hyprctl eval "hl.config({ general = { col = { active_border = '${border}' } } })"
 
 # rainbow colors for inactive window (uncomment to take effect)
-#hyprctl keyword general:col.inactive_border $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) $(random_hex) 270deg
+# inactive=""
+# for _ in $(seq 1 10); do
+#     inactive+="$(random_hex) "
+# done
+# inactive+="270deg"
+# hyprctl eval "hl.config({ general = { col = { inactive_border = '${inactive}' } } })"

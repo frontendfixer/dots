@@ -8,21 +8,13 @@ LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
 
 case $LAYOUT in
 "master")
-	hyprctl keyword general:layout dwindle
-	hyprctl keyword unbind SUPER,J
-	hyprctl keyword unbind SUPER,K
-	hyprctl keyword bind SUPER,J,cyclenext
-	hyprctl keyword bind SUPER,K,cyclenext,prev
-	hyprctl keyword bind SUPER,O,togglesplit
+	hyprctl eval 'hl.config({ general = { layout = "dwindle" } })'
+	hyprctl eval 'hl.bind("SUPER + O", hl.dsp.layout("togglesplit"))'
   notify-send -e -u low -i "$notif" "Dwindle Layout"
 	;;
 "dwindle")
-	hyprctl keyword general:layout master
-	hyprctl keyword unbind SUPER,J
-	hyprctl keyword unbind SUPER,K
-	hyprctl keyword unbind SUPER,O
-	hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
-	hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
+	hyprctl eval 'hl.config({ general = { layout = "master" } })'
+	hyprctl eval 'hl.unbind("SUPER + O")'
   notify-send -e -u low -i "$notif" "Master Layout"
 	;;
 *) ;;
