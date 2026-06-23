@@ -481,7 +481,7 @@
 "custom/power_vertical": {
 	"format": "⏻",
 	"exec": "echo ; echo 󰟡 power // blur",
-	"on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+	"on-click": "$HOME/.config/hypr/scripts/PowerMenu.sh",
 	"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
 	"interval": 86400, // once every day
 	"tooltip": true,
