@@ -1,24 +1,17 @@
---	██████╗ ██████╗ ██╗      ██████╗ ██████╗
---	██╔════╝██╔═══██╗██║     ██╔═══██╗██╔══██╗
---	██║     ██║   ██║██║     ██║   ██║██████╔╝
---	██║     ██║   ██║██║     ██║   ██║██╔══██╗
---	╚██████╗╚██████╔╝███████╗╚██████╔╝██║  ██║
---	 ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝
+-- Auto-generated from user-color-palette/colors.py — do not edit
+-- Run: ~/.config/user-color-palette/sync-colors.sh
 
--------------------------
--- Dracula-soft Color
--------------------------
 local colors = {
 	bg = "#212128",
-	fg = "#eeeef4",
-	dark = "#1a1a1e",
+	fg = "#EEEEF4",
+	dark = "#1A1A1E",
 	gray = "#565656",
-	cyan = "#63fff7",
+	cyan = "#63FFF7",
 	green = "#ABE9B3",
-	orange = "#ffc370",
-	pink = "#fc88d1",
-	purple = "#ff3dff",
-	red = "#ff8fad",
+	orange = "#FFC370",
+	pink = "#FC88D1",
+	purple = "#FF3DFF",
+	red = "#FF8FAD",
 	yellow = "#FAE3B0",
 }
 

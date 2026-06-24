@@ -1,24 +1,25 @@
--- Central color palette (edit this file only).
--- After changes run: ~/.config/hypr/lib/sync-colors.sh
+-- Auto-generated from user-color-palette/colors.py — do not edit
+-- Run: ~/.config/user-color-palette/sync-colors.sh
 -- Hyprland Lua configs: require("lib.colors")
 
 return {
-    background = "rgb(212022)",
-    foreground = "rgb(FAF0E8)",
-    color0 = "rgb(474649)",
-    color1 = "rgb(1A171F)",
-    color2 = "rgb(143551)",
-    color3 = "rgb(99352B)",
-    color4 = "rgb(2B5C98)",
-    color5 = "rgb(0DB0B6)",
-    color6 = "rgb(B4A08E)",
-    color7 = "rgb(EFE2D6)",
-    color8 = "rgb(A79E95)",
-    color9 = "rgb(231F29)",
-    color10 = "rgb(1B466C)",
-    color11 = "rgb(CC463A)",
-    color12 = "rgb(3A7BCA)",
-    color13 = "rgb(12EBF3)",
-    color14 = "rgb(F0D5BD)",
-    color15 = "rgb(EFE2D6)",
+
+    background = "rgb(1A1A1E)",
+    foreground = "rgb(F8F8F8)",
+    color0 = "rgb(1A1A1E)",
+    color1 = "rgb(212128)",
+    color2 = "rgb(ABE9B3)",
+    color3 = "rgb(63FFF7)",
+    color4 = "rgb(7AA2F7)",
+    color5 = "rgb(FF3DFF)",
+    color6 = "rgb(FFC370)",
+    color7 = "rgb(EEEEF4)",
+    color8 = "rgb(565656)",
+    color9 = "rgb(FF8FAD)",
+    color10 = "rgb(FAE3B0)",
+    color11 = "rgb(FFC370)",
+    color12 = "rgb(7AA2F7)",
+    color13 = "rgb(64FCCC)",
+    color14 = "rgb(FC88D1)",
+    color15 = "rgb(D0D0D0)",
 }

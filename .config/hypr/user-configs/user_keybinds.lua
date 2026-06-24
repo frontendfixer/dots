@@ -3,7 +3,6 @@
 local paths = require("lib.paths")
 local mainMod = "SUPER"
 local s = paths.scripts
-local us = paths.userScripts
 
 local function bind(key, action, opts)
     hl.unbind(key)
@@ -48,6 +47,9 @@ hl.bind(mainMod .. " + space", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + SHIFT + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Insert",
     hl.dsp.exec_cmd("sh -c 'mkdir -p ~/Pictures && flameshot full -p ~/Pictures/$(date +%Y-%m-%d-%T-scr.png)'"))
+
+hl.bind("CTRL + SHIFT + space",
+    hl.dsp.exec_cmd("rofi -modi 'run,drun,emoji:~/.scripts/rofiemoji.sh' -show emoji"))
 
 hl.bind(mainMod .. " + CTRL + SHIFT + left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }),
     { repeating = true })

@@ -1,2 +1,48 @@
-/* Palette colors — generated from ~/.config/hypr/lib/colors.lua */
-@import "~/.config/hypr/lib/colors-rofi.rasi"
+/* Auto-generated from user-color-palette/colors.py — do not edit */
+/* Run: ~/.config/user-color-palette/sync-colors.sh */
+
+
+* {
+    background: #1A1A1E;
+    foreground: #F8F8F8;
+    background-color: #1A1A1E;
+    border-color: #7AA2F7;
+
+    active-background: #7AA2F7;
+    active-foreground: #F8F8F8;
+    normal-background: #1A1A1E;
+    normal-foreground: #F8F8F8;
+    urgent-background: #64FCCC;
+    urgent-foreground: #F8F8F8;
+
+    alternate-active-background: #FFC370;
+    alternate-active-foreground: #F8F8F8;
+    alternate-normal-background: #1A1A1E;
+    alternate-normal-foreground: #F8F8F8;
+    alternate-urgent-background: #1A1A1E;
+    alternate-urgent-foreground: #F8F8F8;
+
+    selected-active-background: #7AA2F7;
+    selected-active-foreground: #1A1A1E;
+    selected-normal-background: #7AA2F7;
+    selected-normal-foreground: #1A1A1E;
+    selected-urgent-background: #FFC370;
+    selected-urgent-foreground: #1A1A1E;
+
+    color0: #1A1A1E;
+    color1: #212128;
+    color2: #ABE9B3;
+    color3: #63FFF7;
+    color4: #7AA2F7;
+    color5: #FF3DFF;
+    color6: #FFC370;
+    color7: #EEEEF4;
+    color8: #565656;
+    color9: #FF8FAD;
+    color10: #FAE3B0;
+    color11: #FFC370;
+    color12: #7AA2F7;
+    color13: #64FCCC;
+    color14: #FC88D1;
+    color15: #D0D0D0;
+}
