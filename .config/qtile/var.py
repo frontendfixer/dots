@@ -1,7 +1,7 @@
 #########set default
 mod = "mod4"
 terminal = "kitty"
-myBrowser = "google-chrome"
+myBrowser = "helium"
 broswer_alt = "firefox"
 codeEditor = "code"
 file = "pcmanfm"
