@@ -1,0 +1,47 @@
+/* Auto-generated from colors.lua — do not edit */
+/* Run: ~/.config/hypr/lib/sync-colors.sh */
+
+* {
+    background: #212022;
+    foreground: #FAF0E8;
+    background-color: #212022;
+    border-color: #3A7BCA;
+
+    active-background: #3A7BCA;
+    active-foreground: #FAF0E8;
+    normal-background: #212022;
+    normal-foreground: #FAF0E8;
+    urgent-background: #12EBF3;
+    urgent-foreground: #FAF0E8;
+
+    alternate-active-background: #CC463A;
+    alternate-active-foreground: #FAF0E8;
+    alternate-normal-background: #212022;
+    alternate-normal-foreground: #FAF0E8;
+    alternate-urgent-background: #212022;
+    alternate-urgent-foreground: #FAF0E8;
+
+    selected-active-background: #3A7BCA;
+    selected-active-foreground: #212022;
+    selected-normal-background: #3A7BCA;
+    selected-normal-foreground: #212022;
+    selected-urgent-background: #CC463A;
+    selected-urgent-foreground: #212022;
+
+    color0: #474649;
+    color1: #1A171F;
+    color2: #143551;
+    color3: #99352B;
+    color4: #2B5C98;
+    color5: #0DB0B6;
+    color6: #B4A08E;
+    color7: #EFE2D6;
+    color8: #A79E95;
+    color9: #231F29;
+    color10: #1B466C;
+    color11: #CC463A;
+    color12: #3A7BCA;
+    color13: #12EBF3;
+    color14: #F0D5BD;
+    color15: #EFE2D6;
+}

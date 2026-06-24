@@ -1,10 +1,6 @@
--- /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
--- Default Keybinds
-
 local paths = require("lib.paths")
 local mainMod = "SUPER"
 local s = paths.scripts
-local us = paths.userScripts
 
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("hyprctl dispatch exit 0"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
@@ -16,26 +12,11 @@ hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd(s .. "/LockScreen.sh"))
 hl.bind("CTRL + ALT + P", hl.dsp.exec_cmd(s .. "/Wlogout.sh"))
 
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(s .. "/KeyHints.sh"))
-hl.bind(mainMod .. " + ALT + R", hl.dsp.exec_cmd(s .. "/Refresh.sh"))
-hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd(s .. "/RofiEmoji.sh"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(s .. "/RofiSearch.sh"))
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(s .. "/ChangeBlur.sh"))
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd(s .. "/GameMode.sh"))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd(s .. "/ChangeLayout.sh"))
-hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd(s .. "/ClipManager.sh"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(us .. "/QuickEdit.sh"))
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(us .. "/RofiBeats.sh"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(us .. "/WallpaperSelect.sh"))
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(us .. "/WallpaperEffects.sh"))
-hl.bind("CTRL + ALT + W", hl.dsp.exec_cmd(us .. "/WallpaperRandom.sh"))
 hl.bind(mainMod .. " + ALT + O", hl.dsp.exec_cmd("hyprctl setprop active opaque toggle"))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.exec_cmd(s .. "/KeyBinds.sh"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
-hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd(s .. "/WaybarStyles.sh"))
-hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd(s .. "/WaybarLayout.sh"))
 
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -54,25 +35,23 @@ hl.bind(mainMod .. " + CTRL + tab", hl.dsp.group.next({ forward = false }))
 hl.bind("ALT + tab", hl.dsp.window.cycle_next())
 hl.bind("ALT + tab", hl.dsp.window.bring_to_top())
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(s .. "/Volume.sh --inc"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(s .. "/Volume.sh --dec"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(s .. "/Volume.sh --toggle-mic"), { locked = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(s .. "/Volume.sh --toggle"), { locked = true })
-hl.bind("XF86Sleep", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
-hl.bind("XF86Rfkill", hl.dsp.exec_cmd(s .. "/AirplaneMode.sh"), { locked = true })
+-- Laptop multimedia keys for volume and LCD brightness
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+    { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd(s .. "/MediaCtrl.sh --pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(s .. "/MediaCtrl.sh --pause"), { locked = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd(s .. "/MediaCtrl.sh --nxt"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(s .. "/MediaCtrl.sh --prv"), { locked = true })
-hl.bind("XF86AudioStop", hl.dsp.exec_cmd(s .. "/MediaCtrl.sh --stop"), { locked = true })
-
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --now"))
-hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --area"))
-hl.bind(mainMod .. " + CTRL + Print", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --in5"))
-hl.bind(mainMod .. " + CTRL + SHIFT + Print", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --in10"))
-hl.bind("ALT + Print", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --active"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(s .. "/ScreenShot.sh --swappy"))
+-- Requires playerctl
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
