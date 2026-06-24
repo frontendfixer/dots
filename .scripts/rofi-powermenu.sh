@@ -22,7 +22,7 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p "Uptime: $uptime" \
 		-mesg "Uptime: $uptime" \
-		-theme $HOME/.config/rofi/rofi-powermenu.rasi
+		-theme $HOME/.config/rofi/themes/rofi-powermenu.rasi
 }
 
 # Confirmation CMD
@@ -35,7 +35,7 @@ confirm_cmd() {
 		-dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme $HOME/.config/rofi/rofi-powermenu.rasi
+		-theme $HOME/.config/rofi/themes/rofi-powermenu.rasi
 }
 
 # Ask for confirmation

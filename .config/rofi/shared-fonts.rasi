@@ -1,0 +1,5 @@
+/* Shared rofi fonts — edit here to change all menus */
+
+configuration {
+    font: "JetBrainsMono Nerd Font 11";
+}

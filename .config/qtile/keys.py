@@ -28,7 +28,7 @@ def keybinding():
             [mod],
             "p",
             lazy.spawn(
-                "rofi -modi drun -show drun -config ~/.config/rofi/col_singlerow.rasi"
+                "rofi -modi drun -show drun -config ~/.config/rofi/themes/col_singlerow.rasi"
             ),
         ),
         Key(

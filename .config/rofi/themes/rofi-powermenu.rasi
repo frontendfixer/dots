@@ -1,0 +1,111 @@
+/**
+ * Power menu — adi1090x grid layout
+ * https://github.com/adi1090x/rofi
+ **/
+
+@import "../shared-fonts.rasi"
+@import "../colors-rofi.rasi"
+
+configuration {
+    show-icons: false;
+}
+
+* {
+    background: @background-color;
+    background-alt: @color1;
+    foreground: @foreground;
+    selected: @selected-normal-background;
+    active: @alternate-active-background;
+    urgent: @urgent-background;
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    width: 520px;
+    border: 2px solid;
+    border-radius: 16px;
+    border-color: @border-color;
+    background-color: @background;
+}
+
+mainbox {
+    spacing: 12px;
+    padding: 18px;
+    border-radius: 14px;
+    background-color: transparent;
+    children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+    spacing: 10px;
+    padding: 0 4px 8px 4px;
+    background-color: transparent;
+    children: [ "textbox-prompt-colon", "prompt" ];
+}
+
+textbox-prompt-colon {
+    font: "JetBrainsMono Nerd Font 22";
+    expand: false;
+    str: "⏻";
+    padding: 8px 14px;
+    border-radius: 10px;
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+prompt {
+    font: "JetBrainsMono Nerd Font 11";
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: @active-background;
+    text-color: @background-color;
+}
+
+listview {
+    columns: 5;
+    lines: 1;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    fixed-height: true;
+    fixed-columns: true;
+    spacing: 12px;
+    background-color: transparent;
+}
+
+element {
+    padding: 18px 12px;
+    border-radius: 12px;
+    background-color: @background-alt;
+    text-color: @foreground;
+    cursor: pointer;
+}
+
+element-text {
+    font: "JetBrainsMono Nerd Font 28";
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @background-color;
+}
+
+element selected.active {
+    background-color: @selected-active-background;
+    text-color: @background-color;
+}
+
+message {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+
+textbox {
+    text-color: @foreground;
+}

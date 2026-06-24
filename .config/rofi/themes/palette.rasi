@@ -1,0 +1,12 @@
+/* Shorthand aliases for adi1090x-style themes */
+@import "../colors-rofi.rasi"
+
+* {
+    al: #00000000;
+    bg: @background;
+    se: @color1;
+    fg: @foreground;
+    ac: @color11;
+    muted: @color8;
+    highlight: @color13;
+}

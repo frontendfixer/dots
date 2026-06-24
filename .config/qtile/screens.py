@@ -41,7 +41,7 @@ top_bar = [
         fontsize=20,
         mouse_callbacks={
             "Button1": lazy.spawn(
-                "rofi -modi drun -show drun -config ~/.config/rofi/panel.rasi"
+                "rofi -modi drun -show drun -config ~/.config/rofi/themes/panel.rasi"
             )
         },
     ),
