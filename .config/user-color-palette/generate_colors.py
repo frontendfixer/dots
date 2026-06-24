@@ -230,20 +230,9 @@ def main() -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         writer(path)
 
-    stale = [
-        hypr_lib / "colors.conf",
-        hypr_lib / "colors.css",
-        hypr_lib / "colors-rofi.rasi",
-    ]
-    for path in stale:
-        if path.exists():
-            path.unlink()
-
     print("Generated from user-color-palette/colors.py:")
     for path in outputs:
         print(f"  {path}")
-    for path in stale:
-        print(f"  removed stale {path}")
 
 
 if __name__ == "__main__":
