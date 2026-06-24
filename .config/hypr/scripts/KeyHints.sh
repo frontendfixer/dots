@@ -1,40 +1,30 @@
 #!/bin/bash
-# Keyhints. Idea got from Garuda Hyprland
+# Key hints — matches user-configs/user_keybinds.lua + configs/keybinds.lua
 
-# GDK BACKEND. Change to either wayland or x11 if having issues
 BACKEND=wayland
 
-# Check if rofi is running and kill it if it is
 if pgrep -x "rofi" > /dev/null; then
     pkill rofi
 fi
 
-# Detect monitor resolution and scale
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
 hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
 
-# Calculate width and height based on percentages and monitor resolution
 width=$((x_mon * hypr_scale / 100))
 height=$((y_mon * hypr_scale / 100))
 
-# Set maximum width and height
 max_width=1200
 max_height=1000
-
-# Set percentage of screen size for dynamic adjustment
 percentage_width=70
 percentage_height=70
 
-# Calculate dynamic width and height
 dynamic_width=$((width * percentage_width / 100))
 dynamic_height=$((height * percentage_height / 100))
 
-# Limit width and height to maximum values
 dynamic_width=$(($dynamic_width > $max_width ? $max_width : $dynamic_width))
 dynamic_height=$(($dynamic_height > $max_height ? $max_height : $dynamic_height))
 
-# Launch yad with calculated width and height
 GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
     --center \
     --title="Keybindings" \
@@ -44,44 +34,49 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
     --column=Description: \
     --column=Command: \
     --timeout-indicator=bottom \
-"ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
-" enter" "Terminal" "(kitty)" \
-" SHIFT enter" "DropDown Terminal" "(kitty-pyprland)" \
-" SHIFT K" "Searchable Keybinds" "(Keybinds)" \
-" A" "Desktop Overview" "(AGS Overview)" \
-" D" "App Launcher" "(rofi-wayland)" \
-" T" "Open File Manager" "(Thunar)" \
-" S" "Google Search" "(rofi)" \
-" Q" "close active window" "(not kill)" \
-" Shift Q " "kills an active window" "(kill)" \
-" Z" "Desktop Zoom" "(pyprland)" \
-" Alt V" "Clipboard Manager" "(cliphist)" \
-" W" "Choose wallpaper" "(Wallpaper Menu)" \
-" Shift W" "Choose wallpaper effects" "(imagemagick + swww)" \
-"CTRL ALT W" "Random wallpaper" "(via swww)" \
-" B" "Hide/UnHide Waybar" "waybar" \
-" CTRL B" "Choose waybar styles" "(waybar styles)" \
-" ALT B" "Choose waybar layout" "(waybar layout)" \
-" ALT R" "Reload Waybar swaync Rofi" "CHECK NOTIFICATION FIRST!!!" \
-" SHIFT N" "Launch Notification Panel" "swaync Notification Center" \
-" Print" "screenshot" "(grim)" \
-" Shift Print" "screenshot region" "(grim + slurp)" \
-" Shift S" "screenshot region" "(swappy)" \
-" CTRL Print" "screenshot timer 5 secs " "(grim)" \
-" CTRL SHIFT Print" "screenshot timer 10 secs " "(grim)" \
-"ALT Print" "Screenshot active window" "active window only" \
-"CTRL ALT P" "power-menu" "(wlogout)" \
-"CTRL ALT L" "screen lock" "(hyprlock)" \
-"CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
-" F" "Fullscreen" "Toggles to full screen" \
-" ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
-" Shift F" "Toggle float" "single window" \
-" ALT F" "Toggle all windows to float" "all windows" \
-" Shift B" "Toggle Blur" "normal or less blur" \
-" SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
-" ALT E" "Rofi Emoticons" "Emoticon" \
-" ALT V" "Clipboard Manager" "cliphist" \
-" H" "Launch this app" "" \
-" E" "View or EDIT Keybinds, Settings, Monitor" "" \
-"" "" "" \
-"More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
+"ESC" "close this app" "" \
+"" "Applications" "" \
+"SUPER Return" "Terminal" "kitty" \
+"SUPER Ctrl Return" "Dropdown terminal" "pypr toggle term" \
+"SUPER C" "Code editor" "code" \
+"SUPER Shift C" "Calculator" "galculator" \
+"SUPER E" "File manager" "pcmanfm" \
+"SUPER B" "Browser" "helium" \
+"SUPER Shift B" "Alt browser" "firefox" \
+"SUPER P" "App launcher" "rofi col_singlerow" \
+"SUPER D" "App launcher (full)" "rofi main config" \
+"SUPER Shift Return" "dmenu" "dmenu_run" \
+"Ctrl Shift Space" "Emoji picker" "rofi emoji" \
+"" "System / power" "" \
+"SUPER Shift L" "Lock screen" "hyprlock" \
+"Ctrl Alt L" "Lock screen" "hyprlock" \
+"SUPER Shift E" "Power menu" "wlogout" \
+"Ctrl Alt P" "Power menu" "wlogout" \
+"Ctrl Alt Delete" "Exit Hyprland" "hyprctl dispatch exit" \
+"SUPER H" "Key hints" "this dialog" \
+"" "Windows / layout" "" \
+"SUPER Q" "Close window" "" \
+"SUPER Shift Q" "Kill active process" "" \
+"SUPER F" "Fullscreen" "" \
+"SUPER Shift F" "Toggle float" "" \
+"SUPER Shift Space" "Toggle float" "" \
+"SUPER Space" "Cycle windows" "" \
+"SUPER Shift S" "Toggle split" "" \
+"SUPER Insert" "Screenshot (full)" "flameshot" \
+"SUPER Shift G" "Screenshot (region)" "flameshot gui" \
+"SUPER A" "Desktop overview" "ags" \
+"SUPER Z" "Desktop zoom" "pypr zoom" \
+"SUPER Shift N" "Notifications" "swaync" \
+"SUPER arrows" "Focus direction" "" \
+"SUPER Shift arrows" "Move window" "" \
+"SUPER Ctrl arrows" "Resize window" "" \
+"SUPER Ctrl Shift arrows" "Resize floating window" "" \
+"SUPER 1-0" "Switch workspace" "" \
+"SUPER Shift 1-0" "Move window to workspace" "" \
+"" "Media keys" "" \
+"XF86AudioRaise/Lower" "Volume" "wpctl" \
+"XF86AudioMute" "Mute" "wpctl" \
+"XF86AudioMicMute" "Mic mute" "wpctl" \
+"XF86MonBrightnessUp/Down" "Brightness" "brightnessctl" \
+"XF86AudioPlay/Pause" "Media play-pause" "playerctl" \
+"XF86AudioNext/Prev" "Media next/prev" "playerctl"
