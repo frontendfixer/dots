@@ -10,8 +10,8 @@ MARKER="$HYPR_CONFIG/.initial_startup_done"
 
 kvantum_theme="catppuccin-mocha-blue"
 color_scheme="prefer-dark"
-gtk_theme="Andromeda-dark"
-icon_theme="Flat-Remix-Blue-Dark"
+gtk_theme="Dracula"
+icon_theme="Papirus-Dark"
 cursor_theme="Bibata-Modern-Ice"
 
 if [ -f "$MARKER" ]; then
