@@ -13,15 +13,9 @@ def assign_app_group(client):
         "firefox",
         "Firefox",
         "Navigator",
-        "chromium",
-        "chromium-browser",
-        "Chromium",
-        "google-chrome",
-        "Google-chrome",
-        "brave-browser",
-        "qutebrowser",
         "Helium",
         "helium",
+        "helium-browser",
     ]  # Web Browsers
     d["4"] = ["codium", "VSCodium", "Code", "code-oss", "Sublime-text"]  # Code Editor
     d["5"] = ["figma-linux", "gimp-2.10", "Inkscape", "postman"]

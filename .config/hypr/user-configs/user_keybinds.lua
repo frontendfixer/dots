@@ -12,7 +12,7 @@ end
 -- Overrides: unbind default from configs/keybinds.lua, then bind user action
 local overrides = {
     { key = mainMod .. " + E",             action = hl.dsp.exec_cmd("pcmanfm") },
-    { key = mainMod .. " + B",             action = hl.dsp.exec_cmd("helium") },
+    { key = mainMod .. " + B",             action = hl.dsp.exec_cmd("helium-browser") },
     { key = mainMod .. " + SHIFT + B",     action = hl.dsp.exec_cmd("firefox") },
     { key = mainMod .. " + SHIFT + G",     action = hl.dsp.exec_cmd("flameshot gui") },
     { key = mainMod .. " + P",             action = hl.dsp.exec_cmd("pkill rofi || rofi -modi drun -show drun -config ~/.config/rofi/themes/col_singlerow.rasi") },
@@ -33,7 +33,7 @@ for _, entry in ipairs(overrides) do
 end
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("code"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("codium"))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("galculator"))
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -modi drun,filebrowser,run,window"))

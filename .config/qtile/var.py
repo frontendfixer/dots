@@ -1,7 +1,7 @@
 #########set default
 mod = "mod4"
 terminal = "kitty"
-myBrowser = "helium"
+myBrowser = "helium-browser"
 broswer_alt = "firefox"
-codeEditor = "code"
+codeEditor = "codium"
 file = "pcmanfm"

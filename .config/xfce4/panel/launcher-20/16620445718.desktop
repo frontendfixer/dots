@@ -1,19 +1,19 @@
 [Desktop Entry]
-Name=Visual Studio Code
+Name=VSCodium
 Comment=Code Editing. Refined.
 GenericName=Text Editor
-Exec=/usr/bin/code --unity-launch %F
-Icon=visual-studio-code
+Exec=/usr/bin/codium --unity-launch %F
+Icon=vscodium
 Type=Application
 StartupNotify=false
-StartupWMClass=Code
+StartupWMClass=VSCodium
 Categories=TextEditor;Development;IDE;
 MimeType=text/plain;inode/directory;application/x-visual-studio-code-workspace;
 Actions=new-empty-window;
 Keywords=vscode;
-X-XFCE-Source=file:///usr/share/applications/visual-studio-code.desktop
+X-XFCE-Source=file:///usr/share/applications/codium.desktop
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Exec=/usr/bin/code --no-sandbox --new-window %F
-Icon=visual-studio-code
+Exec=/usr/bin/codium --no-sandbox --new-window %F
+Icon=vscodium

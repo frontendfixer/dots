@@ -22,7 +22,7 @@ wr({ match = { fullscreen = true }, idle_inhibit = "fullscreen" })
 -- Workspace assignment
 wr({ match = { class = "^(kitty|Alacritty)$" }, workspace = "1" })
 wr({ match = { class = "^([Tt]hunar|[Pp]cmanfm)$" }, workspace = "2" })
-wr({ match = { class = "^(firefox|Firefox|Navigator|chromium|chromium-browser|Chromium|[Gg]oogle-chrome(-beta|-dev|-unstable)?|[Bb]rave-browser|qutebrowser|[Hh]elium)$" }, workspace =
+wr({ match = { class = "^(firefox|Firefox|Navigator|[Hh]elium|helium-browser)$" }, workspace =
 "3" })
 wr({ match = { class = "^(codium|VSCodium|Code|code-oss|Sublime-text)$" }, workspace = "4" })
 wr({ match = { class = "^(figma-linux|[Gg]imp-2.10|Inkscape|postman)$" }, workspace = "5" })

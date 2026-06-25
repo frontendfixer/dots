@@ -42,15 +42,11 @@ float_rules = [
     Match(func=lambda c: bool(c.is_transient_for())),
     # --- Browsers (popups & PiP only; main windows stay tiled) ---
     Match(title="Picture-in-Picture"),
-    Match(wm_class="Chromium", wm_type="utility"),
-    Match(wm_class="chromium", wm_type="utility"),
-    Match(wm_class="Google-chrome", wm_type="utility"),
     Match(wm_class="Firefox", wm_type="utility"),
     Match(wm_class="firefox", wm_type="utility"),
     Match(wm_class="Helium", wm_type="utility"),
     Match(wm_class="helium", wm_type="utility"),
-    Match(wm_class="Brave-browser", wm_type="utility"),
-    Match(wm_class="qutebrowser", wm_type="utility"),
+    Match(wm_class="helium-browser", wm_type="utility"),
     Match(wm_class="Toolkit"),  # Chromium extension popups
     # --- Editors / IDEs ---
     Match(wm_class="VSCodium", title="Add Folder to Workspace"),

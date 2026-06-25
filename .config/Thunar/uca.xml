@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
-	<icon>visual-studio-code</icon>
-	<name>Open in VS-Code</name>
+	<icon>vscodium</icon>
+	<name>Open in VSCodium</name>
 	<unique-id>1664503744635085-1</unique-id>
-	<command>code -a .</command>
-	<description>Open file or folder in VS-Code text editor</description>
+	<command>codium -a .</command>
+	<description>Open file or folder in VSCodium text editor</description>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
@@ -30,11 +30,11 @@
 	<directories/>
 </action>
 <action>
-	<icon>visual-studio-code-insiders</icon>
-	<name>Open with VSCode</name>
+	<icon>vscodium</icon>
+	<name>Open with VSCodium</name>
 	<unique-id>1668058579591948-4</unique-id>
-	<command>code %f</command>
-	<description>open file in Visual Studio Code</description>
+	<command>codium %f</command>
+	<description>open file in VSCodium</description>
 	<patterns>*</patterns>
 	<other-files/>
 	<text-files/>

@@ -6,7 +6,7 @@
 --	  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚══════╝
 
 local var = {
-	browser = "chromium",
+	browser = "helium-browser",
 	editor = os.getenv("EDITOR") or "nvim",
 	editor_gui = "mousepad",
 	main_editor = "codium",

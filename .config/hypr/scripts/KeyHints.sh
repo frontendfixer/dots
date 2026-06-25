@@ -38,10 +38,10 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
 "" "Applications" "" \
 "SUPER Return" "Terminal" "kitty" \
 "SUPER Ctrl Return" "Dropdown terminal" "pypr toggle term" \
-"SUPER C" "Code editor" "code" \
+"SUPER C" "Code editor" "codium" \
 "SUPER Shift C" "Calculator" "galculator" \
 "SUPER E" "File manager" "pcmanfm" \
-"SUPER B" "Browser" "helium" \
+"SUPER B" "Browser" "helium-browser" \
 "SUPER Shift B" "Alt browser" "firefox" \
 "SUPER P" "App launcher" "rofi col_singlerow" \
 "SUPER D" "App launcher (full)" "rofi main config" \

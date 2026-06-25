@@ -36,7 +36,7 @@ set $mod Mod4
 set $terminal kitty
 set $browser firefox
 set $file thunar
-set $editor code
+set $editor codium
 set $note Xed 
 set $photoViewer Eog
 set $vm Virt-manager
@@ -380,7 +380,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease
 
 ######################## App shortcuts
 bindsym $mod+b exec $browser;focus
-bindsym $mod+Shift+W exec chromium-browser;focus
+bindsym $mod+Shift+W exec helium-browser;focus
 bindsym $mod+e exec $file;focus
 bindsym $mod+n exec $note
 bindsym Insert exec "scrot ~/Pictures/%Y-%m-%d-%T-scr.png"
@@ -414,7 +414,7 @@ set $ws0 "10"
 ### assign applications to workspaces (Qtile assign_app.py parity)
 assign [class="Alacritty|kitty"] $ws1
 assign [class="Thunar|Pcmanfm"] $ws2
-assign [class="firefox|Firefox|Navigator|chromium|chromium-browser|Chromium|Google-chrome|brave-browser|qutebrowser|Helium|helium"] $ws3
+assign [class="firefox|Firefox|Navigator|Helium|helium|helium-browser"] $ws3
 assign [class="code-oss|Code|Subl|VSCodium|Geany|Atom|Sublime-text"] $ws4
 assign [class="Gimp|kdenlive|figma-linux|Inkscape|postman"] $ws5
 assign [class="vlc|libreoffice|DBeaver"] $ws6
