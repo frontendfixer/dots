@@ -25,6 +25,40 @@ require_network() {
         || die "Network check failed (could not reach fedoraproject.org)."
 }
 
+dnf_install() {
+    sudo dnf install -y "$@"
+}
+
+dnf_install_optional() {
+    local pkg
+    for pkg in "$@"; do
+        sudo dnf install -y "$pkg" 2>/dev/null \
+            || echo -e "${Y}$pkg not available, skipping${N}"
+    done
+}
+
+enable_copr_optional() {
+    local repo=$1
+    sudo dnf copr enable -y "$repo" 2>/dev/null \
+        || echo -e "${Y}$repo COPR not available, skipping${N}"
+}
+
+install_python_user_tools() {
+    local venv="$HOME/.local/share/dots-python-tools"
+    local bin_dir="$HOME/.local/bin"
+
+    mkdir -p "$bin_dir"
+    python3 -m venv "$venv"
+    "$venv/bin/python" -m pip install --upgrade pip
+    "$venv/bin/python" -m pip install rofimoji beautysh black psutil
+
+    for tool in rofimoji beautysh black; do
+        if [ -x "$venv/bin/$tool" ]; then
+            ln -sf "$venv/bin/$tool" "$bin_dir/$tool"
+        fi
+    done
+}
+
 append_dnf_conf_if_missing() {
     local marker="# dots-fedora-install optimizations"
     if sudo grep -qF "$marker" /etc/dnf/dnf.conf 2>/dev/null; then
@@ -104,8 +138,8 @@ append_dnf_conf_if_missing
 
 ## Updating system...
 echo -e "\n${G}Installing RPM Fusion free and non-free${N} ===============\n"
-sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf_install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf_install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf group upgrade -y core
 sudo dnf update -y
 
@@ -126,23 +160,36 @@ ${P}ThinkPad Laptop Optimization${N}
 "
 
 echo -e "\n${G}Installing ThinkPad AMD tools and power management${N} ===============\n"
-sudo dnf install -y tlp tlp-rdw powertop acpi acpid kernel-devel libinput libinput-utils \
+sudo dnf remove -y tuned tuned-ppd power-profiles-daemon 2>/dev/null || true
+sudo dnf install -y --allowerasing tlp tlp-pd tlp-rdw
+dnf_install powertop acpi acpid kernel-devel libinput libinput-utils \
 	xorg-x11-drv-libinput mesa-dri-drivers mesa-vulkan-drivers vulkan-tools \
 	xorg-x11-drv-amdgpu mesa-vulkan-drivers mesa-vulkan-drivers.i686 \
 	libva-utils mesa-va-drivers
 
 
 echo -e "\n${G}Installing laptop utilities${N} ===============\n"
-sudo dnf install -y bluez bluez-tools
-sudo dnf install -y fwupd
-sudo dnf install -y fprintd fprintd-pam
+dnf_install bluez bluez-tools blueman fwupd fprintd fprintd-pam
+dnf_install_optional bluetui
 
 echo -e "\n${G}Configuring TLP for better battery life${N} ===============\n"
 sudo systemctl enable tlp.service
-sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
+sudo systemctl enable tlp-pd.service
+sudo systemctl mask power-profiles-daemon.service 2>/dev/null || true
+sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket 2>/dev/null || true
+if [ -e /sys/class/power_supply/BAT0/charge_control_start_threshold ] \
+    || [ -e /sys/class/power_supply/BAT0/charge_start_threshold ]; then
+    sudo mkdir -p /etc/tlp.d
+    sudo tee /etc/tlp.d/90-thinkpad-battery.conf > /dev/null <<'EOF'
+# Keep the built-in ThinkPad battery away from prolonged 100% charge.
+START_CHARGE_THRESH_BAT0=75
+STOP_CHARGE_THRESH_BAT0=80
+RESTORE_THRESHOLDS_ON_BAT=1
+EOF
+fi
 
 echo -e "\n${G}Installing AMD microcode updates${N} ===============\n"
-sudo dnf install -y amd-ucode-firmware
+dnf_install amd-ucode-firmware
 
 echo -e "\n${G}Configuring touchpad (libinput)${N} ===============\n"
 sudo mkdir -p /etc/X11/xorg.conf.d/
@@ -166,7 +213,8 @@ ${P}Terminal Theming${N}
 "
 
 echo -e "\n${G}Installing packages${N} ===============\n"
-sudo dnf install -y zsh fish fastfetch curl git wget neovim feh kitty
+dnf_install zsh fish fastfetch curl git wget neovim feh kitty playerctl wl-clipboard \
+    inotify-tools jq yad zenity
 
 echo -e "
 ################################################
@@ -175,17 +223,19 @@ ${P}Web development (fnm)${N}
 "
 
 echo -e "\n${G}Installing native build dependencies${N} ===============\n"
-sudo dnf install -y gcc gcc-c++ make openssl-devel pkgconf-pkg-config python3-devel
+dnf_install gcc gcc-c++ make openssl-devel pkgconf-pkg-config python3-devel python3-pip
 
 echo -e "\n${G}Installing optional web-dev tools${N} ===============\n"
-for pkg in git-lfs gh jq tmux; do
-    sudo dnf install -y "$pkg" 2>/dev/null \
-        || echo -e "${Y}$pkg not available, skipping${N}"
-done
+dnf_install_optional git-lfs gh jq tmux
 
 # Add container/database tooling:
-sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin podman-compose podman 
-sudo dnf install -y postgresql-server redis
+dnf_install dnf-plugins-core
+sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo 2>/dev/null \
+    || sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo 2>/dev/null \
+    || echo -e "${Y}Docker CE repo setup failed; trying Fedora container packages only.${N}"
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 2>/dev/null \
+    || echo -e "${Y}Docker CE packages unavailable; continuing with Podman.${N}"
+dnf_install podman podman-compose postgresql-server redis
 
 echo -e "\n${G}Installing fnm (Node via fnm, not distro nodejs)${N} ===============\n"
 FNM_DIR="${HOME}/.local/share/fnm"
@@ -234,8 +284,9 @@ ${P}Installing Window Managers & Desktop Environment${N}
 "
 
 echo -e "${G}Enabling COPR repositories${N} ===========\n"
-sudo dnf copr enable -y alternateved/eza 2>/dev/null || echo -e "${Y}eza COPR not available, will use default repo${N}"
-sudo dnf copr enable -y v8v88v8v88/helium 2>/dev/null || echo -e "${Y}helium COPR not available, will use default repo${N}"
+enable_copr_optional alternateved/eza
+enable_copr_optional imput/helium
+enable_copr_optional sdegler/hyprland
 
 echo -e "\n${G}Installing XFCE Desktop Environment${N} ===========\n"
 sudo dnf install -y @xfce-desktop-environment
@@ -246,23 +297,24 @@ sudo dnf install -y xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin \
     xfce4-power-manager xfce4-notifyd
 
 echo -e "\n${G}Installing required packages${N} ===========\n"
-sudo dnf install -y btop lxappearance pcmanfm picom rofi dunst \
+dnf_install btop htop lxappearance pcmanfm picom rofi dunst \
     eza ranger thunar mousepad vim-enhanced \
     lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
     dmenu xdg-user-dirs python3-pip python3-devel \
-    firefox helium file-roller papirus-icon-theme eog meld \
-    pavucontrol pulseaudio-utils alsa-utils \
+    firefox file-roller papirus-icon-theme eog meld \
+    pipewire pipewire-pulseaudio pipewire-alsa pipewire-jack-audio-connection-kit pipewire-utils wireplumber \
+    pavucontrol pulseaudio-utils alsa-utils pamixer libnotify \
     flameshot maim xclip \
     galculator \
     brightnessctl light \
-    blueman \
+    blueman bluez-tools \
     android-tools android-file-transfer \
     gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-archive \
     mate-polkit \
-    network-manager-applet nm-connection-editor \
+    NetworkManager network-manager-applet nm-connection-editor \
     xset xsetroot \
     zsh-autosuggestions zsh-syntax-highlighting \
-    google-noto-emoji-color-fonts google-noto-sans-fonts google-noto-serif-fonts \
+    google-noto-color-emoji-fonts google-noto-sans-fonts google-noto-serif-fonts \
     plymouth plymouth-plugin-script \
     redshift \
     polybar \
@@ -274,20 +326,38 @@ sudo dnf install -y btop lxappearance pcmanfm picom rofi dunst \
     arandr \
     volumeicon
 
-# Install qtile if available
-sudo dnf install -y qtile qtile-extras 2>/dev/null || echo -e "${Y}qtile not available in repos${N}"
+echo -e "\n${G}Installing Helium browser${N} ===========\n"
+dnf_install_optional helium-bin
+if ! command -v helium-browser >/dev/null 2>&1 && command -v helium >/dev/null 2>&1; then
+    sudo ln -sf "$(command -v helium)" /usr/local/bin/helium-browser
+fi
 
-# Install pamixer if available, fallback to pulseaudio-utils
-sudo dnf install -y pamixer 2>/dev/null || echo -e "${Y}Using pulseaudio-utils for audio control${N}"
+echo -e "\n${G}Installing Hyprland and optional WM packages${N} ===========\n"
+dnf_install_optional hyprland hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland \
+    xdg-desktop-portal-gtk waybar wofi cliphist swaync wlogout pyprland qtile qtile-extras \
+    polybar gammastep wlsunset
+
+dnf_install_optional awww zscroll autotiling
 
 echo -e "\n${G}Installing Python packages${N} ===========\n"
-pip3 install --user rofimoji beautysh black psutil
+install_python_user_tools
 
 echo -e "\n${G}Enabling services${N} ===========\n"
 sudo systemctl set-default graphical.target
-sudo systemctl enable lightdm
-sudo systemctl enable bluetooth
-sudo systemctl enable acpid
+sudo systemctl enable lightdm bluetooth acpid NetworkManager.service
+sudo systemctl enable docker.service 2>/dev/null \
+    || echo -e "${Y}docker.service not enabled; Docker CE may not be installed.${N}"
+sudo systemctl enable podman.socket 2>/dev/null || true
+
+systemctl --user enable --now pipewire.service pipewire-pulse.service wireplumber.service 2>/dev/null \
+    || echo -e "${Y}PipeWire user services not enabled now; they should start in the next graphical user session.${N}"
+
+if [ ! -s /var/lib/pgsql/data/PG_VERSION ]; then
+    sudo postgresql-setup --initdb 2>/dev/null \
+        || echo -e "${Y}PostgreSQL initdb skipped or failed; run 'sudo postgresql-setup --initdb' before starting postgresql.service.${N}"
+fi
+sudo systemctl enable postgresql.service redis.service 2>/dev/null \
+    || echo -e "${Y}PostgreSQL/Redis services not enabled; check package installation.${N}"
 
 # Plymouth theme (updated command)
 if command -v plymouth-set-default-theme &> /dev/null; then
@@ -326,21 +396,12 @@ ${P}VSCodium${N}
 
 echo -e "\n${G}Adding VSCodium RPM repository${N} ===============\n"
 if [ ! -f /etc/yum.repos.d/vscodium.repo ]; then
-    sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
-[gitlab.com_paulcarroty_vscodium_repo]
-name=gitlab.com_paulcarroty_vscodium_repo
-baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-metadata_expire=1h
-EOF
+    sudo curl -fsSL -o /etc/yum.repos.d/vscodium.repo https://repo.vscodium.dev/vscodium.repo \
+        || echo -e "${Y}Could not add VSCodium repo, codium install may fail.${N}"
 else
     echo -e "${Y}vscodium.repo already present, skipping${N}"
 fi
-sudo dnf install -y codium 2>/dev/null \
-    || echo -e "${Y}codium install failed or unavailable, skipping${N}"
+dnf_install_optional codium
 install_vscodium_extensions
 
 echo -e "
@@ -419,19 +480,23 @@ if [ -e /sys/devices/platform/thinkpad_acpi/leds/tpacpi::power/brightness ]; the
 else
     echo -e "${Y}thinkpad_acpi power LED not found — skipping LED brightness rule${N}"
 fi
-if [ -d /sys/class/backlight/amdgpu_bl0 ]; then
-    thinkpad_tmpfiles+="w /sys/class/backlight/amdgpu_bl0/brightness - - - - 500"$'\n'
-else
-    echo -e "${Y}amdgpu_bl0 backlight not found — skipping (different GPU/panel)${N}"
-fi
+backlight_rule_added=0
+for backlight in /sys/class/backlight/amdgpu_bl* /sys/class/backlight/*; do
+    [ -e "$backlight/brightness" ] || continue
+    max_brightness=$(<"$backlight/max_brightness")
+    target_brightness=$((max_brightness * 60 / 100))
+    thinkpad_tmpfiles+="w $backlight/brightness - - - - $target_brightness"$'\n'
+    backlight_rule_added=1
+    break
+done
+[ "$backlight_rule_added" -eq 1 ] \
+    || echo -e "${Y}No backlight sysfs path found — skipping brightness rule${N}"
 if [ -n "$thinkpad_tmpfiles" ]; then
     printf '%s' "$thinkpad_tmpfiles" | sudo tee /etc/tmpfiles.d/thinkpad-battery.conf > /dev/null
 fi
 
-echo -e "${C}Enabling AMD GPU power saving${N}"
-sudo tee /etc/modprobe.d/amdgpu.conf > /dev/null <<'EOF'
-options amdgpu ppfeaturemask=0xffffffff
-EOF
+echo -e "${C}Skipping unsafe AMDGPU ppfeaturemask override${N}"
+echo -e "${Y}Use the kernel default unless you explicitly need AMDGPU overdrive controls.${N}"
 
 echo -e "${C}Creating laptop optimization script${N}"
 mkdir -p "$HOME/.scripts"
@@ -444,7 +509,7 @@ EOF
 chmod +x "$HOME/.scripts/laptop-optimize.sh"
 
 clear
-command -v colorscript &> /dev/null && colorscript random || neofetch
+command -v colorscript &> /dev/null && colorscript random || fastfetch
 
 echo -e "
 ${R}###############################################
@@ -453,7 +518,13 @@ ${G}###############################################
 
 ${Y}Installed Desktop Environments & WMs:${N}
 ✓ XFCE Desktop Environment (full DE)
-✓ Qtile Window Manager (if available)
+✓ Hyprland stack (when COPR packages are available)
+✓ Qtile Window Manager (when Fedora package is available)
+
+${Y}Apps:${N}
+✓ Kitty terminal
+✓ Helium browser (via official COPR when available)
+✓ VSCodium (codium)
 
 ${Y}ThinkPad E14 AMD Optimizations Applied:${N}
 ✓ TLP power management
@@ -463,6 +534,7 @@ ${Y}ThinkPad E14 AMD Optimizations Applied:${N}
 ✓ Touchpad gestures enabled
 ✓ Natural scrolling enabled
 ✓ Fingerprint reader support
+✓ ThinkPad charge thresholds configured when supported
 ✓ Better battery life tweaks (where hardware paths exist)
 
 ${Y}Node / fnm:${N}
@@ -472,7 +544,7 @@ ${Y}Node / fnm:${N}
 ${Y}Tips:${N}
 • At login screen, select your preferred WM/DE from the session menu
 • XFCE: Full desktop with panel and apps
-• i3/bspwm/awesome: Tiling window managers (needs config)
+• Hyprland: waybar, swaync, pyprland, hypridle should autostart from config when installed
 • Run 'sudo tlp-stat' to check TLP status
 • Run 'sudo powertop' for power consumption analysis
 • Use 'glxinfo | grep AMD' to verify GPU driver
