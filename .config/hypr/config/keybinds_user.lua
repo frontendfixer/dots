@@ -61,5 +61,4 @@ hl.bind(mainMod .. " + CTRL + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -10
 hl.bind(mainMod .. " + CTRL + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 10, relative = true }),
     { repeating = true })
 
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("pkill rofi || true && ags -t 'overview'"))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pypr zoom"))

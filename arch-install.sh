@@ -319,7 +319,7 @@ pacman_install \
     hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
     awww swaync \
     qt5-wayland qt6-wayland kvantum kvantum-qt5 cliphist\
-    polybar picom dunst rofi wofi waybar swaync wlsunset gammastep \
+    polybar picom dunst rofi wofi waybar wlsunset gammastep \
     htop btop lxappearance pcmanfm thunar dolphin ranger mousepad \
     firefox file-roller eog meld flameshot maim xclip scrot \
     galculator brightnessctl blueman android-tools android-file-transfer \
@@ -332,7 +332,7 @@ pacman_install \
     zsh-autosuggestions zsh-syntax-highlighting
 
 echo -e "\n${G}Installing AUR desktop packages${N} ===========\n"
-aur_install_each qtile-extras pyprland autotiling zscroll-git vscodium-bin aylurs-gtk-shell-git wlogout
+aur_install_each qtile-extras pyprland autotiling zscroll-git vscodium-bin wlogout
 
 echo -e "\n${G}Installing Python packages${N} ===========\n"
 install_python_user_tools
@@ -416,6 +416,7 @@ if [ -d ".background" ]; then
     sudo cp -a .background/* /usr/share/backgrounds/fantasy/
     [ -f ".fehbg" ] && cp -a .fehbg "$HOME/"
 fi
+echo -e "${C}Hyprland uses awww with a random image from /usr/share/backgrounds/fantasy at login${N}"
 
 echo -e "\n${G}Copying GTK config files${N}"
 [ -f "$HOME/.gtkrc-2.0" ] && mv "$HOME/.gtkrc-2.0" "$HOME/.gtkrc-2.0.bak"
@@ -498,7 +499,7 @@ ${Y}Audio:${N}
 
 ${Y}AUR (yay):${N}
 ✓ helium-browser-bin, vscodium-bin, pyprland, qtile-extras
-✓ aylurs-gtk-shell-git, wlogout, zscroll-git, autotiling
+✓ wlogout, zscroll-git, autotiling
 
 ${Y}ThinkPad E14 AMD Optimizations Applied:${N}
 ✓ TLP power management
@@ -521,7 +522,7 @@ ${Y}Arch-specific notes:${N}
 
 ${Y}Tips:${N}
 • At login screen, select your preferred WM from the session menu
-• Hyprland: waybar, swaync, awww, hypridle should autostart from config
+• Hyprland: waybar, swaync, awww (random wallpaper), hypridle autostart from config
 • awesome: polybar, picom, dunst configured in dotfiles
 • Run 'sudo tlp-stat' to check TLP status
 • Run 'sudo powertop' for power consumption analysis

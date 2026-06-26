@@ -64,7 +64,6 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
 "SUPER Shift S" "Toggle split" "" \
 "SUPER Insert" "Screenshot (full)" "flameshot" \
 "SUPER Shift G" "Screenshot (region)" "flameshot gui" \
-"SUPER A" "Desktop overview" "ags" \
 "SUPER Z" "Desktop zoom" "pypr zoom" \
 "SUPER Shift N" "Notifications" "swaync" \
 "SUPER arrows" "Focus direction" "" \

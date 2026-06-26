@@ -8,7 +8,12 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("swaync")
-    hl.exec_cmd("ags")
+    hl.exec_cmd(
+        "bash -c 'command -v awww-daemon >/dev/null || exit 0; "
+            .. "pidof awww-daemon >/dev/null 2>&1 || { awww-daemon & sleep 0.3; }; "
+            .. "wall=$(find /usr/share/backgrounds/fantasy -type f 2>/dev/null | shuf -n1); "
+            .. "[ -n \"$wall\" ] && awww img \"$wall\"'"
+    )
 
     hl.exec_cmd("bash -c 'command -v numlockx >/dev/null && numlockx on'")
     hl.exec_cmd(
