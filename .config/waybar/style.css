@@ -1,21 +1,23 @@
 @import "colors.css";
 
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 20px;
+  font-family: FiraCode Nerd Font;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 window#waybar {
+  padding: 2px 6px;
   background-color: @surface-alt;
   color: @foreground;
+  border-radius: 8px;
 }
 
 #workspaces button {
-  padding: 3px;
-  margin: 7px 0px 7px 7px;
+  padding: 2px 8px;
+  margin: 3px 0px 3px 3px;
   background: transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   color: @foreground;
 }
 
@@ -31,24 +33,16 @@ window#waybar {
 #network,
 #cpu,
 #memory,
+#clock,
 #volume,
+#brightness,
+#custom-network-speed,
 #custom-swaync {
-  border-radius: 8px;
-  padding: 5px 8px;
+  border-radius: 6px;
+  padding: 2px 6px;
   background: @surface;
-  margin: 5px 10px 5px 0px;
-}
-
-#custom-swaync {
-  color: @foreground;
-}
-
-#custom-swaync.notification {
-  color: @highlight;
-}
-
-#custom-swaync.dnd {
-  color: @muted;
+  margin: 3px 5px 3px 0;
+  border: 1px solid alpha(@color8, 0.25);
 }
 
 #submap,
@@ -57,13 +51,42 @@ window#waybar {
   color: @foreground;
 }
 
-#pulseaudio-slider {
-  padding: 0px;
-  margin: 0px;
-  margin-left: 8px;
+#custom-swaync {
+  padding: 2px 10px;
+  color: @foreground;
 }
 
-#pulseaudio-slider slider {
+#custom-swaync.notification {
+  color: @highlight;
+  border-color: @highlight;
+}
+
+#custom-swaync.dnd {
+  color: @muted;
+}
+
+#custom-network-speed {
+  font-size: 13px;
+}
+
+#custom-network-speed.offline {
+  color: @muted;
+}
+
+#submap {
+  background: @urgent;
+  border-color: @urgent;
+  color: @foreground;
+}
+
+#pulseaudio-slider,
+#backlight-slider {
+  padding: 0;
+  margin: 0 0 0 6px;
+}
+
+#pulseaudio-slider slider,
+#backlight-slider slider {
   all: unset;
   min-height: 0;
   min-width: 0;
@@ -73,41 +96,58 @@ window#waybar {
   box-shadow: none;
 }
 
-#pulseaudio-slider trough {
-  min-height: 8px;
-  min-width: 75px;
-  border-radius: 5px;
-  background: @color2;
+#pulseaudio-slider trough,
+#backlight-slider trough {
+  min-height: 5px;
+  min-width: 60px;
+  border-radius: 2px;
+  background: alpha(@color8, 0.35);
+  border: none;
 }
 
 #pulseaudio-slider highlight {
-  min-width: 10px;
-  border-radius: 5px;
+  min-width: 8px;
+  border-radius: 2px;
   background: @highlight;
 }
 
-#media {
-  color: @color5;
-  margin: 7px 0px 7px 80px;
+#backlight-slider highlight {
+  min-width: 8px;
+  border-radius: 2px;
+  background: @color11;
+}
+
+#custom-media-animation,
+#custom-media-now-playing,
+#custom-media-time {
+  padding: 2px 6px;
+  margin: 4px 0 4px 0;
+  border-radius: 4px;
+  background: @surface;
+  border: 1px solid alpha(@color8, 0.45);
 }
 
 #custom-media-animation {
-  font-size: 13px;
-  margin-right: 10px;
+  font-size: 12px;
+  margin-left: 6px;
+  margin-right: 4px;
 }
 
 #custom-media-now-playing {
-  margin-right: 10px;
+  margin-right: 4px;
+  color: @color5;
 }
 
 #custom-media-time {
   color: @muted;
-  font-size: 14px;
+  font-size: 13px;
+  margin-right: 4px;
 }
 
 tooltip {
   background: @surface-alt;
-  border-radius: 5px;
+  border: 1px solid alpha(@color8, 0.45);
+  border-radius: 4px;
 }
 
 tooltip label {
