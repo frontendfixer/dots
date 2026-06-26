@@ -1,82 +1,291 @@
 @import "colors.css";
 
+/* ── Base ──────────────────────────────────────────────────── */
+
 * {
   font-family: FiraCode Nerd Font;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 
 window#waybar {
-  padding: 2px 6px;
-  background-color: @surface-alt;
+  background: alpha(@surface-alt, 0.55);
   color: @foreground;
-  border-radius: 8px;
+  border-radius: 0;
+}
+
+/* ── Workspaces ────────────────────────────────────────────── */
+
+#workspaces {
+  margin: 0 12px 2px 0;
+  padding: 4px 6px;
 }
 
 #workspaces button {
-  padding: 2px 8px;
-  margin: 3px 0px 3px 3px;
-  background: transparent;
+  padding: 2px 10px;
+  margin: 0 3px;
+  background: alpha(@surface, 0.9);
   border-radius: 4px;
+  color: alpha(@foreground, 0.4);
+  transition: all 0.18s ease;
+}
+
+#workspaces button:hover {
+  background: alpha(@color12, 0.2);
   color: @foreground;
 }
 
 #workspaces button.active {
   background: @highlight;
-  color: @surface-alt;
+  color: @surface;
   font-weight: 700;
 }
+
+#workspaces button.urgent {
+  background: @urgent;
+  color: @surface;
+}
+
+/* ── Module pills (shared) ─────────────────────────────────── */
 
 #submap,
 #battery,
 #bluetooth,
-#network,
 #cpu,
 #memory,
 #clock,
-#volume,
-#brightness,
+#pulseaudio,
+#backlight,
 #custom-network-speed,
-#custom-swaync {
-  border-radius: 6px;
-  padding: 2px 6px;
-  background: @surface;
-  margin: 3px 5px 3px 0;
-  border: 1px solid alpha(@color8, 0.25);
-}
-
-#submap,
-#workspaces button.urgent {
-  background: @urgent;
-  color: @foreground;
-}
-
-#custom-swaync {
+#custom-swaync,
+#tray,
+#custom-media-animation,
+#custom-media-now-playing,
+#custom-media-time {
+  margin: 0 3px 0 0;
   padding: 2px 10px;
-  color: @foreground;
+  border-radius: 4px;
+  border: 1px solid alpha(@color8, 0.3);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
 }
 
-#custom-swaync.notification {
-  color: @highlight;
-  border-color: @highlight;
-}
-
-#custom-swaync.dnd {
-  color: @muted;
-}
+/* ── Module colors ─────────────────────────────────────────── */
 
 #custom-network-speed {
-  font-size: 13px;
+  background: alpha(@color13, 0.16);
+  border-color: alpha(@color13, 0.4);
+  color: @color13;
+  font-size: 12px;
+}
+
+#custom-network-speed.active {
+  color: @color3;
+}
+
+#custom-network-speed.idle {
+  color: @muted;
 }
 
 #custom-network-speed.offline {
+  background: alpha(@color9, 0.14);
+  border-color: alpha(@color9, 0.35);
+  color: @color9;
+}
+
+#bluetooth {
+  background: alpha(@color12, 0.16);
+  border-color: alpha(@color12, 0.4);
+  color: @color12;
+}
+
+#cpu {
+  background: alpha(@color4, 0.16);
+  border-color: alpha(@color4, 0.4);
+  color: @color4;
+}
+
+#memory {
+  background: alpha(@color5, 0.14);
+  border-color: alpha(@color5, 0.38);
+  color: @color5;
+}
+
+#battery {
+  background: alpha(@color2, 0.14);
+  border-color: alpha(@color2, 0.38);
+  color: @color2;
+}
+
+#battery.charging {
+  background: alpha(@highlight, 0.16);
+  border-color: alpha(@highlight, 0.42);
+  color: @highlight;
+}
+
+#battery.warning:not(.charging) {
+  background: alpha(@color11, 0.16);
+  border-color: alpha(@color11, 0.42);
+  color: @color11;
+}
+
+#battery.critical:not(.charging) {
+  background: alpha(@color9, 0.16);
+  border-color: alpha(@color9, 0.42);
+  color: @color9;
+}
+
+#backlight {
+  background: alpha(@color6, 0.16);
+  border-color: alpha(@color6, 0.4);
+  color: @color6;
+}
+
+#pulseaudio {
+  background: alpha(@color14, 0.14);
+  border-color: alpha(@color14, 0.38);
+  color: @color14;
+}
+
+#pulseaudio.muted {
+  background: alpha(@color8, 0.12);
+  border-color: alpha(@color8, 0.3);
   color: @muted;
 }
 
+#tray {
+  background: alpha(@color15, 0.1);
+  border-color: alpha(@color15, 0.28);
+  padding: 4px 10px;
+}
+
+#custom-swaync {
+  background: alpha(@color9, 0.12);
+  border-color: alpha(@color9, 0.32);
+  color: @color15;
+  padding: 6px 12px;
+}
+
+#custom-swaync.notification {
+  background: alpha(@color9, 0.2);
+  border-color: alpha(@color9, 0.45);
+  color: @color9;
+}
+
+#custom-swaync.dnd {
+  background: alpha(@color8, 0.12);
+  border-color: alpha(@color8, 0.3);
+  color: @muted;
+}
+
+#clock {
+  background: alpha(@highlight, 0.14);
+  border-color: alpha(@highlight, 0.4);
+  color: @highlight;
+  font-weight: 600;
+  padding: 6px 18px;
+  margin: 0;
+}
+
 #submap {
-  background: @urgent;
-  border-color: @urgent;
+  background: alpha(@urgent, 0.2);
+  border-color: alpha(@urgent, 0.55);
+  color: @color10;
+}
+
+#custom-media-animation {
+  background: alpha(@color5, 0.14);
+  border-color: alpha(@color5, 0.38);
+  color: @color5;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+#custom-media-now-playing {
+  background: alpha(@color14, 0.14);
+  border-color: alpha(@color14, 0.38);
+  color: @color14;
+  font-weight: 600;
+}
+
+#custom-media-time {
+  background: alpha(@color10, 0.12);
+  border-color: alpha(@color10, 0.32);
+  color: @color10;
+  font-size: 12px;
+}
+
+/* ── Hover ─────────────────────────────────────────────────── */
+
+#battery:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#clock:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#custom-network-speed:hover,
+#custom-swaync:hover,
+#custom-media-animation:hover,
+#custom-media-now-playing:hover,
+#custom-media-time:hover {
+  border-color: alpha(@foreground, 0.35);
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+/* ── Tooltips ──────────────────────────────────────────────── */
+
+tooltip {
+  background: @surface-alt;
+  border: 1px solid alpha(@highlight, 0.35);
+  border-radius: 5px;
+  padding: 6px;
+}
+
+tooltip label {
   color: @foreground;
+}
+
+/* ══ Future improvements ═══════════════════════════════════
+   Uncomment when enabling the matching module in config.jsonc
+   ═══════════════════════════════════════════════════════════ */
+
+/*
+#window {
+  background: alpha(@color12, 0.14);
+  border-color: alpha(@color12, 0.38);
+  color: @color12;
+  margin: 0 3px 0 0;
+  padding: 2px 10px;
+  border-radius: 4px;
+  border: 1px solid alpha(@color8, 0.3);
+}
+
+#network {
+  background: alpha(@color3, 0.14);
+  border-color: alpha(@color3, 0.38);
+  color: @color3;
+}
+
+#idle-inhibitor {
+  background: alpha(@color8, 0.12);
+  border-color: alpha(@color8, 0.3);
+  color: @muted;
+  padding: 2px 10px;
+}
+
+#idle-inhibitor.activated {
+  background: alpha(@highlight, 0.18);
+  border-color: alpha(@highlight, 0.45);
+  color: @highlight;
 }
 
 #pulseaudio-slider,
@@ -91,9 +300,6 @@ window#waybar {
   min-height: 0;
   min-width: 0;
   opacity: 0;
-  background-image: none;
-  border: none;
-  box-shadow: none;
 }
 
 #pulseaudio-slider trough,
@@ -102,54 +308,15 @@ window#waybar {
   min-width: 60px;
   border-radius: 2px;
   background: alpha(@color8, 0.35);
-  border: none;
 }
 
 #pulseaudio-slider highlight {
-  min-width: 8px;
   border-radius: 2px;
   background: @highlight;
 }
 
 #backlight-slider highlight {
-  min-width: 8px;
   border-radius: 2px;
   background: @color11;
 }
-
-#custom-media-animation,
-#custom-media-now-playing,
-#custom-media-time {
-  padding: 2px 6px;
-  margin: 4px 0 4px 0;
-  border-radius: 4px;
-  background: @surface;
-  border: 1px solid alpha(@color8, 0.45);
-}
-
-#custom-media-animation {
-  font-size: 12px;
-  margin-left: 6px;
-  margin-right: 4px;
-}
-
-#custom-media-now-playing {
-  margin-right: 4px;
-  color: @color5;
-}
-
-#custom-media-time {
-  color: @muted;
-  font-size: 13px;
-  margin-right: 4px;
-}
-
-tooltip {
-  background: @surface-alt;
-  border: 1px solid alpha(@color8, 0.45);
-  border-radius: 4px;
-}
-
-tooltip label {
-  color: @foreground;
-}
+*/
