@@ -31,11 +31,24 @@ window#waybar {
 #network,
 #cpu,
 #memory,
-#volume {
+#volume,
+#custom-swaync {
   border-radius: 8px;
   padding: 5px 8px;
   background: @surface;
   margin: 5px 10px 5px 0px;
+}
+
+#custom-swaync {
+  color: @foreground;
+}
+
+#custom-swaync.notification {
+  color: @highlight;
+}
+
+#custom-swaync.dnd {
+  color: @muted;
 }
 
 #submap,
