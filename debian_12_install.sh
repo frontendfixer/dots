@@ -178,7 +178,9 @@ sudo apt install -y bluez blueman
 sudo systemctl enable bluetooth
 
 # Packages needed for window manager installation
-sudo apt install -y picom rofi libnotify-bin unzip thunar ranger xserver-xorg-input-synaptics
+sudo apt install -y picom rofi libnotify-bin unzip \
+    thunar thunar-archive-plugin thunar-volman thunar-media-tags-plugin thunar-vcs-plugin \
+    file-roller ranger xserver-xorg-input-synaptics
 
 # Install Lightdm Console Display Manager
 sudo apt install -y lightdm lightdm-settings

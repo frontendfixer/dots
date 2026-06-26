@@ -1,50 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
-	<icon>vscodium</icon>
-	<name>Open in VSCodium</name>
-	<unique-id>1664503744635085-1</unique-id>
-	<command>codium -a .</command>
-	<description>Open file or folder in VSCodium text editor</description>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1740000001001-1</unique-id>
+	<command>kitty --directory="%f"</command>
+	<description>Open kitty in the selected folder</description>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
 </action>
 <action>
 	<icon>utilities-terminal</icon>
-	<name>Open Terminal Here</name>
-	<unique-id>1488955845049151-1</unique-id>
-	<command>kitty</command>
-	<description>Example for a custom action</description>
+	<name>Open Terminal at File Location</name>
+	<unique-id>1740000001002-1</unique-id>
+	<command>kitty --directory="%d"</command>
+	<description>Open kitty in the folder containing the selected file</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>system-file-manager</icon>
+	<name>Open in Ranger</name>
+	<unique-id>1740000001003-1</unique-id>
+	<command>kitty -e ranger "%f"</command>
+	<description>Browse the folder in ranger (terminal)</description>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
 </action>
 <action>
 	<icon>im-ban-user</icon>
-	<name>Open folder as root</name>
+	<name>Open Folder as Root</name>
 	<unique-id>1493475601060449-3</unique-id>
-	<command>pkexec thunar %f</command>
-	<description></description>
+	<command>pkexec thunar "%f"</command>
+	<description>Open Thunar as administrator in this folder</description>
 	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>vscodium</icon>
+	<name>Open Folder in VSCodium</name>
+	<unique-id>1664503744635085-1</unique-id>
+	<command>codium -a "%f"</command>
+	<description>Add folder to VSCodium workspace</description>
+	<patterns>*</patterns>
+	<startup-notify/>
 	<directories/>
 </action>
 <action>
 	<icon>vscodium</icon>
 	<name>Open with VSCodium</name>
 	<unique-id>1668058579591948-4</unique-id>
-	<command>codium %f</command>
-	<description>open file in VSCodium</description>
+	<command>codium "%f"</command>
+	<description>Open file in VSCodium</description>
 	<patterns>*</patterns>
 	<other-files/>
 	<text-files/>
 </action>
 <action>
-	<icon>xfce4-fsguard-plugin-warning</icon>
-	<name>Delete Directory</name>
-	<unique-id>1668057146496900-2</unique-id>
-	<command>rm -rf %f</command>
-	<description></description>
+	<icon>accessories-text-editor</icon>
+	<name>Edit with Zed</name>
+	<unique-id>1740000002001-1</unique-id>
+	<command>zeditor "%f"</command>
+	<description>Open file in Zed editor</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+	<other-files/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Edit with Mousepad</name>
+	<unique-id>1740000002002-1</unique-id>
+	<command>mousepad "%f"</command>
+	<description>Open file in Mousepad text editor</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Edit with Neovim</name>
+	<unique-id>1740000002003-1</unique-id>
+	<command>kitty -e nvim "%f"</command>
+	<description>Edit file in Neovim (terminal)</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<text-files/>
+	<other-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy Path</name>
+	<unique-id>1740000003001-1</unique-id>
+	<command>printf '%s' "%f" | wl-copy</command>
+	<description>Copy full path to clipboard</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy Filename</name>
+	<unique-id>1740000003002-1</unique-id>
+	<command>printf '%s' "%n" | wl-copy</command>
+	<description>Copy filename (without path) to clipboard</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy as file:// URL</name>
+	<unique-id>1740000003003-1</unique-id>
+	<command>gio info -a standard::uri "%f" | awk -F= '{print $2}' | wl-copy</command>
+	<description>Copy file URI for pasting into browsers or apps</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>user-trash</icon>
+	<name>Move to Trash</name>
+	<unique-id>1740000004001-1</unique-id>
+	<command>gio trash "%f"</command>
+	<description>Move selected item to trash (safer than permanent delete)</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Duplicate</name>
+	<unique-id>1740000004002-1</unique-id>
+	<command>cp -a "%f" "%d/%n (copy)"</command>
+	<description>Create a copy next to the original</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>emblem-symbolic-link</icon>
+	<name>Create Symlink Here</name>
+	<unique-id>1740000004003-1</unique-id>
+	<command>ln -s "%f" "%d/%n (symlink)"</command>
+	<description>Create a symbolic link in the current folder</description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+	<other-files/>
+	<audio-files/>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>application-x-executable</icon>
+	<name>Make Executable</name>
+	<unique-id>1740000004004-1</unique-id>
+	<command>chmod +x "%f"</command>
+	<description>Allow this file to run as a script or program</description>
+	<patterns>*</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>system-run</icon>
+	<name>Run Script</name>
+	<unique-id>1740000004005-1</unique-id>
+	<command>kitty --hold -e "%f"</command>
+	<description>Run script in a terminal window</description>
+	<patterns>*.sh</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>applications-graphics</icon>
+	<name>Set as Wallpaper</name>
+	<unique-id>1740000005001-1</unique-id>
+	<command>awww img "%f"</command>
+	<description>Set image as desktop wallpaper (awww)</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>image-x-generic</icon>
+	<name>Open with Image Viewer</name>
+	<unique-id>1740000005002-1</unique-id>
+	<command>eog "%f"</command>
+	<description>View image in Eye of GNOME</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>system-file-manager</icon>
+	<name>Compare in Meld</name>
+	<unique-id>1740000006001-1</unique-id>
+	<command>meld %F</command>
+	<description>Compare two or more selected files</description>
+	<patterns>*</patterns>
+	<text-files/>
+	<other-files/>
+</action>
+<action>
+	<icon>dialog-information</icon>
+	<name>Show Folder Size</name>
+	<unique-id>1740000007001-1</unique-id>
+	<command>yad --title="Folder Size" --text="$(du -sh "%f" | cut -f1)" --button=OK:0</command>
+	<description>Display total size of the selected folder</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>dialog-password</icon>
+	<name>SHA256 Checksum</name>
+	<unique-id>1740000007002-1</unique-id>
+	<command>yad --title="SHA256" --text="$(sha256sum "%f")" --width=600 --button=OK:0</command>
+	<description>Show SHA256 hash of the selected file</description>
+	<patterns>*</patterns>
+	<text-files/>
+	<other-files/>
+</action>
+<action>
+	<icon>folder-git</icon>
+	<name>Git Status Here</name>
+	<unique-id>1740000008001-1</unique-id>
+	<command>kitty --directory="%f" --hold -e sh -c 'git status || echo "Not a git repository."; read'</command>
+	<description>Show git status in a terminal</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>folder-git</icon>
+	<name>Git Log (last 20)</name>
+	<unique-id>1740000008002-1</unique-id>
+	<command>kitty --directory="%f" --hold -e sh -c 'git log --oneline -20 || echo "Not a git repository."; read'</command>
+	<description>Show recent git commits in a terminal</description>
 	<patterns>*</patterns>
 	<directories/>
 </action>

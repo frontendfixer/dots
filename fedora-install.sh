@@ -298,7 +298,9 @@ sudo dnf install -y xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin \
 
 echo -e "\n${G}Installing required packages${N} ===========\n"
 dnf_install btop htop lxappearance picom rofi dunst \
-    eza ranger thunar mousepad vim-enhanced \
+    eza ranger \
+    thunar thunar-archive-plugin thunar-volman thunar-media-tags-plugin thunar-vcs-plugin \
+    mousepad vim-enhanced \
     lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
     dmenu xdg-user-dirs python3-pip python3-devel \
     firefox file-roller papirus-icon-theme eog meld \
