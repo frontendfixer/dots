@@ -3,6 +3,7 @@
 local paths = require("lib.paths")
 local mainMod = "SUPER"
 local s = paths.scripts
+local launchPrefix = "" -- if you are using UWSM, make this ("uwsm app -- ")
 
 local function bind(key, action, opts)
     hl.unbind(key)
@@ -11,9 +12,9 @@ end
 
 -- Overrides: unbind default from configs/keybinds.lua, then bind user action
 local overrides = {
-    { key = mainMod .. " + E",             action = hl.dsp.exec_cmd("pcmanfm") },
-    { key = mainMod .. " + B",             action = hl.dsp.exec_cmd("helium-browser") },
-    { key = mainMod .. " + SHIFT + B",     action = hl.dsp.exec_cmd("firefox") },
+    { key = mainMod .. " + E",             action = hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER) },
+    { key = mainMod .. " + B",             action = hl.dsp.exec_cmd(launchPrefix .. BROWSER) },
+    { key = mainMod .. " + SHIFT + B",     action = hl.dsp.exec_cmd(launchPrefix .. ALT_BROWSER) },
     { key = mainMod .. " + SHIFT + G",     action = hl.dsp.exec_cmd("flameshot gui") },
     { key = mainMod .. " + P",             action = hl.dsp.exec_cmd("pkill rofi || rofi -modi drun -show drun -config ~/.config/rofi/themes/col_singlerow.rasi") },
     { key = mainMod .. " + CTRL + Return", action = hl.dsp.exec_cmd("pypr toggle term") },
@@ -32,9 +33,9 @@ for _, entry in ipairs(overrides) do
     bind(entry.key, entry.action, entry.opts)
 end
 
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("codium"))
-hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("galculator"))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(launchPrefix .. TERMINAL))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(launchPrefix .. CODE_EDITOR))
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(launchPrefix .. CALCULATOR))
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -modi drun,filebrowser,run,window"))
 hl.bind(mainMod .. " + SHIFT + Return",

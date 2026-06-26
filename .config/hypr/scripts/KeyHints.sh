@@ -38,9 +38,9 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
 "" "Applications" "" \
 "SUPER Return" "Terminal" "kitty" \
 "SUPER Ctrl Return" "Dropdown terminal" "pypr toggle term" \
-"SUPER C" "Code editor" "codium" \
+"SUPER C" "Code editor" "zeditor" \
 "SUPER Shift C" "Calculator" "galculator" \
-"SUPER E" "File manager" "pcmanfm" \
+"SUPER E" "File manager" "dolphin" \
 "SUPER B" "Browser" "helium-browser" \
 "SUPER Shift B" "Alt browser" "firefox" \
 "SUPER P" "App launcher" "rofi col_singlerow" \
