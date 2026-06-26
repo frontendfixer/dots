@@ -1,7 +1,7 @@
 -- Window and layer rules
 
 local function wr(rule)
-    hl.window_rule(rule)
+  hl.window_rule(rule)
 end
 
 -- Position / center
@@ -21,9 +21,12 @@ wr({ match = { fullscreen = true }, idle_inhibit = "fullscreen" })
 
 -- Workspace assignment
 wr({ match = { class = "^(kitty|Alacritty)$" }, workspace = "1" })
-wr({ match = { class = "^([Tt]hunar|[Pp]cmanfm)$" }, workspace = "2" })
-wr({ match = { class = "^(firefox|Firefox|Navigator|[Hh]elium|helium-browser)$" }, workspace =
-"3" })
+wr({ match = { class = "^([Tt]hunar|[Pp]cmanfm|org.kde.dolphin|[dD]olphin)$" }, workspace = "2" })
+wr({
+  match = { class = "^(firefox|Firefox|Navigator|[Hh]elium|helium-browser)$" },
+  workspace =
+  "3"
+})
 wr({ match = { class = "^(VSCodium|Code|dev.zed.Zed|[Cc]ursor)$" }, workspace = "4" })
 wr({ match = { class = "^(figma-linux|[Gg]imp-2.10|Inkscape|postman)$" }, workspace = "5" })
 wr({ match = { class = "^(vlc|libreoffice|DBeaver)$" }, workspace = "6" })
@@ -112,8 +115,11 @@ wr({ match = { class = "^(gnome-disks|evince|wihotspot(-gui)?|org.gnome.baobab)$
 wr({ match = { class = "^(file-roller|org.gnome.FileRoller)$" }, opacity = "0.9 0.8" })
 wr({ match = { class = "^(app.drey.Warp)$" }, opacity = "0.8 0.7" })
 wr({ match = { class = "^(seahorse)$" }, opacity = "0.9 0.8" })
-wr({ match = { class = "^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$" }, opacity =
-"0.82 0.75" })
+wr({
+  match = { class = "^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$" },
+  opacity =
+  "0.82 0.75"
+})
 wr({ match = { class = "^(xdg-desktop-portal-gtk)$" }, opacity = "0.9 0.8" })
 wr({ match = { class = "^([Ww]hatsapp-for-linux)$" }, opacity = "0.9 0.7" })
 wr({ match = { class = "^([Ff]erdium)$" }, opacity = "0.9 0.7" })
@@ -137,9 +143,9 @@ wr({ match = { title = "^(Picture-in-Picture)$" }, keep_aspect_ratio = true })
 
 -- GameMode: toggled at runtime via hyprctl (see GameMode.sh)
 local gamemodeOpacity = hl.window_rule({
-    name = "gamemode-opacity",
-    match = { class = ".*" },
-    opacity = "1.0 override 1.0 override 1.0 override",
+  name = "gamemode-opacity",
+  match = { class = ".*" },
+  opacity = "1.0 override 1.0 override 1.0 override",
 })
 gamemodeOpacity:set_enabled(false)
 
