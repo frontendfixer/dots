@@ -1,5 +1,5 @@
 #!/bin/bash
-# Key hints — matches user-configs/user_keybinds.lua + configs/keybinds.lua
+# Key hints — matches config/keybinds_user.lua + config/keybinds.lua
 
 BACKEND=wayland
 

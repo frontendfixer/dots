@@ -1,4 +1,4 @@
--- Default Settings. avoid changing this file as during update, this will be replaced
+-- First-run setup hook (runs initial-boot.sh once)
 
 local paths = require("lib.paths")
 

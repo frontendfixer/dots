@@ -1,4 +1,4 @@
--- Qtile-parity keybinds (override defaults from configs/keybinds.lua)
+-- User keybind overrides (loaded after config/keybinds.lua)
 
 local paths = require("lib.paths")
 local mainMod = "SUPER"
@@ -10,7 +10,7 @@ local function bind(key, action, opts)
     hl.bind(key, action, opts)
 end
 
--- Overrides: unbind default from configs/keybinds.lua, then bind user action
+-- Overrides: unbind default from config/keybinds.lua, then bind user action
 local overrides = {
     { key = mainMod .. " + E",             action = hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER) },
     { key = mainMod .. " + B",             action = hl.dsp.exec_cmd(launchPrefix .. BROWSER) },
