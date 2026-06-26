@@ -1,21 +1,26 @@
-local options = {
+return {
   formatters_by_ft = {
     lua = { "stylua" },
     css = { "prettier" },
+    scss = { "prettier" },
     html = { "prettier" },
     javascript = { "prettier" },
     typescript = { "prettier" },
     javascriptreact = { "prettier" },
     typescriptreact = { "prettier" },
     json = { "prettier" },
+    jsonc = { "prettier" },
     markdown = { "prettier" },
     yaml = { "prettier" },
+    svelte = { "prettier" },
+    vue = { "prettier" },
+    graphql = { "prettier" },
+    prisma = { "prettier" },
+    php = { "php-cs-fixer", "prettier" },
+    go = { "gofmt", "goimports" },
   },
   format_on_save = {
-    -- These options will be passed to conform.format()
     timeout_ms = 500,
     lsp_fallback = true,
   },
 }
-
-return options

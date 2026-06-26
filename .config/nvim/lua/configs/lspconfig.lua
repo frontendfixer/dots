@@ -1,31 +1,78 @@
--- load defaults i.e lua_lsp
-require("nvchad.configs.lspconfig").defaults()
-
-local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "html", "cssls", "tsserver", "emmet_ls", "gopls", "jsonls", "prismals", "tailwindcss",
-  "typos_lsp" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+local servers = {
+  "html",
+  "cssls",
+  "ts_ls",
+  "emmet_ls",
+  "gopls",
+  "jsonls",
+  "prismals",
+  "tailwindcss",
+  "eslint",
+  "svelte",
+  "vue_ls",
+  "phpactor",
+  "yamlls",
+}
+
+local lsp_defaults = {
+  capabilities = nvlsp.capabilities,
+  on_init = nvlsp.on_init,
+}
+
+for _, name in ipairs(servers) do
+  vim.lsp.config(name, lsp_defaults)
 end
 
--- configure eslint
-lspconfig.eslint.setup({
+vim.lsp.config("ts_ls", {
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
+})
+
+vim.lsp.config("tailwindcss", {
+  settings = {
+    tailwindCSS = {
+      includeLanguages = {
+        typescript = "javascript",
+        typescriptreact = "javascript",
+      },
+      experimental = {
+        classRegex = {
+          { "cva%(([^)]*)%)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx%(([^)]*)%)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+        },
+      },
+    },
+  },
+})
+
+local base_eslint_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("eslint", {
   on_attach = function(client, bufnr)
+    if base_eslint_on_attach then
+      base_eslint_on_attach(client, bufnr)
+    end
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
-      command = "EslintFixAll",
+      command = "LspEslintFixAll",
     })
   end,
 })
 
--- ######## install lspconfig servers #########
--- npm install -g emmet-ls vscode-langservers-extracted typescript typescript-language-server svelte-language-server @tailwindcss/language-server stylelint-lsp @prisma/language-server
+vim.lsp.enable(servers)
