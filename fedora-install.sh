@@ -297,7 +297,7 @@ sudo dnf install -y xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin \
     xfce4-power-manager xfce4-notifyd
 
 echo -e "\n${G}Installing required packages${N} ===========\n"
-dnf_install btop htop lxappearance pcmanfm picom rofi dunst \
+dnf_install btop htop lxappearance picom rofi dunst \
     eza ranger thunar mousepad vim-enhanced \
     lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
     dmenu xdg-user-dirs python3-pip python3-devel \

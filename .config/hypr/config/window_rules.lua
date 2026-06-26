@@ -21,7 +21,7 @@ wr({ match = { fullscreen = true }, idle_inhibit = "fullscreen" })
 
 -- Workspace assignment
 wr({ match = { class = "^(kitty|Alacritty)$" }, workspace = "1" })
-wr({ match = { class = "^([Tt]hunar|[Pp]cmanfm|org.kde.dolphin|[dD]olphin)$" }, workspace = "2" })
+wr({ match = { class = "^([Tt]hunar)$" }, workspace = "2" })
 wr({
   match = { class = "^(firefox|Firefox|Navigator|[Hh]elium|helium-browser)$" },
   workspace =
@@ -98,7 +98,6 @@ wr({ match = { class = "^([Mm]icrosoft-edge(-stable|-beta|-dev|-unstable)?)$" },
 wr({ match = { class = "^(google-chrome(-beta|-dev|-unstable)?)$" }, opacity = "0.9 0.8" })
 wr({ match = { class = "^(chrome-.+-Default)$" }, opacity = "0.94 0.86" })
 wr({ match = { class = "^([Tt]hunar|org.gnome.Nautilus)$" }, opacity = "0.9 0.8" })
-wr({ match = { class = "^(pcmanfm-qt)$" }, opacity = "0.8 0.6" })
 wr({ match = { class = "^(gedit|org.gnome.TextEditor|mousepad)$" }, opacity = "0.8 0.7" })
 wr({ match = { class = "^(deluge)$" }, opacity = "0.9 0.8" })
 wr({ match = { class = "^(Alacritty|kitty|kitty-dropterm)$" }, opacity = "0.8 0.7" })

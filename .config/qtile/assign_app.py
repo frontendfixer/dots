@@ -8,7 +8,7 @@ def assign_app_group(client):
     ################ assign apps to groups ##################
     #########################################################
     d["1"] = ["kitty", "Alacritty"]
-    d["2"] = ["thunar", "pcmanfm"]  # File Manager
+    d["2"] = ["thunar", "Thunar"]  # File Manager
     d["3"] = [
         "firefox",
         "Firefox",

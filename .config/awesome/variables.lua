@@ -10,7 +10,7 @@ local var = {
 	editor = os.getenv("EDITOR") or "nvim",
 	editor_gui = "mousepad",
 	main_editor = "codium",
-	filemanager = "pcmanfm",
+	filemanager = "thunar",
 	terminal = "kitty",
 
 	rofi_emoji_prompt = "rofi -modi 'run,drun,emoji:/home/lakshmi/.scripts/rofiemoji.sh' -show emoji",

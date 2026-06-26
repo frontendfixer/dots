@@ -320,7 +320,7 @@ pacman_install \
     awww swaync \
     qt5-wayland qt6-wayland kvantum kvantum-qt5 cliphist\
     polybar picom dunst rofi wofi waybar wlsunset gammastep \
-    htop btop lxappearance pcmanfm thunar dolphin ranger mousepad \
+    htop btop lxappearance thunar ranger mousepad \
     firefox file-roller eog meld flameshot maim xclip scrot \
     galculator brightnessctl blueman android-tools android-file-transfer \
     gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-afc \

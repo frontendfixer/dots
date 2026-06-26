@@ -413,7 +413,7 @@ set $ws0 "10"
 
 ### assign applications to workspaces (Qtile assign_app.py parity)
 assign [class="Alacritty|kitty"] $ws1
-assign [class="Thunar|Pcmanfm"] $ws2
+assign [class="Thunar|thunar"] $ws2
 assign [class="firefox|Firefox|Navigator|Helium|helium|helium-browser"] $ws3
 assign [class="code-oss|Code|Subl|VSCodium|Geany|Atom|Sublime-text"] $ws4
 assign [class="Gimp|kdenlive|figma-linux|Inkscape|postman"] $ws5
@@ -426,7 +426,6 @@ for_window [class=Alacritty] focus
 for_window [class=firefox] focus
 for_window [class=Chromium-browser] focus
 for_window [class=Thunar] focus
-for_window [class=Pcmanfm] focus
 for_window [class=Geany] focus
 for_window [class=Code] focus
 for_window [class=Subl] focus

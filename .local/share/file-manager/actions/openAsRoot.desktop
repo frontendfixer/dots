@@ -6,4 +6,4 @@ Icon=stop
  
 [X-Action-Profile profile_id]
 MimeTypes=inode/directory
-Exec=pcmanfm admin://%f
+Exec=pkexec thunar %f

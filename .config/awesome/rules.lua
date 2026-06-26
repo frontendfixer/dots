@@ -120,7 +120,7 @@ function rules.create(clientkeys, clientbuttons)
 			rule_any = {
 				class = {
 					"Thunar",
-					"Pcmanfm",
+					"thunar",
 				},
 			},
 			properties = { screen = 1, tag = " 2 ", switchtotag = true },
